@@ -1019,7 +1019,7 @@ async function generateRealAiLook(){
   realAiStatus.textContent='Sending the private styling request to the secure AI server…';
   try{
     const dataUrl=previewImage.src;
-    const response=await fetch('/.netlify/functions/generate-look',{
+    const response=await fetch('/api/generate-look',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({image:dataUrl,mimeType:file.type,look:currentLook()})
