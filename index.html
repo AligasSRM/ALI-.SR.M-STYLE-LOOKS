@@ -389,12 +389,14 @@ footer .path{
     justify-content:center;
   }
 }
+.lang-switch{display:flex;gap:6px}.lang-switch button{border:1px solid var(--line);background:transparent;color:var(--ink);padding:5px 9px;border-radius:16px;font:600 .72rem 'Cormorant Garamond',serif;cursor:pointer}.lang-switch button.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
       Ali Sr.M
       <span>style &amp; looks</span>
     </div>
+    <div class="lang-switch" aria-label="Language"><button type="button" id="lang-en" class="active">EN</button><button type="button" id="lang-ar">AR</button></div>
   </div>
 </header><section class="logo-mark">
   <div class="brand">Ali Sr.M</div>
@@ -759,5 +761,24 @@ footer .path{
   </div>  <p>AI Fashion &amp; Beauty Platform</p>  <p class="path">
     Website → AI Try On → AI Stylist →
     Save → Share → Shopping → Social Media
-  </p></footer></body>
+  </p></footer>
+<script>
+const translations={
+en:{
+title:'Ali Sr.M — Style & Looks',hero:'Your look, styled by intelligence',heroP:'The AI platform that brings fashion and beauty together in one seamless experience: try on, coordinate, and share your look.',start:'Start Trying On',tryon:'Virtual Try-On Room',beauty:'Beauty Studio',closet:'Your Digital Closet & Personal Stylist',weddings:'Weddings & Events',identity:'Your Identity, Preserved',occasion:'Every Occasion, Every Style',budget:'Your Budget, Your Look',saved:'Your Saved Looks',privacy:'Privacy First',language:'In Your Language, Wherever You Are',ready:'Ready for your next look?',startNow:'Start Now',footer:'AI Fashion & Beauty Platform'
+},
+ar:{
+title:'علي SR.M — ستايل آند لوكس',hero:'إطلالتك، بتنسيق من الذكاء',heroP:'منصة الذكاء الاصطناعي التي تجمع الأزياء والجمال بتجربة واحدة متكاملة: جرّب، نسّق، وشارك إطلالتك.',start:'ابدأ تجربة الإطلالة',tryon:'غرفة التجربة الافتراضية',beauty:'استوديو الجمال',closet:'خزانتك الرقمية والمنسّق الشخصي',weddings:'الأعراس والمناسبات',identity:'هويتك محفوظة',occasion:'لكل مناسبة، ولكل ستايل',budget:'ميزانيتك، وإطلالتك',saved:'إطلالاتك المحفوظة',privacy:'الخصوصية أولاً',language:'بلغتك، أينما كنت',ready:'جاهز لإطلالتك الجديدة؟',startNow:'ابدأ الآن',footer:'منصة الأزياء والجمال بالذكاء الاصطناعي'
+}};
+const map={hero:'h1',heroP:'.hero p',start:'.cta',tryon:'#try-on h2',beauty:'.feature:nth-of-type(3) h2',closet:'.feature:nth-of-type(4) h2',weddings:'.feature:nth-of-type(5) h2',identity:'.feature:nth-of-type(6) h2',occasion:'.band:nth-of-type(7) h2',budget:'.band:nth-of-type(8) h2',saved:'.band:nth-of-type(9) h2',privacy:'.privacy h2',language:'.band:nth-of-type(10) h2',ready:'.hero:last-of-type h1',startNow:'.hero:last-of-type .cta',footer:'footer p'};
+function setLang(lang){
+ const t=translations[lang]; document.documentElement.lang=lang; document.documentElement.dir=lang==='ar'?'rtl':'ltr'; document.title=t.title;
+ Object.entries(map).forEach(([k,s])=>{const el=document.querySelector(s);if(el)el.textContent=t[k]});
+ document.getElementById('lang-en').classList.toggle('active',lang==='en');document.getElementById('lang-ar').classList.toggle('active',lang==='ar');
+ localStorage.setItem('aliStyleLang',lang);
+}
+document.getElementById('lang-en').addEventListener('click',()=>setLang('en'));
+document.getElementById('lang-ar').addEventListener('click',()=>setLang('ar'));
+setLang(localStorage.getItem('aliStyleLang')||'en');
+</script></body>
 </html>
