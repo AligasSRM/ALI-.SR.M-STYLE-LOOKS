@@ -1011,9 +1011,15 @@ ngJourney();function ngProfile(){const looks=load('aliSavedLooks',[]),s=ngState(
 // REAL AI TRY-ON: server-side provider, no browser API key.
 const realAiButton=$('#generate-ai-look'), realAiStatus=$('#real-ai-status'), realAiResult=$('#real-ai-result'), realAiImage=$('#real-ai-image');
 async function generateRealAiLook(){
-  if(!requirePhoto()) return;
+  if(!requirePhoto()){
+    realAiStatus.textContent='Please upload a photo first.';
+    return;
+  }
   const file=photoInput.files[0];
-  if(!file) return;
+  if(!file){
+    realAiStatus.textContent='Please upload a photo first.';
+    return;
+  }
   realAiButton.disabled=true;
   realAiButton.textContent='Generating…';
   realAiStatus.textContent='Sending the private styling request to the secure AI server…';
