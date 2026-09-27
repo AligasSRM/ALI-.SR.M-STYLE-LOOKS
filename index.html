@@ -220,6 +220,14 @@ svg{
   max-width:100%;
   height:auto;
 }
+.tryon-demo{width:min(100%,320px);margin-bottom:18px}
+.upload-box{display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;min-height:150px;padding:22px;border:1px dashed var(--gold);background:rgba(255,255,255,.72);border-radius:6px;text-align:center;cursor:pointer}
+.upload-box strong{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.15rem}
+.upload-box span{font-size:.92rem;color:var(--rose)}
+.photo-preview{display:flex;flex-direction:column;gap:10px;align-items:center}
+.photo-preview img{width:100%;max-height:300px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
+.photo-preview button{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:18px;color:var(--rose);cursor:pointer}
+
 
 /* BANDS */
 
@@ -446,7 +454,17 @@ footer .path{
 </div>
 
 <div class="art">
-
+  <div class="tryon-demo">
+    <label class="upload-box" for="photo-input">
+      <strong id="upload-title">Upload your photo</strong>
+      <span id="upload-hint">Choose a full-body photo to start your private try-on.</span>
+      <input id="photo-input" type="file" accept="image/*" hidden>
+    </label>
+    <div id="photo-preview" class="photo-preview" hidden>
+      <img id="preview-image" alt="Your selected photo">
+      <button type="button" id="remove-photo">Remove photo</button>
+    </div>
+  </div>
   <svg viewBox="0 0 200 260" width="180">
     <path
       d="M100 10 C70 10 60 40 60 60 C60 80 70 90 70 110 L45 250 L155 250 L130 110 C130 90 140 80 140 60 C140 40 130 10 100 10 Z"
@@ -780,5 +798,21 @@ function setLang(lang){
 document.getElementById('lang-en').addEventListener('click',()=>setLang('en'));
 document.getElementById('lang-ar').addEventListener('click',()=>setLang('ar'));
 setLang(localStorage.getItem('aliStyleLang')||'en');
+
+const photoInput=document.getElementById('photo-input');
+const photoPreview=document.getElementById('photo-preview');
+const previewImage=document.getElementById('preview-image');
+const removePhoto=document.getElementById('remove-photo');
+photoInput.addEventListener('change',()=>{
+  const file=photoInput.files&&photoInput.files[0];
+  if(!file)return;
+  if(!file.type.startsWith('image/')){photoInput.value='';return;}
+  const reader=new FileReader();
+  reader.onload=()=>{previewImage.src=reader.result;photoPreview.hidden=false;};
+  reader.readAsDataURL(file);
+});
+removePhoto.addEventListener('click',()=>{
+  photoInput.value='';previewImage.removeAttribute('src');photoPreview.hidden=true;
+});
 </script></body>
 </html>
