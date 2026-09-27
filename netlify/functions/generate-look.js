@@ -76,7 +76,12 @@ exports.handler = async (event) => {
       };
     }
 
-    const outputImage = data?.output_image;
+    const stepImage = (data?.steps || [])
+      .filter(step => step?.type === "model_output")
+      .flatMap(step => Array.isArray(step.content) ? step.content : [])
+      .find(block => block?.type === "image" && block?.data);
+
+    const outputImage = data?.output_image || stepImage;
     if (!outputImage?.data) {
       return {
         statusCode: 502,
