@@ -427,6 +427,19 @@ footer .path{
 .real-ai-panel>strong{display:block;text-align:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem}
 .real-ai-panel>p{max-width:650px;margin:7px auto 12px;text-align:center}
 #real-ai-status{min-height:24px;text-align:center}
+</style><style>
+.design-studio{background:#fff}
+.design-workbench{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;align-items:start}
+.design-controls,.design-preview{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px}
+.design-group{margin-bottom:18px}.design-group h3{margin:0 0 8px;color:var(--rose);font-size:1.05rem}
+.design-options{display:flex;flex-wrap:wrap;gap:7px}.design-options button{border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:18px;color:var(--rose);cursor:pointer;font:inherit}.design-options button.active{background:var(--gold);border-color:var(--gold);color:#fff}
+.garment-canvas{min-height:390px;border:1px dashed var(--gold2);border-radius:8px;background:linear-gradient(180deg,#fbf7f3,#fff);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.garment-silhouette{width:min(78%,330px);min-height:310px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Playfair Display',serif;color:var(--gold);font-size:1.35rem;padding:35px}
+.design-summary{margin-top:12px;padding:12px;background:#fbf7f3;border:1px solid var(--line);border-radius:6px}
+.design-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.design-actions button{border:1px solid var(--line);background:#fff;padding:8px 13px;border-radius:20px;color:var(--rose);cursor:pointer;font:inherit}.design-actions .primary{background:var(--gold);border-color:var(--gold);color:#fff}
+.idea-box{margin-top:22px;padding:18px;border:1px solid var(--gold2);border-radius:8px;background:#fff}
+.idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:12px}.idea-card{border:1px solid var(--line);border-radius:6px;padding:14px;background:#fff}.idea-card h4{margin:0 0 5px;color:var(--gold);font-family:'Playfair Display',serif}.idea-card p{margin:0;font-size:.95rem}
+@media(max-width:760px){.design-workbench{grid-template-columns:1fr}}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -826,7 +839,53 @@ footer .path{
 <div class="feature-card"><h3>Accessories</h3><p>Shoes, bags, jewelry and watches.</p></div>
 <div class="feature-card"><h3>Beauty</h3><p>Makeup, hair and nails connected to the complete look.</p></div>
 <div class="feature-card"><h3>Identity</h3><p>Keep your face, body, skin tone and tattoos respected.</p></div>
-</div></div></section><section class="band" id="next-generation"><div class="wrap">
+</div></div></section><section class="band design-studio" id="design-studio">
+<div class="wrap">
+<h2 id="design-studio-title">AI Design Studio — Design It Your Way</h2>
+<p class="lead" id="design-studio-lead">Start with a garment, then build it piece by piece. Change the cut, shape, sleeves, neckline, length, fabric and details. Your idea becomes a structured design brief that AI can turn into a visual concept.</p>
+<div class="design-workbench">
+<div class="design-controls">
+<div class="design-group"><h3>1. What are you designing?</h3><div class="design-options" data-design-group="garment">
+<button class="active" data-design="garment" data-value="Dress">Dress</button><button data-design="garment" data-value="Blouse">Blouse</button><button data-design="garment" data-value="Trousers">Trousers</button><button data-design="garment" data-value="Skirt">Skirt</button><button data-design="garment" data-value="Jacket">Jacket</button><button data-design="garment" data-value="Suit">Suit</button>
+</div></div>
+<div class="design-group"><h3>2. Shape / cut</h3><div class="design-options" data-design-group="cut">
+<button class="active" data-design="cut" data-value="Classic">Classic</button><button data-design="cut" data-value="A-line">A-line</button><button data-design="cut" data-value="Fitted">Fitted</button><button data-design="cut" data-value="Oversized">Oversized</button><button data-design="cut" data-value="Asymmetric">Asymmetric</button><button data-design="cut" data-value="Custom">Custom idea</button>
+</div></div>
+<div class="design-group"><h3>3. Sleeves / legs</h3><div class="design-options" data-design-group="sleeve">
+<button class="active" data-design="sleeve" data-value="Standard">Standard</button><button data-design="sleeve" data-value="Short">Short</button><button data-design="sleeve" data-value="Long">Long</button><button data-design="sleeve" data-value="Wide">Wide</button><button data-design="sleeve" data-value="None">None</button>
+</div></div>
+<div class="design-group"><h3>4. Neckline / waist</h3><div class="design-options" data-design-group="neck">
+<button class="active" data-design="neck" data-value="Round">Round</button><button data-design="neck" data-value="V-neck">V-neck</button><button data-design="neck" data-value="High neck">High neck</button><button data-design="neck" data-value="Off-shoulder">Off-shoulder</button><button data-design="neck" data-value="Custom">Custom</button>
+</div></div>
+<div class="design-group"><h3>5. Length</h3><div class="design-options" data-design-group="length">
+<button class="active" data-design="length" data-value="Mini">Mini</button><button data-design="length" data-value="Midi">Midi</button><button data-design="length" data-value="Maxi">Maxi</button><button data-design="length" data-value="Floor">Floor length</button>
+</div></div>
+<div class="design-group"><h3>6. Fabric / surface</h3><div class="design-options" data-design-group="fabric">
+<button class="active" data-design="fabric" data-value="Silk">Silk</button><button data-design="fabric" data-value="Satin">Satin</button><button data-design="fabric" data-value="Denim">Denim</button><button data-design="fabric" data-value="Linen">Linen</button><button data-design="fabric" data-value="Velvet">Velvet</button><button data-design="fabric" data-value="Custom">My fabric</button>
+</div></div>
+<div class="design-group"><h3>7. Details</h3><div class="design-options" data-design-group="detail">
+<button class="active" data-design="detail" data-value="Clean">Clean</button><button data-design="detail" data-value="Buttons">Buttons</button><button data-design="detail" data-value="Belt">Belt</button><button data-design="detail" data-value="Pleats">Pleats</button><button data-design="detail" data-value="Embroidery">Embroidery</button><button data-design="detail" data-value="Jewelry detail">Jewelry detail</button>
+</div></div>
+<div class="design-actions"><button class="primary" id="save-custom-design">Save Design</button><button id="send-design-to-tryon">Send to Try-On</button><button id="copy-design-brief">Copy Design Brief</button></div>
+</div>
+<div class="design-preview">
+<div class="garment-canvas"><div class="garment-silhouette" id="garment-silhouette">Your custom garment<br><small>Design preview</small></div></div>
+<div class="design-summary" id="design-summary">Dress · Classic · Standard sleeves · Round neckline · Mini · Silk · Clean details</div>
+<div class="share-note">This is the design blueprint. AI image generation can use this structured brief to create the visual garment while the user remains in control of every design choice.</div>
+</div>
+</div>
+<div class="idea-box">
+<h3 style="margin:0;color:var(--gold);font-family:'Playfair Display',serif">Idea Exchange — Turn people's ideas into design signals</h3>
+<p>Users can describe ideas they cannot find in existing fashion. The platform stores structured, private or shareable concepts so future designs can learn from real creative input.</p>
+<div class="idea-grid">
+<div class="idea-card"><h4>Fashion Ideas</h4><p>New cuts, silhouettes, sleeves, combinations and unusual garment concepts.</p></div>
+<div class="idea-card"><h4>Beauty Ideas</h4><p>Makeup, hair, nails and beauty combinations that users invent themselves.</p></div>
+<div class="idea-card"><h4>Accessory Ideas</h4><p>Bags, shoes, jewelry and styling details that complete a new concept.</p></div>
+<div class="idea-card"><h4>Private Inspiration</h4><p>Keep an idea private, save it to your Style DNA, or share it later by choice.</p></div>
+</div>
+</div>
+</div>
+</section><section class="band" id="next-generation"><div class="wrap">
 <h2 id="nextgen-title">AI Personal Style Identity</h2>
 <p class="lead">The next generation layer: learn your taste, remember your choices, restyle what you own, and build your signature identity.</p>
 <div class="nextgen-grid">
@@ -979,4 +1038,37 @@ async function generateRealAiLook(){
   }
 }
 realAiButton?.addEventListener('click',generateRealAiLook);
+
+// AI DESIGN STUDIO: structured garment co-design.
+const designState={garment:'Dress',cut:'Classic',sleeve:'Standard',neck:'Round',length:'Mini',fabric:'Silk',detail:'Clean'};
+function designBrief(){
+ return designState.garment+' · '+designState.cut+' cut · '+designState.sleeve+' sleeves/legs · '+designState.neck+' neckline/waist · '+designState.length+' length · '+designState.fabric+' fabric · '+designState.detail+' details';
+}
+function renderDesignStudio(){
+ const summary=$('#design-summary'), silhouette=$('#garment-silhouette');
+ if(summary) summary.textContent=designBrief();
+ if(silhouette) silhouette.innerHTML=designState.garment+'<br><small>'+designState.cut+' · '+designState.fabric+' · '+designState.detail+'</small>';
+}
+$('[data-design]').forEach(btn=>btn.addEventListener('click',()=>{
+ const key=btn.dataset.design; designState[key]=btn.dataset.value;
+ $('[data-design="'+key+'"]').forEach(x=>x.classList.toggle('active',x===btn));
+ renderDesignStudio();
+}));
+$('#save-custom-design')?.addEventListener('click',()=>{
+ const designs=load('aliCustomDesigns',[]);
+ designs.unshift({...designState,createdAt:Date.now()});
+ save('aliCustomDesigns',designs.slice(0,50));
+ $('#design-summary').textContent='Saved: '+designBrief();
+});
+$('#send-design-to-tryon')?.addEventListener('click',()=>{
+ $('#outfit-select').value=designState.garment==='Trousers'?'Top & trousers':designState.garment==='Skirt'?'Skirt & blouse':designState.garment==='Jacket'?'Jacket & jeans':designState.garment;
+ $('#style-select').value=designState.cut==='Luxury'?'Luxury':designState.cut==='Fitted'?'Elegant':'Modern';
+ $('#color-select').value='Black';
+ $('#try-on')?.scrollIntoView({behavior:'smooth',block:'start'});
+});
+$('#copy-design-brief')?.addEventListener('click',async()=>{
+ const text='Ali Sr.M custom design brief: '+designBrief();
+ try{await navigator.clipboard.writeText(text);$('#design-summary').textContent='Design brief copied.'}catch(e){$('#design-summary').textContent=text}
+});
+renderDesignStudio();
 </script></body></html>
