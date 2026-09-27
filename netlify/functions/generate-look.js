@@ -58,7 +58,13 @@ exports.handler = async (event) => {
         input: [
           { type: "text", text: prompt },
           { type: "image", data: image.replace(/^data:[^;]+;base64,/, ""), mime_type: mimeType }
-        ]
+        ],
+        response_format: {
+          type: "image",
+          mime_type: "image/png",
+          aspect_ratio: "3:4",
+          image_size: "1K"
+        }
       })
     });
 
