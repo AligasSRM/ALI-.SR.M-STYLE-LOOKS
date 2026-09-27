@@ -525,7 +525,22 @@ footer .path{
         <button type="button" data-beauty="Minimal">Minimal</button>
       </div>
     </div>
-    <div class="action-row">
+    <div class="closet-panel" id="open-style-closet" style="margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)">
+  <div style="display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap">
+    <div><strong style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem">Open Style Closet</strong>
+    <p style="margin:5px 0 0;color:var(--muted)">Choose from a broad catalog of silhouettes, garments and colors. Your choice is sent to Try-On.</p></div>
+    <span id="closet-selection" class="share-note">No closet item selected</span>
+  </div>
+  <div class="closet-categories" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+    <button type="button" class="active" data-closet-cat="All">All</button>
+    <button type="button" data-closet-cat="Tops">Tops</button><button type="button" data-closet-cat="Bottoms">Bottoms</button>
+    <button type="button" data-closet-cat="Dresses">Dresses</button><button type="button" data-closet-cat="Jackets">Jackets</button>
+    <button type="button" data-closet-cat="Suits">Suits</button><button type="button" data-closet-cat="Shoes">Shoes</button>
+    <button type="button" data-closet-cat="Accessories">Accessories</button>
+  </div>
+  <div id="closet-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px"></div>
+</div>
+<div class="action-row">
       <button type="button" class="primary" id="build-look">Build My Look</button>
       <button type="button" id="save-look">Save Look</button>
       <button type="button" id="share-look">Share</button>
@@ -961,7 +976,7 @@ const photoInput=$('#photo-input'),photoPreview=$('#photo-preview'),previewImage
 photoInput.addEventListener('change',()=>{const f=photoInput.files&&photoInput.files[0];if(!f)return;if(!f.type.startsWith('image/')){photoInput.value='';return}const reader=new FileReader();reader.onload=()=>{previewImage.src=reader.result;photoPreview.hidden=false};reader.readAsDataURL(f)});
 removePhoto.addEventListener('click',()=>{photoInput.value='';previewImage.removeAttribute('src');photoPreview.hidden=true});
 let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
-function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty}}
+function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty,closetItem:window.aliClosetSelection||null}}
 function renderResult(l){const r=$('#look-result');r.hidden=false;r.innerHTML='<strong>'+l.style+' '+l.outfit+'</strong><span>'+l.occasion+' · '+l.color+' · '+l.beauty+' beauty</span>'}
 function requirePhoto(){if(photoInput.files&&photoInput.files[0])return true;$('.upload-box').scrollIntoView({behavior:'smooth',block:'center'});return false}
 $('#build-look').addEventListener('click',()=>{if(requirePhoto())renderResult(currentLook())});
@@ -1044,6 +1059,69 @@ async function generateRealAiLook(){
   }
 }
 realAiButton?.addEventListener('click',generateRealAiLook);
+
+// OPEN STYLE CLOSET: broad ready-to-try catalog.
+const closetItems=[
+ {name:'Classic White Shirt',cat:'Tops',outfit:'Top & trousers',color:'White',style:'Classic'},
+ {name:'Black Silk Shirt',cat:'Tops',outfit:'Top & trousers',color:'Black',style:'Elegant'},
+ {name:'Oversized Beige Shirt',cat:'Tops',outfit:'Top & trousers',color:'Beige',style:'Casual'},
+ {name:'Navy Polo',cat:'Tops',outfit:'Top & trousers',color:'Navy',style:'Classic'},
+ {name:'Rose Blouse',cat:'Tops',outfit:'Skirt & blouse',color:'Rose',style:'Romantic'},
+ {name:'Green Satin Top',cat:'Tops',outfit:'Top & trousers',color:'Green',style:'Luxury'},
+ {name:'Blue Jeans',cat:'Bottoms',outfit:'Jacket & jeans',color:'Navy',style:'Casual'},
+ {name:'Black Trousers',cat:'Bottoms',outfit:'Top & trousers',color:'Black',style:'Formal'},
+ {name:'Beige Wide-Leg Trousers',cat:'Bottoms',outfit:'Top & trousers',color:'Beige',style:'Modern'},
+ {name:'White Straight Trousers',cat:'Bottoms',outfit:'Top & trousers',color:'White',style:'Minimal'},
+ {name:'Green Cargo Pants',cat:'Bottoms',outfit:'Top & trousers',color:'Green',style:'Sporty'},
+ {name:'Rose Midi Skirt',cat:'Bottoms',outfit:'Skirt & blouse',color:'Rose',style:'Romantic'},
+ {name:'Little Black Dress',cat:'Dresses',outfit:'Dress',color:'Black',style:'Elegant'},
+ {name:'White Evening Dress',cat:'Dresses',outfit:'Dress',color:'White',style:'Luxury'},
+ {name:'Beige Linen Dress',cat:'Dresses',outfit:'Dress',color:'Beige',style:'Minimal'},
+ {name:'Rose Romantic Dress',cat:'Dresses',outfit:'Dress',color:'Rose',style:'Romantic'},
+ {name:'Navy Formal Dress',cat:'Dresses',outfit:'Dress',color:'Navy',style:'Formal'},
+ {name:'Green Satin Dress',cat:'Dresses',outfit:'Dress',color:'Green',style:'Luxury'},
+ {name:'Black Blazer',cat:'Jackets',outfit:'Jacket & jeans',color:'Black',style:'Formal'},
+ {name:'Camel Blazer',cat:'Jackets',outfit:'Jacket & jeans',color:'Beige',style:'Elegant'},
+ {name:'White Tailored Jacket',cat:'Jackets',outfit:'Jacket & jeans',color:'White',style:'Classic'},
+ {name:'Navy Denim Jacket',cat:'Jackets',outfit:'Jacket & jeans',color:'Navy',style:'Casual'},
+ {name:'Rose Cropped Jacket',cat:'Jackets',outfit:'Jacket & jeans',color:'Rose',style:'Modern'},
+ {name:'Green Utility Jacket',cat:'Jackets',outfit:'Jacket & jeans',color:'Green',style:'Sporty'},
+ {name:'Black Tuxedo',cat:'Suits',outfit:'Suit',color:'Black',style:'Formal'},
+ {name:'White Dinner Suit',cat:'Suits',outfit:'Suit',color:'White',style:'Luxury'},
+ {name:'Beige Linen Suit',cat:'Suits',outfit:'Suit',color:'Beige',style:'Elegant'},
+ {name:'Navy Business Suit',cat:'Suits',outfit:'Suit',color:'Navy',style:'Classic'},
+ {name:'Rose Fashion Suit',cat:'Suits',outfit:'Suit',color:'Rose',style:'Modern'},
+ {name:'Green Statement Suit',cat:'Suits',outfit:'Suit',color:'Green',style:'Luxury'},
+ {name:'Black Heels',cat:'Shoes',outfit:'Dress',color:'Black',style:'Elegant'},
+ {name:'White Sneakers',cat:'Shoes',outfit:'Jacket & jeans',color:'White',style:'Sporty'},
+ {name:'Beige Loafers',cat:'Shoes',outfit:'Top & trousers',color:'Beige',style:'Classic'},
+ {name:'Navy Boots',cat:'Shoes',outfit:'Jacket & jeans',color:'Navy',style:'Modern'},
+ {name:'Rose Pumps',cat:'Shoes',outfit:'Dress',color:'Rose',style:'Romantic'},
+ {name:'Green Sandals',cat:'Shoes',outfit:'Dress',color:'Green',style:'Casual'},
+ {name:'Gold Watch',cat:'Accessories',outfit:'Suit',color:'Gold',style:'Luxury'},
+ {name:'Black Leather Bag',cat:'Accessories',outfit:'Jacket & jeans',color:'Black',style:'Classic'},
+ {name:'White Shoulder Bag',cat:'Accessories',outfit:'Dress',color:'White',style:'Minimal'},
+ {name:'Beige Tote',cat:'Accessories',outfit:'Top & trousers',color:'Beige',style:'Casual'},
+ {name:'Rose Clutch',cat:'Accessories',outfit:'Dress',color:'Rose',style:'Romantic'},
+ {name:'Navy Crossbody',cat:'Accessories',outfit:'Jacket & jeans',color:'Navy',style:'Modern'},
+ {name:'Green Statement Bag',cat:'Accessories',outfit:'Dress',color:'Green',style:'Luxury'}
+];
+window.aliClosetSelection=null;
+function renderCloset(category='All'){
+ const grid=$('#closet-grid'); if(!grid)return;
+ const items=category==='All'?closetItems:closetItems.filter(x=>x.cat===category);
+ grid.innerHTML=items.map((x,i)=>'<button type="button" class="closet-item" data-closet-index="'+closetItems.indexOf(x)+'" style="text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);color:inherit"><strong>'+x.name+'</strong><small style="display:block;margin-top:5px;color:var(--muted)">'+x.cat+' · '+x.color+' · '+x.style+'</small></button>').join('');
+ $('#closet-grid [data-closet-index]').forEach(btn=>btn.addEventListener('click',()=>{
+   const item=closetItems[+btn.dataset.closetIndex]; window.aliClosetSelection=item;
+   $('#closet-selection').textContent='Selected: '+item.name;
+   $('#outfit-select').value=item.outfit; $('#color-select').value=item.color; $('#style-select').value=item.style;
+   $('#closet-grid .closet-item').forEach(x=>x.style.outline=x===btn?'2px solid var(--gold)':'none');
+ }));
+}
+$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
+ $('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderCloset(btn.dataset.closetCat);
+}));
+renderCloset();
 
 // AI DESIGN STUDIO: structured garment co-design.
 const designState={garment:'Dress',cut:'Classic',sleeve:'Standard',neck:'Round',length:'Mini',fabric:'Silk',detail:'Clean'};
