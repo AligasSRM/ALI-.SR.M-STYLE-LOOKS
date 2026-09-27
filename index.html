@@ -1025,38 +1025,43 @@ $('#teach-style')?.addEventListener('click',()=>{ngLearn();ngJourney();});
 ngJourney();function ngProfile(){const looks=load('aliSavedLooks',[]),s=ngState(),closet=load('aliStyleCloset',[]);if(!looks.length){$('#profile-identity').textContent='No saved looks yet.';$('#profile-preferences').textContent='Save looks to build your private preferences.';$('#profile-evolution').textContent='Your journey starts with your first saved look.';return}const count=k=>{const m={};looks.forEach(x=>{const v=x[k]||'Unknown';m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Unknown'};const style=count('style'),occasion=count('occasion'),color=count('color');$('#profile-identity').textContent='Your current identity leans '+style+' style, with '+occasion+' looks leading your saved journey.';$('#profile-preferences').textContent='Style: '+style+' · Color: '+color+' · Occasion: '+occasion+' · Closet items: '+closet.length+'.';$('#profile-evolution').textContent='Saved looks: '+looks.length+'. '+(s.signature?'Signature look is defined.':'Your signature look is still evolving.')}$('#refresh-profile')?.addEventListener('click',ngProfile);ngProfile();let ngLabLook=null;function ngMix(){const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];const outfits=['Dress','Suit','Top & trousers','Skirt & blouse','Jacket & jeans'];const s=ngState();const base=s.dna?.style||$('#style-select').value;let si=Math.max(0,styles.indexOf(base));let ci=Math.floor(Math.random()*colors.length);ngLabLook={style:styles[(si+2)%styles.length],color:colors[ci],outfit:outfits[Math.floor(Math.random()*outfits.length)],occasion:$('#occasion-select').value,beauty:$('#beauty-select').value};$('#style-lab-result').textContent='New direction: '+ngLabLook.style+' · '+ngLabLook.color+' · '+ngLabLook.outfit+' for '+ngLabLook.occasion+'.';$('#lab-save-status').textContent='Temporary experiment ready. Save it only if you like the direction.'}function ngCompare(){if(!ngLabLook){ngMix();return}$('#style-lab-result').textContent='Current: '+$('#style-select').value+' / '+$('#color-select').value+' → New: '+ngLabLook.style+' / '+ngLabLook.color+'.'}function ngSafe(){ngMix();$('#style-lab-result').textContent+=' Nothing in your saved looks or closet was changed.'}function ngSaveLab(){if(!ngLabLook){ngMix();return}if(!requirePhoto())return;$('#style-select').value=ngLabLook.style;$('#color-select').value=ngLabLook.color;$('#outfit-select').value=ngLabLook.outfit;renderResult(currentLook());saveCurrentLook();ngLearn();$('#lab-save-status').textContent='Experiment saved to your private Saved Looks.'}$('#mix-style')?.addEventListener('click',ngMix);$('#compare-style')?.addEventListener('click',ngCompare);$('#safe-experiment')?.addEventListener('click',ngSafe);$('#save-lab-look')?.addEventListener('click',ngSaveLab);function coachSet(o){$('#occasion-select').value=o;const style=$('#style-select').value,color=$('#color-select').value;const text='For '+o+', keep your '+style+' direction with '+color+' as the anchor. Add one intentional beauty or accessory detail and avoid overloading the look.';$('#coach-today').textContent=text;$('#coach-occasion').textContent='Occasion set to '+o+'. Your core style remains unchanged.';$('#coach-why').textContent='Because the goal is consistency: the occasion changes, while your personal style stays recognizable.';ngLearn();ngJourney();ngProfile()}$('#coach-today-btn')?.addEventListener('click',()=>coachSet($('#occasion-select').value));$('#coach-work')?.addEventListener('click',()=>coachSet('Work'));$('#coach-evening')?.addEventListener('click',()=>coachSet('Evening'));$('#coach-travel')?.addEventListener('click',()=>coachSet('Travel'));function feedbackLearn(type){const s=ngState();s.feedback=s.feedback||[];s.feedback.push({type,style:$('#style-select').value,color:$('#color-select').value,at:Date.now()});s.feedback=s.feedback.slice(-30);save('aliStyleNextGen',s);$('#learning-status').textContent='Learned: '+type+'. Your private Style DNA has been updated.';ngLearn();ngJourney();ngProfile()}function repeatSignature(){const s=ngState();if(!s.signature){$('#repeat-signature').textContent='Save a Signature Look first.';return}$('#style-select').value=s.signature.style;$('#color-select').value=s.signature.color;$('#outfit-select').value=s.signature.outfit||$('#outfit-select').value;$('#occasion-select').value=s.signature.occasion||$('#occasion-select').value;$('#repeat-signature').textContent='Signature restored: '+s.signature.style+' · '+s.signature.color+'.';ngExplain()}$('#love-current')?.addEventListener('click',()=>feedbackLearn('favorite'));$('#change-current')?.addEventListener('click',()=>{const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];let i=styles.indexOf($('#style-select').value);$('#style-select').value=styles[(i+1)%styles.length];feedbackLearn('change-direction')});$('#repeat-signature-btn')?.addEventListener('click',repeatSignature);function ngPassport(){const s=ngState(),closet=load('aliStyleCloset',[]),looks=load('aliSavedLooks',[]);$('#passport-signature').textContent=s.signature?'Signature: '+s.signature.style+' · '+s.signature.outfit+' · '+s.signature.color+'.':'No signature saved yet.';const dna=s.dna||{};const parts=Object.entries(dna).filter(([k,v])=>k!=='updatedAt'&&typeof v==='number').sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]+': '+Math.round(x[1])+'%');$('#passport-dna').textContent=parts.length?'Top Style DNA: '+parts.join(' · '):'No Style DNA signals yet.';$('#passport-closet').textContent='Saved looks: '+looks.length+' · Closet items: '+closet.length+' · Private profile active.'}$('#refresh-passport')?.addEventListener('click',ngPassport);ngPassport();
 // REAL AI TRY-ON: server-side provider, no browser API key.
 const realAiButton=$('#generate-ai-look'), realAiStatus=$('#real-ai-status'), realAiResult=$('#real-ai-result'), realAiImage=$('#real-ai-image');
-async function generateRealAiLook(){
+async function generateRealAiLook(event){
+  if(event) event.preventDefault();
   if(!requirePhoto()){
     realAiStatus.textContent='Please upload a photo first.';
-    return;
+    return false;
   }
   const file=photoInput.files[0];
   if(!file){
     realAiStatus.textContent='Please upload a photo first.';
-    return;
+    return false;
   }
   realAiButton.disabled=true;
   realAiButton.textContent='Generating…';
   realAiStatus.textContent='Sending the private styling request to the secure AI server…';
   try{
     const dataUrl=previewImage.src;
+    if(!dataUrl || !dataUrl.startsWith('data:image/')) throw new Error('The uploaded photo preview is not ready yet.');
     const response=await fetch('/api/generate-look',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({image:dataUrl,mimeType:file.type,look:currentLook()})
     });
-    const data=await response.json().catch(()=>({}));
-    if(!response.ok || !data.ok) throw new Error(data.error||'AI generation is not available on this deployment.');
+    const contentType=response.headers.get('content-type')||'';
+    const data=contentType.includes('application/json') ? await response.json() : {};
+    if(!response.ok || !data.ok) throw new Error(data.error||('AI server returned HTTP '+response.status+'.'));
+    if(!data.image) throw new Error('AI server returned no image.');
     realAiImage.src='data:'+(data.mimeType||'image/png')+';base64,'+data.image;
     realAiResult.hidden=false;
     realAiStatus.textContent='Real AI generation completed successfully.';
   }catch(error){
     realAiResult.hidden=true;
-    realAiStatus.textContent=error.message||'Real AI generation failed.';
+    realAiStatus.textContent='Try-On error: '+(error?.message||'Real AI generation failed.');
   }finally{
     realAiButton.disabled=false;
     realAiButton.textContent='Generate Real AI Look';
   }
+  return false;
 }
 realAiButton?.addEventListener('click',generateRealAiLook);
 
