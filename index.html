@@ -955,9 +955,9 @@ photoInput.addEventListener('change',()=>{const f=photoInput.files&&photoInput.f
 removePhoto.addEventListener('click',()=>{photoInput.value='';previewImage.removeAttribute('src');photoPreview.hidden=true});
 let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
 function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty,closetItem:window.aliClosetSelection||null}}
-function renderResult(l){const r=$('#look-result');r.hidden=false;r.innerHTML='<strong>'+l.style+' '+l.outfit+'</strong><span>'+l.occasion+' · '+l.color+' · '+l.beauty+' beauty</span>'}
+function renderResult(l){const r=$('#look-result');if(!r)return;r.hidden=false;r.innerHTML='<strong>'+l.style+' '+l.outfit+'</strong><span>'+l.occasion+' · '+l.color+' · '+l.beauty+' beauty</span>'}
 function requirePhoto(){if(photoInput.files&&photoInput.files[0])return true;$('.upload-box').scrollIntoView({behavior:'smooth',block:'center'});return false}
-$('#build-look').addEventListener('click',()=>{if(requirePhoto())renderResult(currentLook())});
+
 function savedLooks(){try{return JSON.parse(localStorage.getItem('aliStyleLooks')||'[]')}catch(e){return[]}}
 function renderSaved(){const box=$('#saved-list');const a=savedLooks();box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+x.style+' '+x.outfit+'</strong><small>'+x.occasion+' · '+x.color+' · '+x.beauty+' beauty</small></div><button type="button" data-remove="'+i+'">Delete</button></div>').join(''):'';$$('#saved-list [data-remove]').forEach(b=>b.addEventListener('click',()=>{const a=savedLooks();a.splice(+b.dataset.remove,1);localStorage.setItem('aliStyleLooks',JSON.stringify(a));renderSaved()}))}
 $('#save-look').addEventListener('click',()=>{if(!requirePhoto())return;const a=savedLooks();a.unshift(currentLook());localStorage.setItem('aliStyleLooks',JSON.stringify(a.slice(0,20)));renderSaved();renderResult(currentLook())});
