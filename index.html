@@ -461,6 +461,34 @@ footer .path{
 .tryon-fullscreen img{max-width:100%;max-height:100%;object-fit:contain}
 .tryon-fullscreen-close{position:absolute;top:14px;right:14px;z-index:2;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.55);color:#fff;border-radius:50%;width:44px;height:44px;font-size:24px}
 @media(max-width:600px){.tryon-result{padding:10px}.tryon-image-frame img{max-height:72vh}.tryon-result-actions{grid-template-columns:1fr}.tryon-result-title{align-items:flex-start}}
+</style><style id="ali-fashion-vault-styles">
+#ai-fashion-vault{position:relative}
+.ali-vault-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:18px}
+.ali-vault-card{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035);padding:18px}
+.ali-vault-card h3{margin:0 0 8px;color:var(--gold);font-family:'Playfair Display',serif}
+.ali-vault-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.ali-vault-tools input,.ali-vault-tools select,.ali-measure-grid input,.ali-measure-grid select,.ali-tailor-grid select,.ali-tailor-grid input{width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(0,0,0,.18);color:inherit}
+.ali-vault-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.ali-vault-item{border:1px solid var(--line);border-radius:12px;padding:12px;background:rgba(255,255,255,.025)}
+.ali-vault-item strong{display:block}
+.ali-vault-item small{display:block;color:var(--muted);margin-top:5px}
+.ali-vault-item button{margin-top:9px;width:100%}
+.ali-tailor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ali-control-block{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.ali-option-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.ali-option-row button{padding:8px 10px}
+.ali-option-row button.active{outline:2px solid var(--gold)}
+.ali-measure-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ali-measure-grid label,.ali-tailor-grid label{font-size:.82rem;color:var(--rose)}
+.ali-tailor-output{margin-top:16px;border:1px dashed var(--gold);border-radius:14px;padding:15px;background:rgba(176,138,62,.06)}
+.ali-spec-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.ali-spec-table td{padding:7px 5px;border-bottom:1px solid var(--line)}
+.ali-spec-table td:last-child{text-align:right;font-weight:700}
+.ali-pattern{min-height:240px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;background:#f7f3ed;color:#2b2520;overflow:hidden}
+.ali-pattern svg{width:100%;height:240px;max-width:330px}
+.ali-vault-note{color:var(--muted);font-size:.82rem;margin-top:10px}
+@media(max-width:760px){.ali-vault-grid,.ali-tailor-grid{grid-template-columns:1fr}.ali-vault-tools,.ali-measure-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.ali-measure-grid{grid-template-columns:1fr}.ali-vault-card{padding:13px}}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -896,6 +924,108 @@ footer .path{
 </div>
 </div>
 </div>
+</section><section class="band" id="ai-fashion-vault">
+<div class="wrap">
+<h2>AI Fashion Vault & Tailor Studio</h2>
+<p class="lead">خزانتك الذكية للأزياء + استوديو تفصيل القطعة. خزّن القطع، ابحث حسب اللون والمقاس والستايل، أو صمّم قطعة من الصفر وخد ورقة قياسات ومواصفات للخياط.</p>
+<div class="ali-vault-grid">
+  <div class="ali-vault-card">
+    <h3>AI Fashion Vault — خزنة الأزياء</h3>
+    <p>خزّن القطع اللي عندك أو التصاميم اللي صممتها. كل قطعة إلها نوع، لون، مقاس، ستايل وملاحظات.</p>
+    <div class="ali-vault-tools">
+      <input id="vault-search" type="search" placeholder="Search: black trousers, dress, luxury…">
+      <select id="vault-category"><option value="All">All categories</option><option>Tops</option><option>Bottoms</option><option>Dresses</option><option>Jackets</option><option>Suits</option><option>Shoes</option><option>Accessories</option><option>Custom Design</option></select>
+      <select id="vault-color"><option value="All">All colors</option><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select>
+      <select id="vault-size"><option value="All">All sizes</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>Custom</option></select>
+    </div>
+    <div class="action-row">
+      <button type="button" class="primary" id="vault-add-current-design">Save Current Design to Vault</button>
+      <button type="button" id="vault-use-first">Use First Match in Try-On</button>
+    </div>
+    <div id="vault-list" class="ali-vault-items" style="margin-top:14px"></div>
+    <div class="ali-vault-note">الخزنة محفوظة محلياً على الجهاز بهذا الإصدار. ما منشارك القطع مع أي شخص من دون إجراء مشاركة منفصل.</div>
+  </div>
+
+  <div class="ali-vault-card">
+    <h3>Design Your Own Piece — فصّلها على كيفك</h3>
+    <div class="ali-tailor-grid">
+      <label>Garment<select id="tailor-garment"><option>Dress</option><option>Blouse</option><option>Top</option><option>Trousers</option><option>Skirt</option><option>Jacket</option><option>Suit</option></select></label>
+      <label>Fabric<select id="tailor-fabric"><option>Silk</option><option>Satin</option><option>Denim</option><option>Linen</option><option>Velvet</option><option>Wool</option><option>Custom</option></select></label>
+      <label>Color<select id="tailor-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select></label>
+      <label>Fit<select id="tailor-fit"><option>Fitted</option><option>Classic</option><option>Relaxed</option><option>Oversized</option></select></label>
+    </div>
+    <div class="ali-control-block">
+      <strong>Shape / القصّة</strong>
+      <div class="ali-option-row" id="tailor-shape-options">
+        <button type="button" class="active" data-tailor-key="shape" data-tailor-value="Classic">Classic</button>
+        <button type="button" data-tailor-key="shape" data-tailor-value="Slim">Slim</button>
+        <button type="button" data-tailor-key="shape" data-tailor-value="Wide">Wide</button>
+        <button type="button" data-tailor-key="shape" data-tailor-value="A-line">A-line</button>
+        <button type="button" data-tailor-key="shape" data-tailor-value="Straight">Straight</button>
+        <button type="button" data-tailor-key="shape" data-tailor-value="Custom">Custom</button>
+      </div>
+    </div>
+    <div class="ali-control-block">
+      <strong>للبنطلون — من فوق ومن تحت</strong>
+      <div class="ali-option-row">
+        <button type="button" class="active" data-tailor-key="topFit" data-tailor-value="Fitted waist/hip">فوق ضيق</button>
+        <button type="button" data-tailor-key="topFit" data-tailor-value="Relaxed waist/hip">فوق واسع</button>
+        <button type="button" class="active" data-tailor-key="legFit" data-tailor-value="Slim leg">تحت ضيق</button>
+        <button type="button" data-tailor-key="legFit" data-tailor-value="Wide leg">تحت واسع</button>
+        <button type="button" data-tailor-key="legFit" data-tailor-value="Straight leg">مستقيم</button>
+      </div>
+    </div>
+    <div class="ali-control-block">
+      <strong>تفاصيل إضافية</strong>
+      <div class="ali-option-row">
+        <button type="button" class="active" data-tailor-key="neckline" data-tailor-value="Round">Round neck</button>
+        <button type="button" data-tailor-key="neckline" data-tailor-value="V-neck">V-neck</button>
+        <button type="button" data-tailor-key="neckline" data-tailor-value="High neck">High neck</button>
+        <button type="button" data-tailor-key="sleeve" data-tailor-value="Long">Long sleeve</button>
+        <button type="button" data-tailor-key="sleeve" data-tailor-value="Short">Short sleeve</button>
+        <button type="button" data-tailor-key="length" data-tailor-value="Custom">Custom length</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ali-vault-card" style="margin-top:18px">
+  <h3>Tailor Measurements — ورقة الخياط</h3>
+  <p>حط قياسات جسمك بالسنتيمتر. البرنامج بيحسب قياسات القطعة المقترحة حسب القَصّة والـ ease، وبيطلعلك ورقة مرتبة تاخدها معك للخياط.</p>
+  <div class="ali-measure-grid">
+    <label>Height<input id="m-height" type="number" min="50" max="250" step=".1" placeholder="مثلاً 170"></label>
+    <label>Chest / Bust<input id="m-chest" type="number" min="40" max="200" step=".1" placeholder="مثلاً 96"></label>
+    <label>Waist<input id="m-waist" type="number" min="40" max="180" step=".1" placeholder="مثلاً 82"></label>
+    <label>Hips<input id="m-hips" type="number" min="40" max="200" step=".1" placeholder="مثلاً 100"></label>
+    <label>Shoulder<input id="m-shoulder" type="number" min="20" max="80" step=".1" placeholder="مثلاً 44"></label>
+    <label>Inseam<input id="m-inseam" type="number" min="30" max="120" step=".1" placeholder="للبنطلون"></label>
+    <label>Thigh<input id="m-thigh" type="number" min="20" max="100" step=".1" placeholder="للبنطلون"></label>
+    <label>Knee<input id="m-knee" type="number" min="15" max="80" step=".1" placeholder="للبنطلون"></label>
+    <label>Sleeve<input id="m-sleeve" type="number" min="20" max="100" step=".1" placeholder="للكم"></label>
+    <label>Neck<input id="m-neck" type="number" min="20" max="70" step=".1" placeholder="للياقة"></label>
+    <label>Wrist<input id="m-wrist" type="number" min="10" max="40" step=".1" placeholder="للكم"></label>
+    <label>Garment length<input id="m-length" type="number" min="20" max="180" step=".1" placeholder="طول القطعة"></label>
+  </div>
+  <div class="action-row" style="margin-top:14px">
+    <button type="button" class="primary" id="generate-tailor-sheet">Generate Tailor Sheet</button>
+    <button type="button" id="save-tailor-design">Save Design + Measurements</button>
+    <button type="button" id="print-tailor-sheet">Print / Save PDF</button>
+  </div>
+  <div id="tailor-output" class="ali-tailor-output" hidden>
+    <div class="ali-vault-grid">
+      <div>
+        <h3 style="margin-top:0">YOUR TAILOR SPEC</h3>
+        <div id="tailor-spec"></div>
+      </div>
+      <div>
+        <h3 style="margin-top:0">PATTERN DIRECTION</h3>
+        <div id="tailor-pattern" class="ali-pattern"></div>
+      </div>
+    </div>
+    <div id="tailor-note" class="ali-vault-note"></div>
+  </div>
+</div>
+</div>
 </section><section class="band" id="next-generation"><div class="wrap">
 <h2 id="nextgen-title">AI Personal Style Identity</h2>
 <p class="lead">The next generation layer: learn your taste, remember your choices, restyle what you own, and build your signature identity.</p>
@@ -1237,7 +1367,7 @@ const closetItems=[
  {name:'Green Statement Bag',cat:'Accessories',outfit:'Dress',color:'Green',style:'Luxury'}
 ];
 window.aliClosetSelection=null;
-function renderCloset(category='All'){
+function renderTryOnCatalog(category='All'){
  const grid=$('#closet-grid'); if(!grid)return;
  const items=category==='All'?closetItems:closetItems.filter(x=>x.cat===category);
  grid.innerHTML=items.map((x,i)=>'<button type="button" class="closet-item" data-closet-index="'+closetItems.indexOf(x)+'" style="text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);color:inherit"><strong>'+x.name+'</strong><small style="display:block;margin-top:5px;color:var(--muted)">'+x.cat+' · '+x.color+' · '+x.style+'</small></button>').join('');
@@ -1249,9 +1379,9 @@ function renderCloset(category='All'){
  }));
 }
 $$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
- $$('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderCloset(btn.dataset.closetCat);
+ $$('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderTryOnCatalog(btn.dataset.closetCat);
 }));
-renderCloset();
+renderTryOnCatalog();
 
 // AI DESIGN STUDIO: structured garment co-design.
 const designState={garment:'Dress',cut:'Classic',sleeve:'Standard',neck:'Round',length:'Mini',fabric:'Silk',detail:'Clean'};
@@ -1285,4 +1415,62 @@ $('#copy-design-brief')?.addEventListener('click',async()=>{
  try{await navigator.clipboard.writeText(text);$('#design-summary').textContent='Design brief copied.'}catch(e){$('#design-summary').textContent=text}
 });
 renderDesignStudio();
+
+// AI FASHION VAULT + TAILOR STUDIO
+const tailorState={shape:'Classic',topFit:'Fitted waist/hip',legFit:'Slim leg',neckline:'Round',sleeve:'Long',length:'Custom length'};
+function tailorValue(id){return $('#'+id)?.value||''}
+function vaultLoad(){return load('aliFashionVault',[])}
+function vaultSave(a){save('aliFashionVault',a.slice(0,200))}
+function escapeVault(v){return String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]))}
+function renderFashionVault(){
+ const box=$('#vault-list'); if(!box)return;
+ const q=($('#vault-search')?.value||'').toLowerCase().trim(), cat=$('#vault-category')?.value||'All', color=$('#vault-color')?.value||'All', size=$('#vault-size')?.value||'All';
+ const items=vaultLoad().filter(x=>{
+   const hay=[x.name,x.category,x.color,x.size,x.style,x.garment,x.fabric,x.shape,x.notes].join(' ').toLowerCase();
+   return (!q||hay.includes(q))&&(cat==='All'||x.category===cat)&&(color==='All'||x.color===color)&&(size==='All'||x.size===size);
+ });
+ box.innerHTML=items.length?items.map((x,i)=>'<div class="ali-vault-item"><strong>'+escapeVault(x.name||x.garment||'Saved garment')+'</strong><small>'+escapeVault([x.category||'Custom Design',x.color||'',x.size||'',x.style||x.shape||''].filter(Boolean).join(' · '))+'</small><button type="button" data-vault-use="'+i+'">Use in Try-On</button><button type="button" data-vault-delete="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No matching pieces yet.</div>';
+ const filtered=items;
+ $('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#try-on')?.scrollIntoView({behavior:'smooth',block:'start'});}));
+ $('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
+}
+$('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
+$('#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('change',renderFashionVault));
+$('#vault-add-current-design')?.addEventListener('click',()=>{
+ const a=vaultLoad(), item={name:tailorValue('tailor-garment')+' — '+tailorValue('tailor-shape'),category:'Custom Design',garment:tailorValue('tailor-garment'),color:tailorValue('tailor-color'),fabric:tailorValue('tailor-fabric'),size:'Custom',style:tailorValue('tailor-fit'),shape:tailorState.shape,topFit:tailorState.topFit,legFit:tailorState.legFit,neckline:tailorState.neckline,sleeve:tailorState.sleeve,length:tailorState.length,createdAt:Date.now()};
+ a.unshift(item);vaultSave(a);renderFashionVault();
+});
+$('#vault-use-first')?.addEventListener('click',()=>{$('#vault-list [data-vault-use]')?.click()});
+
+$('[data-tailor-key]').forEach(btn=>btn.addEventListener('click',()=>{
+ const k=btn.dataset.tailorKey;tailorState[k]=btn.dataset.tailorValue;
+ $('[data-tailor-key="'+k+'"]').forEach(x=>x.classList.toggle('active',x===btn));
+}));
+
+function measure(id){const n=parseFloat($('#'+id)?.value);return Number.isFinite(n)?n:null}
+function garmentEase(fit){return fit==='Fitted'?2:fit==='Relaxed'?6:fit==='Oversized'?12:4}
+function fmt(n){return n==null?'—':(Math.round(n*10)/10)+' cm'}
+function tailorSpecData(){
+ const fit=tailorValue('tailor-fit'), ease=garmentEase(fit), g=tailorValue('tailor-garment');
+ const chest=measure('m-chest'),waist=measure('m-waist'),hips=measure('m-hips'),shoulder=measure('m-shoulder'),inseam=measure('m-inseam'),thigh=measure('m-thigh'),knee=measure('m-knee'),sleeve=measure('m-sleeve'),neck=measure('m-neck'),wrist=measure('m-wrist'),length=measure('m-length'),height=measure('m-height');
+ return {g,fit,ease,chest,waist,hips,shoulder,inseam,thigh,knee,sleeve,neck,wrist,length,height,garmentChest:chest!=null?chest+ease:null,garmentWaist:waist!=null?waist+ease:null,garmentHips:hips!=null?hips+ease:null};
+}
+function renderPattern(s){
+ const trouser=s.g==='Trousers';
+ return '<svg viewBox="0 0 320 230" role="img" aria-label="Tailor pattern direction"><path d="'+(trouser?'M55 25 L125 25 L145 205 L90 205 L72 125 L55 205 L10 205 Z':'M160 15 C125 18 105 45 105 75 L78 205 L242 205 L215 75 C215 45 195 18 160 15 Z')+'" fill="none" stroke="currentColor" stroke-width="3"/><path d="M160 15 L160 205 M105 75 L215 75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 5"/><text x="160" y="220" text-anchor="middle" font-size="12">'+escapeVault(s.g)+' · '+escapeVault(s.fit)+' · '+escapeVault(tailorState.shape)+'</text></svg>';
+}
+function generateTailorSheet(){
+ const s=tailorSpecData();
+ const missing=['m-chest','m-waist','m-hips'].filter(id=>measure(id)==null);
+ const out=$('#tailor-output'),spec=$('#tailor-spec'),note=$('#tailor-note'),pattern=$('#tailor-pattern');
+ if(!out||!spec||!note||!pattern)return;
+ out.hidden=false;
+ spec.innerHTML='<table class="ali-spec-table"><tr><td>Garment</td><td>'+escapeVault(s.g)+'</td></tr><tr><td>Fabric / Color</td><td>'+escapeVault(tailorValue('tailor-fabric'))+' / '+escapeVault(tailorValue('tailor-color'))+'</td></tr><tr><td>Fit / Ease</td><td>'+escapeVault(s.fit)+' / '+fmt(s.ease)+'</td></tr><tr><td>Chest/Bust body → garment</td><td>'+fmt(s.chest)+' → '+fmt(s.garmentChest)+'</td></tr><tr><td>Waist body → garment</td><td>'+fmt(s.waist)+' → '+fmt(s.garmentWaist)+'</td></tr><tr><td>Hips body → garment</td><td>'+fmt(s.hips)+' → '+fmt(s.garmentHips)+'</td></tr><tr><td>Shoulder</td><td>'+fmt(s.shoulder)+'</td></tr><tr><td>Inseam</td><td>'+fmt(s.inseam)+'</td></tr><tr><td>Thigh / Knee</td><td>'+fmt(s.thigh)+' / '+fmt(s.knee)+'</td></tr><tr><td>Sleeve / Wrist / Neck</td><td>'+fmt(s.sleeve)+' / '+fmt(s.wrist)+' / '+fmt(s.neck)+'</td></tr><tr><td>Garment length</td><td>'+fmt(s.length)+'</td></tr></table>';
+ pattern.innerHTML=renderPattern(s);
+ note.textContent=(missing.length?'Please enter chest/bust, waist and hips for a usable garment-spec draft. ':'')+'Design: '+s.g+' · '+tailorState.shape+' · '+tailorState.topFit+' · '+tailorState.legFit+' · '+tailorState.neckline+' · '+tailorState.sleeve+' · '+tailorState.length+'. The sheet is a planning specification for a tailor; final pattern and seam allowances should be checked by the tailor against the fabric and construction method.';
+}
+$('#generate-tailor-sheet')?.addEventListener('click',generateTailorSheet);
+$('#print-tailor-sheet')?.addEventListener('click',()=>{generateTailorSheet();setTimeout(()=>window.print(),80)});
+$('#save-tailor-design')?.addEventListener('click',()=>{generateTailorSheet();const a=load('aliTailorDesigns',[]);a.unshift({...tailorSpecData(),...tailorState,fabric:tailorValue('tailor-fabric'),color:tailorValue('tailor-color'),savedAt:Date.now()});save('aliTailorDesigns',a.slice(0,100));$('#tailor-note').textContent='Design + measurements saved in your private local vault.';});
+renderFashionVault();
 </script></body></html>
