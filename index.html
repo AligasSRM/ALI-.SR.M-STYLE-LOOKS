@@ -926,104 +926,78 @@ footer .path{
 </div>
 </section><section class="band" id="ai-fashion-vault">
 <div class="wrap">
-<h2>AI Fashion Vault & Tailor Studio</h2>
-<p class="lead">خزانتك الذكية للأزياء + استوديو تفصيل القطعة. خزّن القطع، ابحث حسب اللون والمقاس والستايل، أو صمّم قطعة من الصفر وخد ورقة قياسات ومواصفات للخياط.</p>
+<h2>AI Fashion Vault</h2>
+<p class="lead">خزنة الأزياء الذكية — القطع المحفوظة بتضل منفصلة عن استوديو التصميم.</p>
 <div class="ali-vault-grid">
-  <div class="ali-vault-card">
-    <h3>AI Fashion Vault — خزنة الأزياء</h3>
-    <p>خزّن القطع اللي عندك أو التصاميم اللي صممتها. كل قطعة إلها نوع، لون، مقاس، ستايل وملاحظات.</p>
-    <div class="ali-vault-tools">
-      <input id="vault-search" type="search" placeholder="Search: black trousers, dress, luxury…">
-      <select id="vault-category"><option value="All">All categories</option><option>Tops</option><option>Bottoms</option><option>Dresses</option><option>Jackets</option><option>Suits</option><option>Shoes</option><option>Accessories</option><option>Custom Design</option></select>
-      <select id="vault-color"><option value="All">All colors</option><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select>
-      <select id="vault-size"><option value="All">All sizes</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>Custom</option></select>
-    </div>
-    <div class="action-row">
-      <button type="button" class="primary" id="vault-add-current-design">Save Current Design to Vault</button>
-      <button type="button" id="vault-use-first">Use First Match in Try-On</button>
-    </div>
-    <div id="vault-list" class="ali-vault-items" style="margin-top:14px"></div>
-    <div class="ali-vault-note">الخزنة محفوظة محلياً على الجهاز بهذا الإصدار. ما منشارك القطع مع أي شخص من دون إجراء مشاركة منفصل.</div>
-  </div>
+<div class="ali-vault-card">
+<h3>My Fashion Vault</h3>
+<p>ابحث وصنّف القطع حسب النوع واللون والمقاس، واستعمل أي قطعة مع Try-On.</p>
+<div class="ali-vault-tools">
+<input id="vault-search" type="search" placeholder="Search your fashion vault…">
+<select id="vault-category"><option value="All">All categories</option><option>Tops</option><option>Bottoms</option><option>Dresses</option><option>Jackets</option><option>Suits</option><option>Custom Design</option></select>
+<select id="vault-color"><option value="All">All colors</option><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select>
+<select id="vault-size"><option value="All">All sizes</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>Custom</option></select>
+</div>
+<div class="action-row"><button type="button" class="primary" id="vault-add-current-design">Save Current Design to Vault</button><button type="button" id="vault-use-first">Use First Match in Try-On</button></div>
+<div id="vault-list" class="ali-vault-items" style="margin-top:14px"></div>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="ali-vault-card">
-    <h3>Design Your Own Piece — فصّلها على كيفك</h3>
-    <div class="ali-tailor-grid">
-      <label>Garment<select id="tailor-garment"><option>Dress</option><option>Blouse</option><option>Top</option><option>Trousers</option><option>Skirt</option><option>Jacket</option><option>Suit</option></select></label>
-      <label>Fabric<select id="tailor-fabric"><option>Silk</option><option>Satin</option><option>Denim</option><option>Linen</option><option>Velvet</option><option>Wool</option><option>Custom</option></select></label>
-      <label>Color<select id="tailor-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select></label>
-      <label>Fit<select id="tailor-fit"><option>Fitted</option><option>Classic</option><option>Relaxed</option><option>Oversized</option></select></label>
-    </div>
-    <div class="ali-control-block">
-      <strong>Shape / القصّة</strong>
-      <div class="ali-option-row" id="tailor-shape-options">
-        <button type="button" class="active" data-tailor-key="shape" data-tailor-value="Classic">Classic</button>
-        <button type="button" data-tailor-key="shape" data-tailor-value="Slim">Slim</button>
-        <button type="button" data-tailor-key="shape" data-tailor-value="Wide">Wide</button>
-        <button type="button" data-tailor-key="shape" data-tailor-value="A-line">A-line</button>
-        <button type="button" data-tailor-key="shape" data-tailor-value="Straight">Straight</button>
-        <button type="button" data-tailor-key="shape" data-tailor-value="Custom">Custom</button>
-      </div>
-    </div>
-    <div class="ali-control-block">
-      <strong>للبنطلون — من فوق ومن تحت</strong>
-      <div class="ali-option-row">
-        <button type="button" class="active" data-tailor-key="topFit" data-tailor-value="Fitted waist/hip">فوق ضيق</button>
-        <button type="button" data-tailor-key="topFit" data-tailor-value="Relaxed waist/hip">فوق واسع</button>
-        <button type="button" class="active" data-tailor-key="legFit" data-tailor-value="Slim leg">تحت ضيق</button>
-        <button type="button" data-tailor-key="legFit" data-tailor-value="Wide leg">تحت واسع</button>
-        <button type="button" data-tailor-key="legFit" data-tailor-value="Straight leg">مستقيم</button>
-      </div>
-    </div>
-    <div class="ali-control-block">
-      <strong>تفاصيل إضافية</strong>
-      <div class="ali-option-row">
-        <button type="button" class="active" data-tailor-key="neckline" data-tailor-value="Round">Round neck</button>
-        <button type="button" data-tailor-key="neckline" data-tailor-value="V-neck">V-neck</button>
-        <button type="button" data-tailor-key="neckline" data-tailor-value="High neck">High neck</button>
-        <button type="button" data-tailor-key="sleeve" data-tailor-value="Long">Long sleeve</button>
-        <button type="button" data-tailor-key="sleeve" data-tailor-value="Short">Short sleeve</button>
-        <button type="button" data-tailor-key="length" data-tailor-value="Custom">Custom length</button>
-      </div>
-    </div>
-  </div>
+<section class="band" id="design-tailor-studio">
+<div class="wrap">
+<h2>Design & Tailor Studio</h2>
+<p class="lead">قسم مستقل لتصميم القطعة من الصفر، تعديل شكلها، إدخال قياساتك، ثم استخراج ورقة جاهزة للمراجعة مع الخياط.</p>
+
+<div class="ali-vault-grid">
+<div class="ali-vault-card">
+<h3>1. Build Your Piece</h3>
+<div class="ali-tailor-grid">
+<label>Garment<select id="tailor-garment"><option>Dress</option><option>Blouse</option><option>Top</option><option>Trousers</option><option>Skirt</option><option>Jacket</option><option>Suit</option></select></label>
+<label>Fabric<select id="tailor-fabric"><option>Silk</option><option>Satin</option><option>Denim</option><option>Linen</option><option>Velvet</option><option>Wool</option><option>Custom</option></select></label>
+<label>Color<select id="tailor-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select></label>
+<label>Fit<select id="tailor-fit"><option>Fitted</option><option>Classic</option><option>Relaxed</option><option>Oversized</option></select></label>
+</div>
+<div class="ali-control-block"><strong>Shape / القصّة</strong><div class="ali-option-row" id="tailor-shape-options">
+<button type="button" class="active" data-tailor-key="shape" data-tailor-value="Classic">Classic</button><button type="button" data-tailor-key="shape" data-tailor-value="Slim">Slim</button><button type="button" data-tailor-key="shape" data-tailor-value="Wide">Wide</button><button type="button" data-tailor-key="shape" data-tailor-value="A-line">A-line</button><button type="button" data-tailor-key="shape" data-tailor-value="Straight">Straight</button>
+</div></div>
+<div class="ali-control-block"><strong>Trousers Shape / قصة البنطلون</strong><div class="ali-option-row">
+<button type="button" class="active" data-tailor-key="topFit" data-tailor-value="Fitted waist/hip">فوق ضيق</button><button type="button" data-tailor-key="topFit" data-tailor-value="Relaxed waist/hip">فوق واسع</button><button type="button" class="active" data-tailor-key="legFit" data-tailor-value="Slim leg">تحت ضيق</button><button type="button" data-tailor-key="legFit" data-tailor-value="Wide leg">تحت واسع</button><button type="button" data-tailor-key="legFit" data-tailor-value="Straight leg">مستقيم</button>
+</div></div>
+<div class="ali-control-block"><strong>Details / التفاصيل</strong><div class="ali-option-row">
+<button type="button" class="active" data-tailor-key="neckline" data-tailor-value="Round">Round neck</button><button type="button" data-tailor-key="neckline" data-tailor-value="V-neck">V-neck</button><button type="button" data-tailor-key="neckline" data-tailor-value="High neck">High neck</button><button type="button" class="active" data-tailor-key="sleeve" data-tailor-value="Long">Long sleeve</button><button type="button" data-tailor-key="sleeve" data-tailor-value="Short">Short sleeve</button><button type="button" data-tailor-key="length" data-tailor-value="Custom">Custom length</button>
+</div></div>
+</div>
+
+<div class="ali-vault-card">
+<h3>2. Measurements</h3>
+<p>القياسات بالسنتيمتر. من هون بتعدّل الأرقام قبل إخراج ورقة الخياط.</p>
+<div class="ali-measure-grid">
+<label>Height<input id="m-height" type="number" min="50" max="250" step=".1"></label>
+<label>Chest / Bust<input id="m-chest" type="number" min="40" max="200" step=".1"></label>
+<label>Waist<input id="m-waist" type="number" min="40" max="180" step=".1"></label>
+<label>Hips<input id="m-hips" type="number" min="40" max="200" step=".1"></label>
+<label>Shoulder<input id="m-shoulder" type="number" min="20" max="80" step=".1"></label>
+<label>Inseam<input id="m-inseam" type="number" min="30" max="120" step=".1"></label>
+<label>Thigh<input id="m-thigh" type="number" min="20" max="100" step=".1"></label>
+<label>Knee<input id="m-knee" type="number" min="15" max="80" step=".1"></label>
+<label>Sleeve<input id="m-sleeve" type="number" min="20" max="100" step=".1"></label>
+<label>Neck<input id="m-neck" type="number" min="20" max="70" step=".1"></label>
+<label>Wrist<input id="m-wrist" type="number" min="10" max="40" step=".1"></label>
+<label>Garment length<input id="m-length" type="number" min="20" max="180" step=".1"></label>
+</div>
+<div class="action-row" style="margin-top:14px"><button type="button" class="primary" id="generate-tailor-sheet">Generate Tailor Sheet</button><button type="button" id="save-tailor-design">Save Design + Measurements</button><button type="button" id="print-tailor-sheet">Print / Save PDF</button></div>
+</div>
 </div>
 
 <div class="ali-vault-card" style="margin-top:18px">
-  <h3>Tailor Measurements — ورقة الخياط</h3>
-  <p>حط قياسات جسمك بالسنتيمتر. البرنامج بيحسب قياسات القطعة المقترحة حسب القَصّة والـ ease، وبيطلعلك ورقة مرتبة تاخدها معك للخياط.</p>
-  <div class="ali-measure-grid">
-    <label>Height<input id="m-height" type="number" min="50" max="250" step=".1" placeholder="مثلاً 170"></label>
-    <label>Chest / Bust<input id="m-chest" type="number" min="40" max="200" step=".1" placeholder="مثلاً 96"></label>
-    <label>Waist<input id="m-waist" type="number" min="40" max="180" step=".1" placeholder="مثلاً 82"></label>
-    <label>Hips<input id="m-hips" type="number" min="40" max="200" step=".1" placeholder="مثلاً 100"></label>
-    <label>Shoulder<input id="m-shoulder" type="number" min="20" max="80" step=".1" placeholder="مثلاً 44"></label>
-    <label>Inseam<input id="m-inseam" type="number" min="30" max="120" step=".1" placeholder="للبنطلون"></label>
-    <label>Thigh<input id="m-thigh" type="number" min="20" max="100" step=".1" placeholder="للبنطلون"></label>
-    <label>Knee<input id="m-knee" type="number" min="15" max="80" step=".1" placeholder="للبنطلون"></label>
-    <label>Sleeve<input id="m-sleeve" type="number" min="20" max="100" step=".1" placeholder="للكم"></label>
-    <label>Neck<input id="m-neck" type="number" min="20" max="70" step=".1" placeholder="للياقة"></label>
-    <label>Wrist<input id="m-wrist" type="number" min="10" max="40" step=".1" placeholder="للكم"></label>
-    <label>Garment length<input id="m-length" type="number" min="20" max="180" step=".1" placeholder="طول القطعة"></label>
-  </div>
-  <div class="action-row" style="margin-top:14px">
-    <button type="button" class="primary" id="generate-tailor-sheet">Generate Tailor Sheet</button>
-    <button type="button" id="save-tailor-design">Save Design + Measurements</button>
-    <button type="button" id="print-tailor-sheet">Print / Save PDF</button>
-  </div>
-  <div id="tailor-output" class="ali-tailor-output" hidden>
-    <div class="ali-vault-grid">
-      <div>
-        <h3 style="margin-top:0">YOUR TAILOR SPEC</h3>
-        <div id="tailor-spec"></div>
-      </div>
-      <div>
-        <h3 style="margin-top:0">PATTERN DIRECTION</h3>
-        <div id="tailor-pattern" class="ali-pattern"></div>
-      </div>
-    </div>
-    <div id="tailor-note" class="ali-vault-note"></div>
-  </div>
+<h3>3. Tailor Plan</h3>
+<div id="tailor-output" class="ali-tailor-output" hidden>
+<div class="ali-vault-grid"><div><h3 style="margin-top:0">YOUR TAILOR SPEC</h3><div id="tailor-spec"></div></div><div><h3 style="margin-top:0">PATTERN DIRECTION</h3><div id="tailor-pattern" class="ali-pattern"></div></div></div>
+<div id="tailor-note" class="ali-vault-note"></div>
+</div>
+<p id="tailor-empty" class="ali-vault-note">اضغط Generate Tailor Sheet بعد إدخال القياسات حتى يظهر المخطط وورقة الخياط هون.</p>
 </div>
 </div>
 </section><section class="band" id="next-generation"><div class="wrap">
