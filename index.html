@@ -1113,7 +1113,7 @@ async function generateRealAiLook(event){
   try{
     const dataUrl=await resizeTryOnImage(file);
     previewImage.src=dataUrl;
-    const response=await fetch('/.netlify/functions/generate-look',{
+    const response=await fetch('/api/generate-look',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({image:dataUrl,mimeType:'image/jpeg',look:currentLook()})
