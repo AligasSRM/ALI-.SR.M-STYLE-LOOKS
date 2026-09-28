@@ -555,13 +555,14 @@ footer .path{
   <div id="real-ai-result" class="demo-result" hidden>
     <img id="real-ai-image" alt="AI generated style preview" style="width:100%;max-height:620px;object-fit:contain;border:1px solid var(--line);border-radius:6px">
   </div>
+
   <div class="real-ai-panel" id="look-motion-panel" style="margin-top:16px;border-top:1px solid var(--line);padding-top:16px">
-    <strong>360° Look Motion</strong>
-    <p>Turn your finished AI Look into a smooth fashion rotation showing front, side and back views.</p>
+    <strong>AI 360° Look Motion</strong>
+    <p>Turn your finished AI Look into an 8-second smooth fashion rotation: front, side and back.</p>
     <div class="action-row">
-      <button type="button" id="generate-look-motion">Create 360° Motion</button>
+      <button type="button" id="generate-look-motion" class="primary">Create AI 360° Motion</button>
     </div>
-    <div class="share-note" id="look-motion-status">Generate a Real AI Look first, then create the motion preview.</div>
+    <div class="share-note" id="look-motion-status">Generate the Real AI Look first.</div>
     <div id="look-motion-result" class="demo-result" hidden>
       <video id="look-motion-video" controls playsinline loop style="width:100%;max-height:620px;border:1px solid var(--line);border-radius:6px;background:#000"></video>
     </div>
@@ -1076,7 +1077,7 @@ async function generateRealAiLook(event){
 }
 realAiButton?.addEventListener('click',generateRealAiLook);
 
-// 360° LOOK MOTION: converts the finished AI Try-On image into a private fashion rotation video.
+// AI 360° LOOK MOTION: fresh Veo 3.1 image-to-video flow.
 const motionButton=$('#generate-look-motion'), motionStatus=$('#look-motion-status'), motionResult=$('#look-motion-result'), motionVideoEl=$('#look-motion-video');
 async function generateLookMotion(){
   if(!realAiImage?.src || !realAiImage.src.startsWith('data:image/')){
@@ -1084,9 +1085,10 @@ async function generateLookMotion(){
     return;
   }
   motionButton.disabled=true;
-  motionButton.textContent='Creating 360° Motion…';
+  motionButton.textContent='Creating AI 360° Motion…';
   motionResult.hidden=true;
-  motionStatus.textContent='Starting the private AI motion generation…';
+  motionVideoEl.removeAttribute('src');
+  motionStatus.textContent='Sending the finished Look to the private AI video server…';
   try{
     const response=await fetch('/api/look-motion',{
       method:'POST',
@@ -1095,27 +1097,29 @@ async function generateLookMotion(){
     });
     const data=await response.json().catch(()=>({}));
     if(!response.ok || !data.ok) throw new Error(data.error||('Motion server returned HTTP '+response.status+'.'));
-    let status='processing';
-    for(let i=0;i<36 && status==='processing';i++){
-      await new Promise(r=>setTimeout(r,5000));
-      const check=await fetch('/api/look-motion-status?jobId='+encodeURIComponent(data.jobId));
+
+    let status=data.status||'processing';
+    for(let i=0;i<40 && status==='processing';i++){
+      await new Promise(r=>setTimeout(r,10000));
+      const check=await fetch('/api/look-motion-status?jobId='+encodeURIComponent(data.jobId),{cache:'no-store'});
       const result=await check.json().catch(()=>({}));
-      if(!check.ok || !result.ok && result.status==='failed') throw new Error(result.error||'Motion generation failed.');
+      if(!check.ok || result.status==='failed') throw new Error(result.error||'AI motion generation failed.');
       status=result.status||'processing';
       if(status==='ready'){
         motionVideoEl.src=result.videoUrl;
         motionResult.hidden=false;
-        motionStatus.textContent='360° Look Motion completed successfully.';
-        break;
+        motionVideoEl.load();
+        motionStatus.textContent='AI 360° Motion completed successfully.';
+        return;
       }
-      motionStatus.textContent='AI is building the rotation…';
+      motionStatus.textContent='AI is building the 360° rotation…';
     }
-    if(status!=='ready') throw new Error('Motion generation is taking longer than expected. Please try again in a moment.');
+    throw new Error('AI video generation is taking longer than expected. Please try again.');
   }catch(error){
     motionStatus.textContent='360° Motion error: '+(error?.message||'Generation failed.');
   }finally{
     motionButton.disabled=false;
-    motionButton.textContent='Create 360° Motion';
+    motionButton.textContent='Create AI 360° Motion';
   }
 }
 motionButton?.addEventListener('click',generateLookMotion);
