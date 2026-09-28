@@ -231,7 +231,10 @@ async function motionVideo(req,res) {
 }
 
 const server = http.createServer((req, res) => {
-  if (req.url.split("?")[0] === "/api/generate-look") return generateLook(req, res);\n  if (req.url.split("?")[0] === "/api/look-motion") return startLookMotion(req, res);\n  if (req.url.split("?")[0] === "/api/look-motion-status") return motionStatus(req, res);\n  if (req.url.split("?")[0] === "/api/look-motion-video") return motionVideo(req, res);
+  if (req.url.split("?")[0] === "/api/generate-look") return generateLook(req, res);
+  if (req.url.split("?")[0] === "/api/look-motion") return startLookMotion(req, res);
+  if (req.url.split("?")[0] === "/api/look-motion-status") return motionStatus(req, res);
+  if (req.url.split("?")[0] === "/api/look-motion-video") return motionVideo(req, res);
   serveStatic(req, res);
 });
 
