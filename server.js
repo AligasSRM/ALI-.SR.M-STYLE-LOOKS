@@ -158,11 +158,11 @@ async function startLookMotion(req, res) {
 
   const imageData = image.replace(/^data:[^;]+;base64,/, "");
   const prompt = [
-    "Create an 8-second premium fashion rotation video from this single finished AI styling image.",
+    "Create an 8-second horizontal 360-degree fashion rotation video from this single finished AI styling image.",
     "Use the supplied image as the exact starting frame.",
     "Keep the same adult person, face, identity, body proportions, hairstyle, outfit, colors and accessories.",
-    "The model slowly turns in place: front view, right three-quarter view, right side, back three-quarter view, back view, then smoothly toward the front.",
-    "Keep the camera fixed at full-body distance and keep the entire person visible.",
+    "The model makes one smooth horizontal full turn in place: front, right three-quarter, right side, back, left side, left three-quarter, then back to front.",
+    "Keep the camera at a fixed full-body distance. Do not move the camera vertically, do not tilt up or down, do not orbit above or below the person, and keep the entire person visible.",
     "Preserve garment construction, silhouette, texture and colors. Stable anatomy and natural fabric motion.",
     "No scene change, no extra people, no text, no logos, no watermark, no sudden cuts.",
     "Luxury fashion showroom realism, smooth controlled movement, clean lighting."
