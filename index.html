@@ -592,10 +592,49 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
     <button type="button" class="ali-module-card" data-module-open="design-tailor-studio"><span class="ali-module-icon">⌁</span><strong>Tailor Studio</strong><small>قياسات وورقة الخياط</small></button>
     <button type="button" class="ali-module-card" data-module-open="saved"><span class="ali-module-icon">♡</span><strong>Saved Looks</strong><small>كل إطلالاتك المحفوظة</small></button>
     <button type="button" class="ali-module-card" data-module-open="next-generation"><span class="ali-module-icon">✧</span><strong>Style Intelligence</strong><small>Style DNA والذكاء الشخصي</small></button>
+    <button type="button" class="ali-module-card" data-module-open="tattoo-studio"><span class="ali-module-icon">✦</span><strong>Tattoo Studio</strong><small>Design → Approve → PDF</small></button>
   </div>
   <button type="button" class="ali-module-back" id="ali-module-back">↑ رجوع إلى مركز الأزياء</button>
 </section>
-<section class="feature" id="try-on">
+<section class="band" id="tattoo-studio" hidden>
+<div class="wrap">
+  <div class="ali-section-head">
+    <div class="ali-center-kicker">TATTOO STUDIO</div>
+    <h2>Tattoo Design</h2>
+    <p>اختار الفكرة، عدّل الرسم، اعتمد التصميم، وبعدها جهّز نسخة الطباعة وPDF.</p>
+  </div>
+  <div class="ali-flow" aria-label="Tattoo workflow">
+    <span class="ali-flow-step active">1 · اختار</span><span class="ali-flow-step">2 · صمّم</span><span class="ali-flow-step">3 · اعتمد</span><span class="ali-flow-step">4 · اطبع / PDF</span>
+  </div>
+  <div class="ali-tattoo-workbench">
+    <div class="ali-tattoo-card">
+      <h3>اختياراتك</h3>
+      <div class="ali-tattoo-options">
+        <button type="button" data-tattoo-key="style" data-tattoo-value="Minimal">Minimal</button>
+        <button type="button" data-tattoo-key="style" data-tattoo-value="Fine Line">Fine Line</button>
+        <button type="button" data-tattoo-key="style" data-tattoo-value="Blackwork">Blackwork</button>
+        <button type="button" data-tattoo-key="style" data-tattoo-value="Ornamental">Ornamental</button>
+        <button type="button" data-tattoo-key="placement" data-tattoo-value="Arm">Arm</button>
+        <button type="button" data-tattoo-key="placement" data-tattoo-value="Back">Back</button>
+        <button type="button" data-tattoo-key="placement" data-tattoo-value="Chest">Chest</button>
+        <button type="button" data-tattoo-key="placement" data-tattoo-value="Leg">Leg</button>
+      </div>
+      <div class="ali-next-action"><strong>الخطوة التالية</strong><span>اختار الستايل والمكان، وبعدها عدّل التصميم.</span></div>
+    </div>
+    <div class="ali-tattoo-card">
+      <h3>التصميم</h3>
+      <div class="ali-tattoo-preview"><div><div class="mark" id="tattoo-mark">✦</div><div id="tattoo-preview-label">Minimal · Arm</div></div></div>
+      <div class="ali-tattoo-summary" id="tattoo-summary">Minimal · Arm · Medium</div>
+      <div class="ali-tattoo-actions">
+        <button type="button" id="tattoo-generate">Create Design</button>
+        <button type="button" id="tattoo-approve" class="primary">✓ Approve Design</button>
+        <button type="button" id="tattoo-print" hidden>Prepare Print / PDF</button>
+      </div>
+      <div class="ali-next-action" id="tattoo-final" hidden><strong>تم اعتماد التصميم</strong><span>الخطوة التالية صارت جاهزة: تجهيز نسخة الطباعة ثم PDF.</span><div class="ali-tattoo-actions"><button type="button" class="primary" id="tattoo-pdf">Download PDF</button></div></div>
+    </div>
+  </div>
+</div>
+</section><section class="feature" id="try-on">
   <div class="wrap">
     <div class="txt">
       <h2>Virtual Try-On Room</h2>
