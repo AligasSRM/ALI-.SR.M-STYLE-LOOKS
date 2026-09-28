@@ -557,10 +557,10 @@ footer .path{
   </div>
 
   <div class="real-ai-panel" id="look-motion-panel" style="margin-top:16px;border-top:1px solid var(--line);padding-top:16px">
-    <strong>AI 360° Look Motion</strong>
-    <p>Turn your finished AI Look into an 8-second smooth fashion rotation: front, side and back.</p>
+    <strong>AI 360° Look</strong>
+    <p>Turn your finished AI Look into an 8-second horizontal 360° rotation: front → right → back → left → front. No 3D model or vertical camera movement.</p>
     <div class="action-row">
-      <button type="button" id="generate-look-motion" class="primary">Create AI 360° Motion</button>
+      <button type="button" id="generate-look-motion" class="primary">Create AI 360° Look</button>
     </div>
     <div class="share-note" id="look-motion-status">Generate the Real AI Look first.</div>
     <div id="look-motion-result" class="demo-result" hidden>
@@ -1085,7 +1085,7 @@ async function generateLookMotion(){
     return;
   }
   motionButton.disabled=true;
-  motionButton.textContent='Creating AI 360° Motion…';
+  motionButton.textContent='Creating AI 360° Look…';
   motionResult.hidden=true;
   motionVideoEl.removeAttribute('src');
   motionStatus.textContent='Sending the finished Look to the private AI video server…';
@@ -1109,17 +1109,17 @@ async function generateLookMotion(){
         motionVideoEl.src=result.videoUrl;
         motionResult.hidden=false;
         motionVideoEl.load();
-        motionStatus.textContent='AI 360° Motion completed successfully.';
+        motionStatus.textContent='AI 360° Look completed successfully.';
         return;
       }
       motionStatus.textContent='AI is building the 360° rotation…';
     }
     throw new Error('AI video generation is taking longer than expected. Please try again.');
   }catch(error){
-    motionStatus.textContent='360° Motion error: '+(error?.message||'Generation failed.');
+    motionStatus.textContent='360° Look error: '+(error?.message||'Generation failed.');
   }finally{
     motionButton.disabled=false;
-    motionButton.textContent='Create AI 360° Motion';
+    motionButton.textContent='Create AI 360° Look';
   }
 }
 motionButton?.addEventListener('click',generateLookMotion);
