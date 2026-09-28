@@ -440,6 +440,14 @@ footer .path{
 .idea-box{margin-top:22px;padding:18px;border:1px solid var(--gold2);border-radius:8px;background:#fff}
 .idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:12px}.idea-card{border:1px solid var(--line);border-radius:6px;padding:14px;background:#fff}.idea-card h4{margin:0 0 5px;color:var(--gold);font-family:'Playfair Display',serif}.idea-card p{margin:0;font-size:.95rem}
 @media(max-width:760px){.design-workbench{grid-template-columns:1fr}}
+</style><style>
+.tryon-progress{margin:16px auto 0;padding:16px;border:1px solid var(--gold2);border-radius:8px;background:#fffaf5;text-align:center;display:grid;justify-items:center;gap:5px}
+.tryon-progress[hidden]{display:none}
+.tryon-spinner{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:tryon-spin .8s linear infinite}
+@keyframes tryon-spin{to{transform:rotate(360deg)}}
+.tryon-status{min-height:24px;margin-top:10px;text-align:center}
+.tryon-result{margin-top:16px}
+.tryon-main-button:disabled{opacity:.65;cursor:wait}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -469,138 +477,96 @@ footer .path{
 
   </div>
 </section><section class="feature" id="try-on">
-  <div class="wrap"><div class="txt">
+  <div class="wrap">
+    <div class="txt">
+      <h2>Virtual Try-On Room</h2>
+      <p>Upload a full-body photo, choose your look, then press <strong>TRY ON WITH AI</strong>. The AI edits your photo while keeping your identity, body proportions and scene as consistent as possible.</p>
 
-  <h2>Virtual Try-On Room</h2>
+      <div class="tags">
+        <span>Dresses &amp; suits</span><span>Shoes &amp; bags</span><span>Jewelry &amp; watches</span><span>Makeup &amp; hair</span>
+      </div>
 
-  <p>
-    Upload your photo and try dresses, suits,
-    accessories and more — while keeping your
-    face, body shape, pose, and background exactly
-    as they are.
-  </p>
+      <div class="tryon-controls">
+        <div class="control-row">
+          <label>Occasion<select id="occasion-select">
+            <option>Daily</option><option>Work</option><option>Dinner</option><option>Evening</option><option>Party</option><option>Wedding</option><option>Travel</option><option>Beach</option>
+          </select></label>
+          <label>Style<select id="style-select">
+            <option>Elegant</option><option>Casual</option><option>Luxury</option><option>Classic</option><option>Modern</option><option>Romantic</option><option>Minimal</option><option>Sporty</option><option>Formal</option>
+          </select></label>
+        </div>
+        <div class="control-row">
+          <label>Outfit<select id="outfit-select">
+            <option>Dress</option><option>Suit</option><option>Top &amp; trousers</option><option>Skirt &amp; blouse</option><option>Jacket &amp; jeans</option>
+          </select></label>
+          <label>Color<select id="color-select">
+            <option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option>
+          </select></label>
+        </div>
 
-  <p>
-    Talk to the platform naturally:
-    "change the shoes", "make the dress black",
-    "give me an evening style".
-  </p>
+        <div>
+          <label style="font-size:.9rem;color:var(--rose)">Beauty</label>
+          <div class="option-row" id="beauty-options">
+            <button type="button" class="active" data-beauty="Natural">Natural</button>
+            <button type="button" data-beauty="Evening">Evening</button>
+            <button type="button" data-beauty="Glam">Glam</button>
+            <button type="button" data-beauty="Minimal">Minimal</button>
+          </div>
+        </div>
 
-  <div class="tags">
-    <span>Dresses &amp; suits</span>
-    <span>Shoes &amp; bags</span>
-    <span>Jewelry &amp; watches</span>
-    <span>Makeup &amp; hair</span>
-  </div>  <div class="tryon-controls">
-    <div class="control-row">
-      <label>Occasion
-        <select id="occasion-select">
-          <option>Daily</option><option>Work</option><option>Dinner</option><option>Evening</option><option>Party</option><option>Wedding</option><option>Travel</option><option>Beach</option>
-        </select>
-      </label>
-      <label>Style
-        <select id="style-select">
-          <option>Elegant</option><option>Casual</option><option>Luxury</option><option>Classic</option><option>Modern</option><option>Romantic</option><option>Minimal</option><option>Sporty</option><option>Formal</option>
-        </select>
-      </label>
-    </div>
-    <div class="control-row">
-      <label>Outfit
-        <select id="outfit-select">
-          <option>Dress</option><option>Suit</option><option>Top &amp; trousers</option><option>Skirt &amp; blouse</option><option>Jacket &amp; jeans</option>
-        </select>
-      </label>
-      <label>Color
-        <select id="color-select">
-          <option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option>
-        </select>
-      </label>
-    </div>
-    <div>
-      <label style="font-size:.9rem;color:var(--rose)">Beauty</label>
-      <div class="option-row" id="beauty-options">
-        <button type="button" class="active" data-beauty="Natural">Natural</button>
-        <button type="button" data-beauty="Evening">Evening</button>
-        <button type="button" data-beauty="Glam">Glam</button>
-        <button type="button" data-beauty="Minimal">Minimal</button>
+        <div class="closet-panel" id="open-style-closet" style="margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap">
+            <div><strong style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem">Open Style Closet</strong>
+            <p style="margin:5px 0 0;color:var(--rose)">Choose a garment, color and style. Your selection is sent to Try-On.</p></div>
+            <span id="closet-selection" class="share-note">No closet item selected</span>
+          </div>
+          <div class="closet-categories" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+            <button type="button" class="active" data-closet-cat="All">All</button>
+            <button type="button" data-closet-cat="Tops">Tops</button><button type="button" data-closet-cat="Bottoms">Bottoms</button>
+            <button type="button" data-closet-cat="Dresses">Dresses</button><button type="button" data-closet-cat="Jackets">Jackets</button>
+            <button type="button" data-closet-cat="Suits">Suits</button><button type="button" data-closet-cat="Shoes">Shoes</button>
+            <button type="button" data-closet-cat="Accessories">Accessories</button>
+          </div>
+          <div id="closet-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px"></div>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="primary tryon-main-button" id="generate-ai-look">TRY ON WITH AI</button>
+          <button type="button" id="save-look">Save Look</button>
+          <button type="button" id="share-look">Share</button>
+        </div>
+
+        <div id="tryon-progress" class="tryon-progress" hidden>
+          <span class="tryon-spinner" aria-hidden="true"></span>
+          <strong>AI is creating your look…</strong>
+          <small>Please keep this page open.</small>
+        </div>
+        <div class="share-note tryon-status" id="real-ai-status" role="status" aria-live="polite">Upload a photo, choose your style, then press TRY ON WITH AI.</div>
+
+        <div id="real-ai-result" class="demo-result tryon-result" hidden>
+          <strong>YOUR AI LOOK</strong>
+          <img id="real-ai-image" alt="AI generated try-on result" style="width:100%;max-height:680px;object-fit:contain;border:1px solid var(--line);border-radius:6px">
+        </div>
       </div>
     </div>
-    <div class="closet-panel" id="open-style-closet" style="margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)">
-  <div style="display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap">
-    <div><strong style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem">Open Style Closet</strong>
-    <p style="margin:5px 0 0;color:var(--muted)">Choose from a broad catalog of silhouettes, garments and colors. Your choice is sent to Try-On.</p></div>
-    <span id="closet-selection" class="share-note">No closet item selected</span>
-  </div>
-  <div class="closet-categories" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
-    <button type="button" class="active" data-closet-cat="All">All</button>
-    <button type="button" data-closet-cat="Tops">Tops</button><button type="button" data-closet-cat="Bottoms">Bottoms</button>
-    <button type="button" data-closet-cat="Dresses">Dresses</button><button type="button" data-closet-cat="Jackets">Jackets</button>
-    <button type="button" data-closet-cat="Suits">Suits</button><button type="button" data-closet-cat="Shoes">Shoes</button>
-    <button type="button" data-closet-cat="Accessories">Accessories</button>
-  </div>
-  <div id="closet-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px"></div>
-</div>
-<div class="action-row">
-      <button type="button" class="primary" id="build-look">Build My Look</button>
-      <button type="button" id="save-look">Save Look</button>
-      <button type="button" id="share-look">Share</button>
+
+    <div class="art">
+      <div class="tryon-demo">
+        <label class="upload-box" for="photo-input">
+          <strong id="upload-title">Upload your photo</strong>
+          <span id="upload-hint">Choose a clear full-body photo to start.</span>
+          <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+        </label>
+        <div id="photo-preview" class="photo-preview" hidden>
+          <img id="preview-image" alt="Your selected photo">
+          <button type="button" id="remove-photo">Remove photo</button>
+        </div>
+      </div>
+      <svg viewBox="0 0 200 260" width="180" aria-hidden="true">
+        <path d="M100 10 C70 10 60 40 60 60 C60 80 70 90 70 110 L45 250 L155 250 L130 110 C130 90 140 80 140 60 C140 40 130 10 100 10 Z" fill="none" stroke="#B08A3E" stroke-width="2"/>
+        <circle cx="100" cy="30" r="18" fill="none" stroke="#8C5A5F" stroke-width="2"/>
+      </svg>
     </div>
-    <div class="demo-result" id="look-result" hidden></div><div class="share-note">Demo mode: selections and local previews work in-browser. Real AI generation and shopping providers are connected only when real provider credentials are supplied.</div><div class="real-ai-panel" id="real-ai-panel">
-  <strong>Real AI Try-On</strong>
-  <p>When this site is deployed with the secure AI function, your selected photo is sent to the server for a real private styling generation.</p>
-  <div class="action-row">
-    <button type="button" class="primary" id="generate-ai-look">Generate Real AI Look</button>
-  </div>
-  <div class="share-note" id="real-ai-status">AI provider status: waiting for secure server configuration.</div>
-  <div id="real-ai-result" class="demo-result" hidden>
-    <img id="real-ai-image" alt="AI generated style preview" style="width:100%;max-height:620px;object-fit:contain;border:1px solid var(--line);border-radius:6px">
-  </div>
-
-  <div class="real-ai-panel" id="look-motion-panel" style="margin-top:16px;border-top:1px solid var(--line);padding-top:16px">
-    <strong>AI 360° Look</strong>
-    <p>Turn your finished AI Look into an 8-second horizontal 360° rotation: front → right → back → left → front. No 3D model or vertical camera movement.</p>
-    <div class="action-row">
-      <button type="button" id="generate-look-motion" class="primary">Create AI 360° Look</button>
-    </div>
-    <div class="share-note" id="look-motion-status">Generate the Real AI Look first.</div>
-    <div id="look-motion-result" class="demo-result" hidden>
-      <video id="look-motion-video" controls playsinline loop style="width:100%;max-height:620px;border:1px solid var(--line);border-radius:6px;background:#000"></video>
-    </div>
-  </div>
-</div>
-  </div>
-
-</div>
-
-<div class="art">
-  <div class="tryon-demo">
-    <label class="upload-box" for="photo-input">
-      <strong id="upload-title">Upload your photo</strong>
-      <span id="upload-hint">Choose a full-body photo to start your private try-on.</span>
-      <input id="photo-input" type="file" accept="image/*" hidden>
-    </label>
-    <div id="photo-preview" class="photo-preview" hidden>
-      <img id="preview-image" alt="Your selected photo">
-      <button type="button" id="remove-photo">Remove photo</button>
-    </div>
-  </div>
-  <svg viewBox="0 0 200 260" width="180">
-    <path
-      d="M100 10 C70 10 60 40 60 60 C60 80 70 90 70 110 L45 250 L155 250 L130 110 C130 90 140 80 140 60 C140 40 130 10 100 10 Z"
-      fill="none"
-      stroke="#B08A3E"
-      stroke-width="2"/>
-    <circle
-      cx="100"
-      cy="30"
-      r="18"
-      fill="none"
-      stroke="#8C5A5F"
-      stroke-width="2"/>
-  </svg>
-
-</div>
-
   </div>
 </section><section class="feature">  <div class="wrap"><div class="txt">
 
@@ -1037,41 +1003,75 @@ $('#teach-style')?.addEventListener('click',()=>{ngLearn();ngJourney();});
 ngJourney();function ngProfile(){const looks=load('aliSavedLooks',[]),s=ngState(),closet=load('aliStyleCloset',[]);if(!looks.length){$('#profile-identity').textContent='No saved looks yet.';$('#profile-preferences').textContent='Save looks to build your private preferences.';$('#profile-evolution').textContent='Your journey starts with your first saved look.';return}const count=k=>{const m={};looks.forEach(x=>{const v=x[k]||'Unknown';m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Unknown'};const style=count('style'),occasion=count('occasion'),color=count('color');$('#profile-identity').textContent='Your current identity leans '+style+' style, with '+occasion+' looks leading your saved journey.';$('#profile-preferences').textContent='Style: '+style+' · Color: '+color+' · Occasion: '+occasion+' · Closet items: '+closet.length+'.';$('#profile-evolution').textContent='Saved looks: '+looks.length+'. '+(s.signature?'Signature look is defined.':'Your signature look is still evolving.')}$('#refresh-profile')?.addEventListener('click',ngProfile);ngProfile();let ngLabLook=null;function ngMix(){const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];const outfits=['Dress','Suit','Top & trousers','Skirt & blouse','Jacket & jeans'];const s=ngState();const base=s.dna?.style||$('#style-select').value;let si=Math.max(0,styles.indexOf(base));let ci=Math.floor(Math.random()*colors.length);ngLabLook={style:styles[(si+2)%styles.length],color:colors[ci],outfit:outfits[Math.floor(Math.random()*outfits.length)],occasion:$('#occasion-select').value,beauty:$('#beauty-select').value};$('#style-lab-result').textContent='New direction: '+ngLabLook.style+' · '+ngLabLook.color+' · '+ngLabLook.outfit+' for '+ngLabLook.occasion+'.';$('#lab-save-status').textContent='Temporary experiment ready. Save it only if you like the direction.'}function ngCompare(){if(!ngLabLook){ngMix();return}$('#style-lab-result').textContent='Current: '+$('#style-select').value+' / '+$('#color-select').value+' → New: '+ngLabLook.style+' / '+ngLabLook.color+'.'}function ngSafe(){ngMix();$('#style-lab-result').textContent+=' Nothing in your saved looks or closet was changed.'}function ngSaveLab(){if(!ngLabLook){ngMix();return}if(!requirePhoto())return;$('#style-select').value=ngLabLook.style;$('#color-select').value=ngLabLook.color;$('#outfit-select').value=ngLabLook.outfit;renderResult(currentLook());saveCurrentLook();ngLearn();$('#lab-save-status').textContent='Experiment saved to your private Saved Looks.'}$('#mix-style')?.addEventListener('click',ngMix);$('#compare-style')?.addEventListener('click',ngCompare);$('#safe-experiment')?.addEventListener('click',ngSafe);$('#save-lab-look')?.addEventListener('click',ngSaveLab);function coachSet(o){$('#occasion-select').value=o;const style=$('#style-select').value,color=$('#color-select').value;const text='For '+o+', keep your '+style+' direction with '+color+' as the anchor. Add one intentional beauty or accessory detail and avoid overloading the look.';$('#coach-today').textContent=text;$('#coach-occasion').textContent='Occasion set to '+o+'. Your core style remains unchanged.';$('#coach-why').textContent='Because the goal is consistency: the occasion changes, while your personal style stays recognizable.';ngLearn();ngJourney();ngProfile()}$('#coach-today-btn')?.addEventListener('click',()=>coachSet($('#occasion-select').value));$('#coach-work')?.addEventListener('click',()=>coachSet('Work'));$('#coach-evening')?.addEventListener('click',()=>coachSet('Evening'));$('#coach-travel')?.addEventListener('click',()=>coachSet('Travel'));function feedbackLearn(type){const s=ngState();s.feedback=s.feedback||[];s.feedback.push({type,style:$('#style-select').value,color:$('#color-select').value,at:Date.now()});s.feedback=s.feedback.slice(-30);save('aliStyleNextGen',s);$('#learning-status').textContent='Learned: '+type+'. Your private Style DNA has been updated.';ngLearn();ngJourney();ngProfile()}function repeatSignature(){const s=ngState();if(!s.signature){$('#repeat-signature').textContent='Save a Signature Look first.';return}$('#style-select').value=s.signature.style;$('#color-select').value=s.signature.color;$('#outfit-select').value=s.signature.outfit||$('#outfit-select').value;$('#occasion-select').value=s.signature.occasion||$('#occasion-select').value;$('#repeat-signature').textContent='Signature restored: '+s.signature.style+' · '+s.signature.color+'.';ngExplain()}$('#love-current')?.addEventListener('click',()=>feedbackLearn('favorite'));$('#change-current')?.addEventListener('click',()=>{const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];let i=styles.indexOf($('#style-select').value);$('#style-select').value=styles[(i+1)%styles.length];feedbackLearn('change-direction')});$('#repeat-signature-btn')?.addEventListener('click',repeatSignature);function ngPassport(){const s=ngState(),closet=load('aliStyleCloset',[]),looks=load('aliSavedLooks',[]);$('#passport-signature').textContent=s.signature?'Signature: '+s.signature.style+' · '+s.signature.outfit+' · '+s.signature.color+'.':'No signature saved yet.';const dna=s.dna||{};const parts=Object.entries(dna).filter(([k,v])=>k!=='updatedAt'&&typeof v==='number').sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]+': '+Math.round(x[1])+'%');$('#passport-dna').textContent=parts.length?'Top Style DNA: '+parts.join(' · '):'No Style DNA signals yet.';$('#passport-closet').textContent='Saved looks: '+looks.length+' · Closet items: '+closet.length+' · Private profile active.'}$('#refresh-passport')?.addEventListener('click',ngPassport);ngPassport();
 // REAL AI TRY-ON: server-side provider, no browser API key.
 const realAiButton=$('#generate-ai-look'), realAiStatus=$('#real-ai-status'), realAiResult=$('#real-ai-result'), realAiImage=$('#real-ai-image');
+function resizeTryOnImage(file,maxSide=1600,quality=.86){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error('Could not read the selected photo.'));
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error('The selected file is not a readable image.'));
+      img.onload=()=>{
+        const scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+        const canvas=document.createElement('canvas');
+        canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
+        canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
+        const ctx=canvas.getContext('2d');
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        resolve(canvas.toDataURL('image/jpeg',quality));
+      };
+      img.src=reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 async function generateRealAiLook(event){
   if(event) event.preventDefault();
+  const status=$('#real-ai-status'), progress=$('#tryon-progress');
   if(!requirePhoto()){
-    realAiStatus.textContent='Please upload a photo first.';
+    status.textContent='Please upload a photo first.';
     return false;
   }
-  const file=photoInput.files[0];
-  if(!file){
-    realAiStatus.textContent='Please upload a photo first.';
+
+  const file=photoInput.files?.[0];
+  if(!file || !file.type.startsWith('image/')){
+    status.textContent='Please choose a JPG, PNG or WebP photo.';
     return false;
   }
+
   realAiButton.disabled=true;
-  realAiButton.textContent='Generating…';
-  realAiStatus.textContent='Sending the private styling request to the secure AI server…';
+  realAiButton.textContent='CREATING…';
+  progress.hidden=false;
+  realAiResult.hidden=true;
+  status.textContent='Uploading the private photo to the secure AI function…';
+
   try{
-    const dataUrl=previewImage.src;
-    if(!dataUrl || !dataUrl.startsWith('data:image/')) throw new Error('The uploaded photo preview is not ready yet.');
-    const response=await fetch('/api/generate-look',{
+    const dataUrl=await resizeTryOnImage(file);
+    previewImage.src=dataUrl;
+    const response=await fetch('/.netlify/functions/generate-look',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({image:dataUrl,mimeType:file.type,look:currentLook()})
+      body:JSON.stringify({image:dataUrl,mimeType:'image/jpeg',look:currentLook()})
     });
+
     const contentType=response.headers.get('content-type')||'';
     const data=contentType.includes('application/json') ? await response.json() : {};
-    if(!response.ok || !data.ok) throw new Error(data.error||('AI server returned HTTP '+response.status+'.'));
-    if(!data.image) throw new Error('AI server returned no image.');
+    if(!response.ok || !data.ok){
+      throw new Error(data.error||('AI service returned HTTP '+response.status+'.'));
+    }
+    if(!data.image) throw new Error('The AI service returned no generated image.');
+
     realAiImage.src='data:'+(data.mimeType||'image/png')+';base64,'+data.image;
     realAiResult.hidden=false;
-    realAiStatus.textContent='Real AI generation completed successfully.';
+    status.textContent='Your AI Try-On is ready.';
+    realAiResult.scrollIntoView({behavior:'smooth',block:'center'});
   }catch(error){
     realAiResult.hidden=true;
-    realAiStatus.textContent='Try-On error: '+(error?.message||'Real AI generation failed.');
+    status.textContent='Try-On error: '+(error?.message||'Generation failed. Please try again.');
   }finally{
+    progress.hidden=true;
     realAiButton.disabled=false;
-    realAiButton.textContent='Generate Real AI Look';
+    realAiButton.textContent='TRY ON WITH AI';
   }
   return false;
 }
