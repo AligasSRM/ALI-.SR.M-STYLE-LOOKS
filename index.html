@@ -525,6 +525,30 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
 #ai-360-look video{width:100%;max-height:65vh;background:#111;border-radius:10px}
 #ai-360-look .ali-360-placeholder{padding:32px 16px;text-align:center;color:var(--rose)}
 #real-ai-image{background:#fff}
+</style><style id="ali-simple-workflow">
+/* ALI SR.M — simple customer workflow */
+.ali-flow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 auto 22px;max-width:760px}
+.ali-flow-step{padding:7px 12px;border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--rose);font-size:.82rem}
+.ali-flow-step.active{border-color:var(--gold);background:var(--gold);color:#fff}
+.ali-section-head{text-align:center;max-width:720px;margin:0 auto 22px}
+.ali-section-head h2{margin-bottom:6px}
+.ali-section-head p{margin:0;color:var(--rose)}
+.ali-next-action{margin-top:18px;padding:15px;border:1px solid var(--gold2);border-radius:12px;background:#fffaf5;text-align:center}
+.ali-next-action strong{display:block;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:5px}
+.ali-next-action button{border:0;background:var(--gold);color:#fff;padding:9px 16px;border-radius:20px;font:inherit;cursor:pointer}
+.ali-tattoo-workbench{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px}
+.ali-tattoo-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.ali-tattoo-card h3{margin:0 0 10px;color:var(--gold)}
+.ali-tattoo-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ali-tattoo-options button{border:1px solid var(--line);background:#fff;padding:9px 10px;border-radius:18px;color:var(--rose);cursor:pointer;font:inherit}
+.ali-tattoo-options button.active{background:var(--gold);border-color:var(--gold);color:#fff}
+.ali-tattoo-preview{min-height:330px;border:1px dashed var(--gold2);border-radius:12px;background:linear-gradient(180deg,#fbf7f3,#fff);display:grid;place-items:center;text-align:center;padding:20px}
+.ali-tattoo-preview .mark{font-size:5rem;line-height:1;color:#1e1b18}
+.ali-tattoo-summary{margin-top:12px;padding:11px;background:#fbf7f3;border:1px solid var(--line);border-radius:9px}
+.ali-tattoo-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.ali-tattoo-actions button{border:1px solid var(--line);background:#fff;padding:9px 14px;border-radius:20px;color:var(--rose);cursor:pointer;font:inherit}
+.ali-tattoo-actions .primary{background:var(--gold);border-color:var(--gold);color:#fff}
+@media(max-width:760px){.ali-tattoo-workbench{grid-template-columns:1fr}.ali-tattoo-options{grid-template-columns:1fr 1fr}}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -1514,7 +1538,7 @@ renderFashionVault();
 
 // ALI STYLE CENTER — compact module navigation
 (function(){
-  const moduleIds=['try-on','ai-360-look','closet-tools','ai-fashion-vault','design-studio','design-tailor-studio','saved','next-generation'];
+  const moduleIds=['try-on','tattoo-studio','ai-360-look','closet-tools','ai-fashion-vault','design-studio','design-tailor-studio','saved','next-generation'];
   const extraIds=['nextgen-studio','private-style-profile','style-lab','style-coach','style-feedback','style-passport'];
   const allIds=[...moduleIds,...extraIds];
   const center=document.getElementById('ali-style-center');
@@ -1564,5 +1588,34 @@ renderFashionVault();
     result.hidden=true;
     if(status)status.textContent='Try-On error: The generated image could not be displayed. Please try again.';
   });
+})();
+
+// TATTOO STUDIO — simple 4-step prototype
+(function(){
+ const state={style:'Minimal',placement:'Arm'};
+ const summary=document.getElementById('tattoo-summary'), label=document.getElementById('tattoo-preview-label'), mark=document.getElementById('tattoo-mark');
+ function render(){
+   if(summary)summary.textContent=state.style+' · '+state.placement+' · Medium';
+   if(label)label.textContent=state.style+' · '+state.placement;
+   if(mark)mark.textContent=state.style==='Ornamental'?'❈':state.style==='Fine Line'?'⌁':state.style==='Blackwork'?'◆':'✦';
+ }
+ document.querySelectorAll('[data-tattoo-key]').forEach(btn=>btn.addEventListener('click',()=>{
+   state[btn.dataset.tattooKey]=btn.dataset.tattooValue;
+   document.querySelectorAll('[data-tattoo-key="'+btn.dataset.tattooKey+'"]').forEach(x=>x.classList.toggle('active',x===btn));
+   render();
+ }));
+ document.getElementById('tattoo-generate')?.addEventListener('click',()=>{
+   document.getElementById('tattoo-summary').textContent='Design ready: '+state.style+' · '+state.placement+' · Medium';
+ });
+ document.getElementById('tattoo-approve')?.addEventListener('click',()=>{
+   document.getElementById('tattoo-final').hidden=false;
+   document.getElementById('tattoo-print').hidden=false;
+ });
+ document.getElementById('tattoo-print')?.addEventListener('click',()=>{
+   document.getElementById('tattoo-final').hidden=false;
+   document.getElementById('tattoo-final').querySelector('span').textContent='Print version prepared. Download the PDF when ready.';
+ });
+ document.getElementById('tattoo-pdf')?.addEventListener('click',()=>window.print());
+ render();
 })();
 </script></body></html>
