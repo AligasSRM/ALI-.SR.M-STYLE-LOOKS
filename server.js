@@ -139,6 +139,7 @@ function serveStatic(req, res) {
   });
 }
 
+
 const motionJobs = new Map();
 
 async function startLookMotion(req, res) {
@@ -146,23 +147,29 @@ async function startLookMotion(req, res) {
   if (req.method !== "POST") return send(res, 405, {ok:false,error:"POST required"});
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return send(res, 503, {ok:false,code:"AI_NOT_CONFIGURED",error:"AI provider is not configured on the server yet."});
+
   let body;
-  try { body = await readJson(req); } catch (e) {
-    return send(res, 400, {ok:false,error:e.message || "Invalid JSON"});
-  }
+  try { body = await readJson(req); }
+  catch (e) { return send(res, 400, {ok:false,error:e.message || "Invalid JSON"}); }
+
   const image = body.image;
   const mimeType = body.mimeType || "image/png";
-  if (!image || typeof image !== "string") return send(res, 400, {ok:false,error:"AI Try-On image is required"});
-  const imageData = image.replace(/^data:[^;]+;base64,/,"");
+  if (!image || typeof image !== "string") return send(res, 400, {ok:false,error:"A finished AI Look image is required."});
+
+  const imageData = image.replace(/^data:[^;]+;base64,/, "");
   const prompt = [
-    "Create a premium fashion try-on motion preview from this single finished AI styling image.",
-    "The adult model remains the same person with the same face, body proportions, hairstyle, outfit, colors and environment.",
-    "Slow controlled fashion-model rotation: front view, right three-quarter view, side view, back three-quarter view, back view, then return toward front.",
-    "Show the outfit naturally from multiple angles with stable anatomy and fabric. Keep the camera at a consistent full-body distance.",
-    "Do not change the garment design, color, silhouette or accessories. Do not add people, text, logos or watermarks.",
-    "Luxury fashion showroom realism, smooth movement, clean lighting, no sudden cuts."
+    "Create an 8-second premium fashion rotation video from this single finished AI styling image.",
+    "Use the supplied image as the exact starting frame.",
+    "Keep the same adult person, face, identity, body proportions, hairstyle, outfit, colors and accessories.",
+    "The model slowly turns in place: front view, right three-quarter view, right side, back three-quarter view, back view, then smoothly toward the front.",
+    "Keep the camera fixed at full-body distance and keep the entire person visible.",
+    "Preserve garment construction, silhouette, texture and colors. Stable anatomy and natural fabric motion.",
+    "No scene change, no extra people, no text, no logos, no watermark, no sudden cuts.",
+    "Luxury fashion showroom realism, smooth controlled movement, clean lighting."
   ].join("\n");
+
   try {
+    console.log("[look-motion] starting Veo request");
     const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/veo-3.1-generate-preview:predictLongRunning", {
       method:"POST",
       headers:{"x-goog-api-key":apiKey,"Content-Type":"application/json"},
@@ -171,41 +178,66 @@ async function startLookMotion(req, res) {
           prompt,
           image:{inlineData:{mimeType,data:imageData}}
         }],
-        parameters:{aspectRatio:"9:16",resolution:"720p",numberOfVideos:1}
+        parameters:{
+          aspectRatio:"9:16",
+          durationSeconds:"8",
+          resolution:"720p",
+          personGeneration:"allow_adult",
+          numberOfVideos:1
+        }
       })
     });
-    const data=await response.json();
-    if(!response.ok || !data.name) return send(res,response.status||502,{ok:false,code:"AI_PROVIDER_ERROR",error:data?.error?.message||"Could not start motion generation."});
+    const data=await response.json().catch(()=>({}));
+    console.log("[look-motion] Veo start status "+response.status);
+
+    if(!response.ok || !data.name) {
+      return send(res,response.status||502,{
+        ok:false,code:"AI_PROVIDER_ERROR",
+        error:data?.error?.message||"Veo could not start the motion video."
+      });
+    }
+
     const id="motion_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8);
     motionJobs.set(id,{operation:data.name,status:"processing",createdAt:Date.now()});
     return send(res,202,{ok:true,jobId:id,status:"processing"});
   } catch(error) {
+    console.error("[look-motion] start error",error?.message||error);
     return send(res,502,{ok:false,code:"NETWORK_ERROR",error:"Could not reach the AI video provider."});
   }
 }
 
 async function motionStatus(req,res) {
-  if (req.method !== "GET") return send(res,405,{ok:false,error:"GET required"});
+  if(req.method!=="GET") return send(res,405,{ok:false,error:"GET required"});
   const id=new URL(req.url,"http://localhost").searchParams.get("jobId");
-  const job=id && motionJobs.get(id);
+  const job=id&&motionJobs.get(id);
   if(!job) return send(res,404,{ok:false,error:"Motion job not found"});
-  if(job.status==="ready" || job.status==="failed") return send(res,200,{ok:job.status==="ready",status:job.status,error:job.error||null});
-  const apiKey=process.env.GEMINI_API_KEY;
+  if(job.status==="ready") return send(res,200,{ok:true,status:"ready",videoUrl:"/api/look-motion-video?jobId="+encodeURIComponent(id)});
+  if(job.status==="failed") return send(res,200,{ok:false,status:"failed",error:job.error||"Motion generation failed."});
+
   try {
-    const response=await fetch("https://generativelanguage.googleapis.com/v1beta/"+job.operation,{headers:{"x-goog-api-key":apiKey}});
-    const data=await response.json();
-    if(!response.ok) return send(res,502,{ok:false,status:"failed",error:data?.error?.message||"Could not check motion generation."});
+    const response=await fetch("https://generativelanguage.googleapis.com/v1beta/"+job.operation,{
+      headers:{"x-goog-api-key":process.env.GEMINI_API_KEY}
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok) {
+      job.status="failed";
+      job.error=data?.error?.message||"Could not check the motion job.";
+      return send(res,200,{ok:false,status:"failed",error:job.error});
+    }
     if(data.done===true) {
       if(data.error) {
-        job.status="failed"; job.error=data.error.message||"Motion generation failed.";
+        job.status="failed";
+        job.error=data.error.message||"Veo rejected the motion generation.";
         return send(res,200,{ok:false,status:"failed",error:job.error});
       }
       const videoUri=data?.response?.generateVideoResponse?.generatedSamples?.[0]?.video?.uri;
       if(!videoUri) {
-        job.status="failed"; job.error="The AI provider finished without a video.";
+        job.status="failed";
+        job.error="Veo finished without returning a video.";
         return send(res,200,{ok:false,status:"failed",error:job.error});
       }
-      job.videoUri=videoUri; job.status="ready";
+      job.videoUri=videoUri;
+      job.status="ready";
       return send(res,200,{ok:true,status:"ready",videoUrl:"/api/look-motion-video?jobId="+encodeURIComponent(id)});
     }
     return send(res,200,{ok:true,status:"processing"});
@@ -215,16 +247,15 @@ async function motionStatus(req,res) {
 }
 
 async function motionVideo(req,res) {
-  if (req.method !== "GET") return send(res,405,{ok:false,error:"GET required"});
+  if(req.method!=="GET") return send(res,405,{ok:false,error:"GET required"});
   const id=new URL(req.url,"http://localhost").searchParams.get("jobId");
-  const job=id && motionJobs.get(id);
-  if(!job || job.status!=="ready" || !job.videoUri) return send(res,404,{ok:false,error:"Motion video is not ready"});
+  const job=id&&motionJobs.get(id);
+  if(!job||job.status!=="ready"||!job.videoUri) return send(res,404,{ok:false,error:"Motion video is not ready."});
   try {
     const response=await fetch(job.videoUri,{headers:{"x-goog-api-key":process.env.GEMINI_API_KEY}});
     if(!response.ok) return send(res,502,{ok:false,error:"Could not download the generated motion video."});
     res.writeHead(200,{"Content-Type":"video/mp4","Cache-Control":"no-store"});
-    const buffer=Buffer.from(await response.arrayBuffer());
-    res.end(buffer);
+    res.end(Buffer.from(await response.arrayBuffer()));
   } catch(error) {
     return send(res,502,{ok:false,error:"Could not deliver the generated motion video."});
   }
