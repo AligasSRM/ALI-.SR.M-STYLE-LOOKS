@@ -992,7 +992,7 @@ if(savedIdentity) $('[data-identity]').forEach(x=>x.classList.toggle('active',x.
 $$("[data-beauty-choice]").forEach(b=>b.addEventListener("click",()=>{selectedBeauty=b.dataset.beautyChoice;$$("#beauty-options button").forEach(x=>x.classList.toggle("active",x.dataset.beauty===selectedBeauty))}));
 $$("[data-hair-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliHairChoice",b.dataset.hairChoice);$$("[data-hair-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
 $$("[data-nail-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliNailChoice",b.dataset.nailChoice);$$("[data-nail-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
-$("[data-identity]").forEach(b=>b.addEventListener('click',()=>{$$('[data-identity]').forEach(x=>x.classList.toggle('active',x===b));localStorage.setItem('aliIdentityMode',b.dataset.identity)}));
+$$("[data-identity]").forEach(b=>b.addEventListener('click',()=>{$$('[data-identity]').forEach(x=>x.classList.toggle('active',x===b));localStorage.setItem('aliIdentityMode',b.dataset.identity)}));
 $$('[data-event]').forEach(b=>b.addEventListener('click',()=>{$$('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#try-on').scrollIntoView({behavior:'smooth'})}));
 $('#clear-local-data')?.addEventListener('click',()=>{['aliStyleLooks','aliStyleCloset','aliStyleLang','aliIdentityMode'].forEach(k=>localStorage.removeItem(k));location.reload()});
 const ngT={en:{title:'AI Personal Style Identity',lead:'The next generation layer: learn your taste, remember your choices, restyle what you own, and build your signature identity.'},ar:{title:'هوية الستايل الشخصية بالذكاء الاصطناعي',lead:'طبقة الجيل الجديد: تعلّم ذوقك، تذكّر اختياراتك، أعد تنسيق ما تملكه، وابنِ هويتك الخاصة بالستايل.'}};
@@ -1248,8 +1248,8 @@ function renderCloset(category='All'){
    $('#closet-grid .closet-item').forEach(x=>x.style.outline=x===btn?'2px solid var(--gold)':'none');
  }));
 }
-$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
- $('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderCloset(btn.dataset.closetCat);
+$$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
+ $$('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderCloset(btn.dataset.closetCat);
 }));
 renderCloset();
 
@@ -1263,7 +1263,7 @@ function renderDesignStudio(){
  if(summary) summary.textContent=designBrief();
  if(silhouette) silhouette.innerHTML=designState.garment+'<br><small>'+designState.cut+' · '+designState.fabric+' · '+designState.detail+'</small>';
 }
-$('[data-design]').forEach(btn=>btn.addEventListener('click',()=>{
+$$('[data-design]').forEach(btn=>btn.addEventListener('click',()=>{
  const key=btn.dataset.design; designState[key]=btn.dataset.value;
  $('[data-design="'+key+'"]').forEach(x=>x.classList.toggle('active',x===btn));
  renderDesignStudio();
