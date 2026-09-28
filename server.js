@@ -112,7 +112,7 @@ async function generateLook(req, res) {
 
     return send(res, 200, {
       ok:true,
-      mimeType:outputImage.mime_type || "image/png",
+      mimeType:outputImage.mime_type || "image/jpeg",
       image:outputImage.data
     });
   } catch (error) {
@@ -153,7 +153,7 @@ async function startLookMotion(req, res) {
   catch (e) { return send(res, 400, {ok:false,error:e.message || "Invalid JSON"}); }
 
   const image = body.image;
-  const mimeType = body.mimeType || "image/png";
+  const mimeType = body.mimeType || "image/jpeg";
   if (!image || typeof image !== "string") return send(res, 400, {ok:false,error:"A finished AI Look image is required."});
 
   const imageData = image.replace(/^data:[^;]+;base64,/, "");
