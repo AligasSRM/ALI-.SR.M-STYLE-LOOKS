@@ -988,7 +988,7 @@ $('#style-from-closet')?.addEventListener('click',()=>{const a=load('aliStyleClo
 const savedHair=localStorage.getItem('aliHairChoice'),savedNail=localStorage.getItem('aliNailChoice'),savedIdentity=localStorage.getItem('aliIdentityMode');
 if(savedHair) $$('[data-hair-choice]').forEach(x=>x.classList.toggle('active',x.dataset.hairChoice===savedHair));
 if(savedNail) $$('[data-nail-choice]').forEach(x=>x.classList.toggle('active',x.dataset.nailChoice===savedNail));
-if(savedIdentity) $('[data-identity]').forEach(x=>x.classList.toggle('active',x.dataset.identity===savedIdentity));
+if(savedIdentity) $$('[data-identity]').forEach(x=>x.classList.toggle('active',x.dataset.identity===savedIdentity));
 $$("[data-beauty-choice]").forEach(b=>b.addEventListener("click",()=>{selectedBeauty=b.dataset.beautyChoice;$$("#beauty-options button").forEach(x=>x.classList.toggle("active",x.dataset.beauty===selectedBeauty))}));
 $$("[data-hair-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliHairChoice",b.dataset.hairChoice);$$("[data-hair-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
 $$("[data-nail-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliNailChoice",b.dataset.nailChoice);$$("[data-nail-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
@@ -1241,11 +1241,11 @@ function renderCloset(category='All'){
  const grid=$('#closet-grid'); if(!grid)return;
  const items=category==='All'?closetItems:closetItems.filter(x=>x.cat===category);
  grid.innerHTML=items.map((x,i)=>'<button type="button" class="closet-item" data-closet-index="'+closetItems.indexOf(x)+'" style="text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);color:inherit"><strong>'+x.name+'</strong><small style="display:block;margin-top:5px;color:var(--muted)">'+x.cat+' · '+x.color+' · '+x.style+'</small></button>').join('');
- $('#closet-grid [data-closet-index]').forEach(btn=>btn.addEventListener('click',()=>{
+ $$('#closet-grid [data-closet-index]').forEach(btn=>btn.addEventListener('click',()=>{
    const item=closetItems[+btn.dataset.closetIndex]; window.aliClosetSelection=item;
    $('#closet-selection').textContent='Selected: '+item.name;
    $('#outfit-select').value=item.outfit; $('#color-select').value=item.color; $('#style-select').value=item.style;
-   $('#closet-grid .closet-item').forEach(x=>x.style.outline=x===btn?'2px solid var(--gold)':'none');
+   $$('#closet-grid .closet-item').forEach(x=>x.style.outline=x===btn?'2px solid var(--gold)':'none');
  }));
 }
 $$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -1265,7 +1265,7 @@ function renderDesignStudio(){
 }
 $$('[data-design]').forEach(btn=>btn.addEventListener('click',()=>{
  const key=btn.dataset.design; designState[key]=btn.dataset.value;
- $('[data-design="'+key+'"]').forEach(x=>x.classList.toggle('active',x===btn));
+ $$('[data-design="'+key+'"]').forEach(x=>x.classList.toggle('active',x===btn));
  renderDesignStudio();
 }));
 $('#save-custom-design')?.addEventListener('click',()=>{
