@@ -448,6 +448,19 @@ footer .path{
 .tryon-status{min-height:24px;margin-top:10px;text-align:center}
 .tryon-result{margin-top:16px}
 .tryon-main-button:disabled{opacity:.65;cursor:wait}
+</style><style>
+.tryon-result{margin-top:18px;padding:14px;border:1px solid var(--gold);border-radius:14px;background:#fffdf9}
+.tryon-result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.tryon-result-title strong{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem}
+.tryon-result-title span{font-size:.8rem;color:var(--rose)}
+.tryon-image-frame{width:100%;display:flex;justify-content:center;align-items:center;background:#f5f1eb;border-radius:10px;overflow:hidden}
+.tryon-image-frame img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain}
+.tryon-result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tryon-result-actions button:disabled{opacity:.5;cursor:not-allowed}
+.tryon-fullscreen{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;padding:10px}
+.tryon-fullscreen img{max-width:100%;max-height:100%;object-fit:contain}
+.tryon-fullscreen-close{position:absolute;top:14px;right:14px;z-index:2;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.55);color:#fff;border-radius:50%;width:44px;height:44px;font-size:24px}
+@media(max-width:600px){.tryon-result{padding:10px}.tryon-image-frame img{max-height:72vh}.tryon-result-actions{grid-template-columns:1fr}.tryon-result-title{align-items:flex-start}}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -544,8 +557,13 @@ footer .path{
         <div class="share-note tryon-status" id="real-ai-status" role="status" aria-live="polite">Upload a photo, choose your style, then press TRY ON WITH AI.</div>
 
         <div id="real-ai-result" class="demo-result tryon-result" hidden>
-          <strong>YOUR AI LOOK</strong>
-          <img id="real-ai-image" alt="AI generated try-on result" style="width:100%;max-height:680px;object-fit:contain;border:1px solid var(--line);border-radius:6px">
+          <div class="tryon-result-title"><strong>YOUR AI LOOK</strong><span>Try-On result</span></div>
+          <div class="tryon-image-frame"><img id="real-ai-image" alt="AI generated try-on result"></div>
+          <div class="tryon-result-actions">
+            <button type="button" class="primary" id="download-ai-look" disabled>DOWNLOAD LOOK</button>
+            <button type="button" id="view-ai-look">VIEW FULL SCREEN</button>
+          </div>
+          <div class="share-note">Your generated image is ready to save to your phone.</div>
         </div>
       </div>
     </div>
@@ -1063,7 +1081,8 @@ async function generateRealAiLook(event){
 
     realAiImage.src='data:'+(data.mimeType||'image/png')+';base64,'+data.image;
     realAiResult.hidden=false;
-    status.textContent='Your AI Try-On is ready.';
+    enableAiLookActions();
+    status.textContent='Your AI Try-On is ready. You can view it full screen or download it.';
     realAiResult.scrollIntoView({behavior:'smooth',block:'center'});
   }catch(error){
     realAiResult.hidden=true;
