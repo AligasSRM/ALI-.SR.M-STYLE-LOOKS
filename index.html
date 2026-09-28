@@ -489,6 +489,44 @@ footer .path{
 .ali-vault-note{color:var(--muted);font-size:.82rem;margin-top:10px}
 @media(max-width:760px){.ali-vault-grid,.ali-tailor-grid{grid-template-columns:1fr}.ali-vault-tools,.ali-measure-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.ali-measure-grid{grid-template-columns:1fr}.ali-vault-card{padding:13px}}
+</style><style id="ali-style-center">
+/* ALI SR.M — compact luxury module navigation */
+#ali-style-center{padding:28px 18px 18px;border-top:1px solid var(--line);background:linear-gradient(180deg,#fbf7f3,#f7f1ec)}
+.ali-center-head{text-align:center;margin-bottom:16px}
+.ali-center-kicker{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rose)}
+.ali-center-head h2{margin:5px 0 4px;color:var(--gold);font-size:1.8rem}
+.ali-center-head p{margin:0 auto;max-width:620px;font-size:.98rem;color:var(--rose)}
+.ali-module-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:1040px;margin:0 auto}
+.ali-module-card{border:1px solid var(--line);background:#fff;border-radius:12px;padding:13px 10px;text-align:left;cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:space-between;transition:.18s ease;box-shadow:0 4px 14px rgba(30,27,24,.04)}
+.ali-module-card:hover{transform:translateY(-2px);border-color:var(--gold2)}
+.ali-module-card.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(176,138,62,.12)}
+.ali-module-icon{font-size:1.35rem;line-height:1}
+.ali-module-card strong{display:block;font-family:'Playfair Display',serif;color:var(--ink);font-size:1rem;margin-top:7px}
+.ali-module-card small{display:block;color:var(--rose);font-size:.75rem;line-height:1.2;margin-top:2px}
+.ali-module-back{display:none;margin:12px auto 0;border:1px solid var(--line);background:#fff;border-radius:18px;padding:7px 13px;color:var(--rose);font:inherit}
+.ali-module-panel[hidden]{display:none!important}
+body.ali-module-mode .feature[id],body.ali-module-mode .band[id]{display:none}
+body.ali-module-mode .ali-module-panel:not([hidden]){display:block}
+body.ali-module-mode #ali-style-center{position:sticky;top:62px;z-index:9;padding-bottom:12px}
+body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:760px){
+  #ali-style-center{padding:20px 12px 12px}
+  .ali-module-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .ali-module-card{min-height:78px;padding:11px 10px}
+  .ali-module-icon{font-size:1.2rem}
+  .ali-module-card strong{font-size:.92rem}
+  .ali-module-card small{font-size:.7rem}
+  body.ali-module-mode #ali-style-center{top:55px}
+}
+@media(min-width:761px){.ali-module-back{display:none!important}}
+@media(max-width:600px){
+  .ali-module-back{display:block}
+}
+#ai-360-look .ali-360-box{max-width:760px;margin:auto;border:1px solid var(--gold2);background:#fff;border-radius:14px;padding:16px}
+#ai-360-look .ali-360-preview{min-height:180px;border:1px dashed var(--gold2);border-radius:10px;background:#faf6f1;display:grid;place-items:center;overflow:hidden}
+#ai-360-look video{width:100%;max-height:65vh;background:#111;border-radius:10px}
+#ai-360-look .ali-360-placeholder{padding:32px 16px;text-align:center;color:var(--rose)}
+#real-ai-image{background:#fff}
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -517,7 +555,25 @@ footer .path{
 </a>
 
   </div>
-</section><section class="feature" id="try-on">
+</section><section id="ali-style-center" aria-label="AI Style Center">
+  <div class="ali-center-head">
+    <div class="ali-center-kicker">Ali Sr.M · Style &amp; Looks</div>
+    <h2>AI Style Center</h2>
+    <p>كل أدواتك بمكان واحد. اختار الأداة واشتغل فيها مباشرة، بدون ما تضل تنزل بصفحة طويلة.</p>
+  </div>
+  <div class="ali-module-grid">
+    <button type="button" class="ali-module-card active" data-module-open="try-on"><span class="ali-module-icon">✦</span><strong>AI Try-On</strong><small>جرّب اللوك على صورتك</small></button>
+    <button type="button" class="ali-module-card" data-module-open="ai-360-look"><span class="ali-module-icon">◌</span><strong>360° Look</strong><small>حرّك اللوك وشاهده</small></button>
+    <button type="button" class="ali-module-card" data-module-open="closet-tools"><span class="ali-module-icon">▣</span><strong>My Closet</strong><small>خزنة ملابسك</small></button>
+    <button type="button" class="ali-module-card" data-module-open="ai-fashion-vault"><span class="ali-module-icon">◇</span><strong>Fashion Vault</strong><small>رتّب القطع واحفظها</small></button>
+    <button type="button" class="ali-module-card" data-module-open="design-studio"><span class="ali-module-icon">✎</span><strong>Design Studio</strong><small>صمّم القطعة من الصفر</small></button>
+    <button type="button" class="ali-module-card" data-module-open="design-tailor-studio"><span class="ali-module-icon">⌁</span><strong>Tailor Studio</strong><small>قياسات وورقة الخياط</small></button>
+    <button type="button" class="ali-module-card" data-module-open="saved"><span class="ali-module-icon">♡</span><strong>Saved Looks</strong><small>كل إطلالاتك المحفوظة</small></button>
+    <button type="button" class="ali-module-card" data-module-open="next-generation"><span class="ali-module-icon">✧</span><strong>Style Intelligence</strong><small>Style DNA والذكاء الشخصي</small></button>
+  </div>
+  <button type="button" class="ali-module-back" id="ali-module-back">↑ رجوع إلى مركز الأزياء</button>
+</section>
+<section class="feature" id="try-on">
   <div class="wrap">
     <div class="txt">
       <h2>Virtual Try-On Room</h2>
@@ -838,7 +894,17 @@ footer .path{
 
 </div>
 
-  </div></section><section class="band" id="closet-tools"><div class="wrap"><h2 id="closet-tools-title">Digital Closet Tools</h2><p class="lead">Keep a private local wardrobe and build a look from pieces you already own.</p><div class="budget-box"><div class="control-row"><label>Item name<input id="closet-name" type="text" placeholder="My black jacket"></label><label>Category<select id="closet-category"><option>Dress</option><option>Top</option><option>Skirt</option><option>Jacket</option><option>Suit</option><option>Shoes</option><option>Bag</option><option>Accessory</option></select></label></div><div class="control-row"><label>Color<select id="closet-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option></select></label><label>Style<select id="closet-style"><option>Elegant</option><option>Casual</option><option>Luxury</option><option>Classic</option><option>Modern</option><option>Romantic</option><option>Minimal</option><option>Sporty</option><option>Formal</option></select></label></div><div class="action-row"><button class="primary" id="add-closet-item" type="button">Add to Closet</button><button id="style-from-closet" type="button">Style From Closet</button></div></div><div id="closet-list" class="saved-list"></div></div></section><section class="band"><div class="wrap"><h2 id="shopping-title">Smart Shopping Board</h2><p class="lead">A provider-neutral planning layer for future products. No fake listings, checkout, payment, or partner activation is claimed.</p><div class="feature-grid"><div class="feature-card"><h3>Clothing</h3><p>Filter future options by outfit, color, size and budget.</p></div><div class="feature-card"><h3>Accessories</h3><p>Plan shoes, bags, jewelry and watches around the selected look.</p></div><div class="feature-card"><h3>Beauty</h3><p>Connect makeup, hair and nail choices to the same look plan.</p></div></div></div></section><section class="band" id="saved">  <div class="wrap"><h2 id="saved-title">Your Saved Looks</h2>
+  </div></section><section class="band" id="ai-360-look">
+<div class="wrap">
+<h2>AI 360° Look</h2>
+<p class="lead">حوّل نتيجة الـTry-On النهائية إلى تجربة حركة 360° مستقلة، بدون ما نخلطها مع واجهة الـTry-On الأساسية.</p>
+<div class="ali-360-box">
+<div id="look-motion-status" class="tryon-status">ولّد أولاً نتيجة AI Try-On، وبعدها شغّل 360°.</div>
+<div id="look-motion-result" class="ali-360-preview" hidden><video id="look-motion-video" controls playsinline></video></div>
+<div class="action-row"><button type="button" id="generate-look-motion" class="primary">Create AI 360° Look</button></div>
+</div>
+</div>
+</section><section class="band" id="closet-tools"><div class="wrap"><h2 id="closet-tools-title">Digital Closet Tools</h2><p class="lead">Keep a private local wardrobe and build a look from pieces you already own.</p><div class="budget-box"><div class="control-row"><label>Item name<input id="closet-name" type="text" placeholder="My black jacket"></label><label>Category<select id="closet-category"><option>Dress</option><option>Top</option><option>Skirt</option><option>Jacket</option><option>Suit</option><option>Shoes</option><option>Bag</option><option>Accessory</option></select></label></div><div class="control-row"><label>Color<select id="closet-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option></select></label><label>Style<select id="closet-style"><option>Elegant</option><option>Casual</option><option>Luxury</option><option>Classic</option><option>Modern</option><option>Romantic</option><option>Minimal</option><option>Sporty</option><option>Formal</option></select></label></div><div class="action-row"><button class="primary" id="add-closet-item" type="button">Add to Closet</button><button id="style-from-closet" type="button">Style From Closet</button></div></div><div id="closet-list" class="saved-list"></div></div></section><section class="band"><div class="wrap"><h2 id="shopping-title">Smart Shopping Board</h2><p class="lead">A provider-neutral planning layer for future products. No fake listings, checkout, payment, or partner activation is claimed.</p><div class="feature-grid"><div class="feature-card"><h3>Clothing</h3><p>Filter future options by outfit, color, size and budget.</p></div><div class="feature-card"><h3>Accessories</h3><p>Plan shoes, bags, jewelry and watches around the selected look.</p></div><div class="feature-card"><h3>Beauty</h3><p>Connect makeup, hair and nail choices to the same look plan.</p></div></div></div></section><section class="band" id="saved">  <div class="wrap"><h2 id="saved-title">Your Saved Looks</h2>
 
 <p class="lead">
   Save, compare, and reuse any look with one tap.
@@ -1230,7 +1296,7 @@ async function generateRealAiLook(event){
     }
     if(!data.image) throw new Error('The AI service returned no generated image.');
 
-    realAiImage.src='data:'+(data.mimeType||'image/png')+';base64,'+data.image;
+    realAiImage.src='data:'+(data.mimeType||'image/jpeg')+';base64,'+data.image;
     realAiResult.hidden=false;
     enableAiLookActions();
     status.textContent='Your AI Try-On is ready. You can view it full screen or download it.';
@@ -1263,7 +1329,7 @@ async function generateLookMotion(){
     const response=await fetch('/api/look-motion',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({image:realAiImage.src,mimeType:'image/png'})
+      body:JSON.stringify({image:realAiImage.src,mimeType:(realAiImage.src.match(/^data:([^;]+);/)||[])[1]||'image/jpeg'})
     });
     const data=await response.json().catch(()=>({}));
     if(!response.ok || !data.ok) throw new Error(data.error||('Motion server returned HTTP '+response.status+'.'));
@@ -1447,4 +1513,58 @@ $('#generate-tailor-sheet')?.addEventListener('click',generateTailorSheet);
 $('#print-tailor-sheet')?.addEventListener('click',()=>{generateTailorSheet();setTimeout(()=>window.print(),80)});
 $('#save-tailor-design')?.addEventListener('click',()=>{generateTailorSheet();const a=load('aliTailorDesigns',[]);a.unshift({...tailorSpecData(),...tailorState,fabric:tailorValue('tailor-fabric'),color:tailorValue('tailor-color'),savedAt:Date.now()});save('aliTailorDesigns',a.slice(0,100));$('#tailor-note').textContent='Design + measurements saved in your private local vault.';});
 renderFashionVault();
+
+// ALI STYLE CENTER — compact module navigation
+(function(){
+  const moduleIds=['try-on','ai-360-look','closet-tools','ai-fashion-vault','design-studio','design-tailor-studio','saved','next-generation'];
+  const extraIds=['nextgen-studio','private-style-profile','style-lab','style-coach','style-feedback','style-passport'];
+  const allIds=[...moduleIds,...extraIds];
+  const center=document.getElementById('ali-style-center');
+  if(!center)return;
+  const cards=[...center.querySelectorAll('[data-module-open]')];
+  const sections=allIds.map(id=>document.getElementById(id)).filter(Boolean);
+  function showModule(id,scroll=true){
+    let target=id;
+    if(!document.getElementById(target))target='try-on';
+    sections.forEach(s=>{s.hidden=s.id!==target;});
+    document.body.classList.add('ali-module-mode');
+    cards.forEach(b=>b.classList.toggle('active',b.dataset.moduleOpen===target));
+    const back=document.getElementById('ali-module-back');
+    if(back)back.textContent='↑ مركز الأزياء';
+    if(scroll)center.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function showCenter(){
+    sections.forEach(s=>{s.hidden=true;});
+    document.body.classList.remove('ali-module-mode');
+    cards.forEach(b=>b.classList.remove('active'));
+    center.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  cards.forEach(b=>b.addEventListener('click',()=>showModule(b.dataset.moduleOpen,true)));
+  document.getElementById('ali-module-back')?.addEventListener('click',showCenter);
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    const id=a.getAttribute('href')?.slice(1);
+    if(allIds.includes(id)){
+      a.addEventListener('click',e=>{e.preventDefault();showModule(id,true);});
+    }
+  });
+  // Start directly in Try-On so the first screen stays useful.
+  showModule('try-on',false);
+  window.openStyleModule=showModule;
+  window.openStyleCenter=showCenter;
+})();
+
+// Keep the generated Try-On image visible only after it has successfully loaded.
+(function(){
+  const img=document.getElementById('real-ai-image');
+  const result=document.getElementById('real-ai-result');
+  const status=document.getElementById('real-ai-status');
+  if(!img||!result)return;
+  img.addEventListener('load',()=>{
+    result.hidden=false;
+  });
+  img.addEventListener('error',()=>{
+    result.hidden=true;
+    if(status)status.textContent='Try-On error: The generated image could not be displayed. Please try again.';
+  });
+})();
 </script></body></html>
