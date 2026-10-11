@@ -225,6 +225,7 @@ svg{
 .upload-box strong{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.15rem}
 .upload-box span{font-size:.92rem;color:var(--rose)}
 .photo-preview{display:flex;flex-direction:column;gap:10px;align-items:center}
+.photo-preview[hidden],.tryon-result[hidden],.tryon-progress[hidden],#look-motion-result[hidden]{display:none!important}
 .photo-preview img{width:100%;max-height:300px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
 .photo-preview button{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:18px;color:var(--rose);cursor:pointer}
 .tryon-controls{display:grid;gap:10px;margin-top:16px}
@@ -1137,7 +1138,33 @@ const map={hero:'.hero h1',heroP:'.hero p',start:'.hero .cta',tryon:'#try-on h2'
 function setLang(lang){const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.title=t.title;Object.entries(map).forEach(([k,s])=>{const e=$(s);if(e)e.textContent=t[k]});$('#lang-en').classList.toggle('active',lang==='en');$('#lang-ar').classList.toggle('active',lang==='ar');localStorage.setItem('aliStyleLang',lang)}
 $('#lang-en').addEventListener('click',()=>setLang('en'));$('#lang-ar').addEventListener('click',()=>setLang('ar'));setLang(localStorage.getItem('aliStyleLang')||'en');
 const photoInput=$('#photo-input'),photoPreview=$('#photo-preview'),previewImage=$('#preview-image'),removePhoto=$('#remove-photo');
-photoInput.addEventListener('change',()=>{const f=photoInput.files&&photoInput.files[0];if(!f)return;if(!f.type.startsWith('image/')){photoInput.value='';return}const reader=new FileReader();reader.onload=()=>{previewImage.src=reader.result;photoPreview.hidden=false};reader.readAsDataURL(f)});
+photoInput.addEventListener('change',()=>{
+  const file=photoInput.files&&photoInput.files[0];
+  if(!file){
+    photoPreview.hidden=true;
+    previewImage.removeAttribute('src');
+    return;
+  }
+  if(!file.type.startsWith('image/')){
+    photoInput.value='';
+    photoPreview.hidden=true;
+    $('#real-ai-status').textContent='Please choose a JPG, PNG or WebP image.';
+    return;
+  }
+  const reader=new FileReader();
+  reader.onerror=()=>{
+    photoPreview.hidden=true;
+    $('#real-ai-status').textContent='The phone could not read this photo. Please choose it again.';
+  };
+  reader.onload=()=>{
+    previewImage.src=String(reader.result||'');
+    photoPreview.hidden=false;
+    const hint=$('#upload-hint');
+    if(hint) hint.textContent=file.name+' · '+(Math.max(1,Math.round(file.size/1024)))+' KB';
+    $('#real-ai-status').textContent='Photo selected. Choose the outfit, style and color, then press TRY ON WITH AI to generate the changed look.';
+  };
+  reader.readAsDataURL(file);
+});
 removePhoto.addEventListener('click',()=>{photoInput.value='';previewImage.removeAttribute('src');photoPreview.hidden=true});
 let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
 function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty,closetItem:window.aliClosetSelection||null}}

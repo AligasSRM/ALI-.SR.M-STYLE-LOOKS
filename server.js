@@ -69,7 +69,7 @@ async function generateLook(req, res) {
     "You are the private AI fashion stylist for Ali Sr.M — Style & Looks.",
     "Edit the supplied person's photo into a realistic fashion try-on.",
     "Preserve the person's identity, face, body proportions, pose, skin tone and original scene as much as possible.",
-    "Change only the styling requested below. Do not add text, logos, watermarks, extra people, or unrelated objects.",
+    "The requested outfit, garment type, color, and style must be visibly applied to the person; do not return the original clothing unchanged. Treat every supplied look field as a requirement, especially outfit and color. Change clothing and beauty styling only, while preserving identity, face, body proportions, pose, skin tone, and scene. Do not add text, logos, watermarks, extra people, or unrelated objects.",
     "Create a polished luxury fashion result suitable for a private styling preview.",
     "Requested styling:",
     JSON.stringify(look)
@@ -161,8 +161,8 @@ async function startLookMotion(req, res) {
     "Create an 8-second horizontal 360-degree fashion rotation video from this single finished AI styling image.",
     "Use the supplied image as the exact starting frame.",
     "Keep the same adult person, face, identity, body proportions, hairstyle, outfit, colors and accessories.",
-    "The model makes one smooth horizontal full turn in place: front, right three-quarter, right side, back, left side, left three-quarter, then back to front.",
-    "Keep the camera at a fixed full-body distance. Do not move the camera vertically, do not tilt up or down, do not orbit above or below the person, and keep the entire person visible.",
+    "Make exactly one smooth, level, horizontal YAW rotation around the person’s vertical body axis: front view → right side → back view → left side → front view. This is a turntable spin in place, not a camera orbit.",
+    "Lock the camera at one fixed height and distance for the entire clip. YAW ONLY. No pitch, no roll, no tilt up/down, no overhead or low-angle view, no vertical camera movement, and no camera orbit. Keep the person centered and fully visible while the person rotates horizontally in place.",
     "Preserve garment construction, silhouette, texture and colors. Stable anatomy and natural fabric motion.",
     "No scene change, no extra people, no text, no logos, no watermark, no sudden cuts.",
     "Luxury fashion showroom realism, smooth controlled movement, clean lighting."
