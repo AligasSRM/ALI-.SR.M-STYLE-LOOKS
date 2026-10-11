@@ -4,3 +4,12 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# Keep the browser API contract stable while routing Try-On requests to
+# the existing serverless function on Netlify. The standalone Node server
+# continues to handle /api/generate-look directly in server.js.
+[[redirects]]
+  from = "/api/generate-look"
+  to = "/.netlify/functions/generate-look"
+  status = 200
+  force = true
