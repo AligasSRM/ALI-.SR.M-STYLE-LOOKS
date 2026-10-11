@@ -24,7 +24,7 @@ exports.handler = async function(event) {
     const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/veo-3.1-generate-preview:predictLongRunning",{
       method:"POST",
       headers:{"x-goog-api-key":apiKey,"Content-Type":"application/json"},
-      body:JSON.stringify({instances:[{prompt,image:{bytesBase64Encoded:imageData,mimeType}}],parameters:{aspectRatio:"9:16",durationSeconds:8,resolution:"720p",personGeneration:"allow_adult",numberOfVideos:1}})
+      body:JSON.stringify({instances:[{prompt,image:{inlineData:{mimeType,data:imageData}}}],parameters:{aspectRatio:"9:16",durationSeconds:8,resolution:"720p",personGeneration:"allow_adult",numberOfVideos:1}})
     });
     const data = await response.json().catch(()=>({}));
     if (!response.ok || !data.name) return json(response.status || 502,{ok:false,code:"AI_PROVIDER_ERROR",error:data?.error?.message || "The AI video provider could not start generation."});
