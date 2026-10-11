@@ -69,7 +69,7 @@ async function generateLook(req, res) {
     "You are the private AI fashion stylist for Ali Sr.M — Style & Looks.",
     "Edit the supplied person's photo into a realistic fashion try-on.",
     "Preserve the person's identity, face, body proportions, pose, skin tone and original scene as much as possible.",
-    "Change only the styling requested below. Do not add text, logos, watermarks, extra people, or unrelated objects.",
+    "The requested outfit, garment type, color, and style must be visibly applied to the person; do not return the original clothing unchanged. Treat every supplied look field as a requirement, especially outfit and color. Change clothing and beauty styling only, while preserving identity, face, body proportions, pose, skin tone, and scene. Do not add text, logos, watermarks, extra people, or unrelated objects.",
     "Create a polished luxury fashion result suitable for a private styling preview.",
     "Requested styling:",
     JSON.stringify(look)
