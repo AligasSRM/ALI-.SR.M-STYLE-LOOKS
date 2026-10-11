@@ -12,7 +12,7 @@ afterEach(() => {
   else process.env.GEMINI_API_KEY = originalKey;
 });
 
-const validJob = "models/veo-3.1-generate-preview/operations/job_123";
+const validJob = "operations/job_123";
 const event = (httpMethod, body, queryStringParameters) => ({
   httpMethod, body: body === undefined ? undefined : JSON.stringify(body), queryStringParameters
 });
@@ -42,6 +42,9 @@ test("motion start returns provider operation as the job identifier", async () =
   assert.equal(response.statusCode, 202);
   assert.equal(JSON.parse(response.body).jobId, validJob);
   assert.equal(request.options.headers["x-goog-api-key"], "test-only");
+  const sent = JSON.parse(request.options.body);
+  assert.equal(sent.instances[0].image.bytesBase64Encoded, "abc");
+  assert.equal(sent.instances[0].image.mimeType, "image/jpeg");
 });
 
 test("status rejects malformed job identifiers", async () => {
@@ -51,12 +54,22 @@ test("status rejects malformed job identifiers", async () => {
   assert.equal(response.statusCode, 400);
 });
 
-test("status reports processing while provider operation is pending", async () => {
+test("status accepts the provider's standard operations/id format", async () => {
   process.env.GEMINI_API_KEY = "test-only";
-  global.fetch = async () => ({ok:true,status:200,json:async()=>({done:false})});
+  global.fetch = async (url) => {
+    assert.equal(url, "https://generativelanguage.googleapis.com/v1beta/operations/job_123");
+    return {ok:true,status:200,json:async()=>({done:false})};
+  };
   const response = await status(event("GET", undefined, {jobId:validJob}));
   assert.equal(response.statusCode, 200);
   assert.equal(JSON.parse(response.body).status, "processing");
+});
+
+test("status accepts a model-scoped operation format too", async () => {
+  process.env.GEMINI_API_KEY = "test-only";
+  global.fetch = async () => ({ok:true,status:200,json:async()=>({done:false})});
+  const response = await status(event("GET", undefined, {jobId:"models/veo-3.1-generate-preview/operations/job_123"}));
+  assert.equal(response.statusCode, 200);
 });
 
 test("video endpoint does not return a file before provider operation completes", async () => {
