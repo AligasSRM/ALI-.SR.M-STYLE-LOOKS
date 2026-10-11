@@ -31,7 +31,7 @@ test("motion start rejects invalid image data before provider call", async () =>
   assert.equal(response.statusCode, 400);
 });
 
-test("motion start returns provider operation as the job identifier", async () => {
+test("motion start returns provider operation and sends documented inline image data", async () => {
   process.env.GEMINI_API_KEY = "test-only";
   let request;
   global.fetch = async (url, options) => {
@@ -43,8 +43,8 @@ test("motion start returns provider operation as the job identifier", async () =
   assert.equal(JSON.parse(response.body).jobId, validJob);
   assert.equal(request.options.headers["x-goog-api-key"], "test-only");
   const sent = JSON.parse(request.options.body);
-  assert.equal(sent.instances[0].image.bytesBase64Encoded, "abc");
-  assert.equal(sent.instances[0].image.mimeType, "image/jpeg");
+  assert.equal(sent.instances[0].image.inlineData.data, "abc");
+  assert.equal(sent.instances[0].image.inlineData.mimeType, "image/jpeg");
 });
 
 test("status rejects malformed job identifiers", async () => {
