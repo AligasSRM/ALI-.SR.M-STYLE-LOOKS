@@ -31,7 +31,7 @@ exports.handler = async function(event) {
       "You are the private AI fashion try-on engine for Ali Sr.M — Style & Looks.",
       "Edit the supplied person's photograph into a realistic fashion try-on result.",
       "Preserve the person's identity, face, body proportions, skin tone, hairstyle, pose and original environment as much as possible.",
-      "Change the clothing and beauty styling only according to the requested look.",
+      "The selected outfit, garment type, color and style must visibly change in the final image; never return the original clothing unchanged. Treat every field in the requested look as a requirement, especially outfit and color. Change clothing and beauty styling only, preserving identity, face, body proportions, pose, skin tone, hairstyle and scene.",
       "Keep the whole person visible when the source is full-body.",
       "Create a photorealistic, natural, polished luxury fashion preview.",
       "Do not add text, logos, watermarks, extra people, invented accessories or unrelated objects.",
