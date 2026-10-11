@@ -1,6 +1,8 @@
 function validOperation(value) {
+  // Gemini long-running operations commonly use "operations/{id}".
+  // Accept the model-scoped form as well for compatible API versions.
   return typeof value === "string" &&
-    /^models\/[A-Za-z0-9._-]+\/operations\/[A-Za-z0-9._-]+$/.test(value);
+    /^(?:models\/[A-Za-z0-9._-]+\/)?operations\/[A-Za-z0-9._-]+$/.test(value);
 }
 exports.handler = async function(event) {
   const headers = {"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"};
