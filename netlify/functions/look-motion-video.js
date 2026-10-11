@@ -1,6 +1,6 @@
 function validOperation(value) {
   return typeof value === "string" &&
-    /^models\/[A-Za-z0-9._-]+\/operations\/[A-Za-z0-9._-]+$/.test(value);
+    /^(?:models\/[A-Za-z0-9._-]+\/)?operations\/[A-Za-z0-9._-]+$/.test(value);
 }
 exports.handler = async function(event) {
   const json = (statusCode, body) => ({statusCode,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"},body:JSON.stringify(body)});
