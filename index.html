@@ -220,16 +220,8 @@ svg{
   max-width:100%;
   height:auto;
 }
-.tryon-demo{width:min(100%,320px);margin-bottom:18px}
-.upload-box{display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;min-height:150px;padding:22px;border:1px dashed var(--gold);background:rgba(255,255,255,.72);border-radius:6px;text-align:center;cursor:pointer}
-.upload-box strong{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.15rem}
-.upload-box span{font-size:.92rem;color:var(--rose)}
-.photo-preview{display:flex;flex-direction:column;gap:10px;align-items:center}
-.photo-preview[hidden],.tryon-result[hidden],.tryon-progress[hidden],#look-motion-result[hidden]{display:none!important}
-.photo-preview img{width:100%;max-height:300px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
-.photo-preview button{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:18px;color:var(--rose);cursor:pointer}
-.tryon-controls{display:grid;gap:10px;margin-top:16px}
-.control-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.style-controls{display:grid;gap:10px;margin-top:16px}
+ .control-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .control-row label{font-size:.9rem;color:var(--rose);display:grid;gap:4px}
 .control-row select,.control-row input{width:100%;padding:9px;border:1px solid var(--line);background:#fff;border-radius:4px;font:inherit;color:var(--ink)}
 .option-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
@@ -424,11 +416,6 @@ footer .path{
 .nextgen-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.nextgen-actions button{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:20px;color:var(--rose);cursor:pointer;font:inherit}.nextgen-actions button.primary{background:var(--gold);border-color:var(--gold);color:#fff}
 .memory-box{padding:16px;background:#fff;border:1px solid var(--line);border-radius:6px;margin-top:18px}.signature{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold);text-align:center;margin:12px 0}
 </style><style>
-.real-ai-panel{margin-top:22px;padding:20px;background:#fff;border:1px solid var(--gold2);border-radius:6px}
-.real-ai-panel>strong{display:block;text-align:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem}
-.real-ai-panel>p{max-width:650px;margin:7px auto 12px;text-align:center}
-#real-ai-status{min-height:24px;text-align:center}
-</style><style>
 .design-studio{background:#fff}
 .design-workbench{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;align-items:start}
 .design-controls,.design-preview{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px}
@@ -441,27 +428,6 @@ footer .path{
 .idea-box{margin-top:22px;padding:18px;border:1px solid var(--gold2);border-radius:8px;background:#fff}
 .idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:12px}.idea-card{border:1px solid var(--line);border-radius:6px;padding:14px;background:#fff}.idea-card h4{margin:0 0 5px;color:var(--gold);font-family:'Playfair Display',serif}.idea-card p{margin:0;font-size:.95rem}
 @media(max-width:760px){.design-workbench{grid-template-columns:1fr}}
-</style><style>
-.tryon-progress{margin:16px auto 0;padding:16px;border:1px solid var(--gold2);border-radius:8px;background:#fffaf5;text-align:center;display:grid;justify-items:center;gap:5px}
-.tryon-progress[hidden]{display:none}
-.tryon-spinner{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:tryon-spin .8s linear infinite}
-@keyframes tryon-spin{to{transform:rotate(360deg)}}
-.tryon-status{min-height:24px;margin-top:10px;text-align:center}
-.tryon-result{margin-top:16px}
-.tryon-main-button:disabled{opacity:.65;cursor:wait}
-</style><style>
-.tryon-result{margin-top:18px;padding:14px;border:1px solid var(--gold);border-radius:14px;background:#fffdf9}
-.tryon-result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-.tryon-result-title strong{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem}
-.tryon-result-title span{font-size:.8rem;color:var(--rose)}
-.tryon-image-frame{width:100%;aspect-ratio:1/1;display:flex;justify-content:center;align-items:center;background:#f5f1eb;border-radius:10px;overflow:hidden}
-.tryon-image-frame img{display:block;width:100%;height:100%;max-height:78vh;object-fit:contain}
-.tryon-result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.tryon-result-actions button:disabled{opacity:.5;cursor:not-allowed}
-.tryon-fullscreen{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;padding:10px}
-.tryon-fullscreen img{max-width:100%;max-height:100%;object-fit:contain}
-.tryon-fullscreen-close{position:absolute;top:14px;right:14px;z-index:2;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.55);color:#fff;border-radius:50%;width:44px;height:44px;font-size:24px}
-@media(max-width:600px){.tryon-result{padding:10px}.tryon-image-frame img{max-height:72vh}.tryon-result-actions{grid-template-columns:1fr}.tryon-result-title{align-items:flex-start}}
 </style><style id="ali-fashion-vault-styles">
 #ai-fashion-vault{position:relative}
 .ali-vault-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:18px}
@@ -521,11 +487,7 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
 @media(max-width:600px){
   .ali-module-back{display:block}
 }
-#ai-360-look .ali-360-box{max-width:760px;margin:auto;border:1px solid var(--gold2);background:#fff;border-radius:14px;padding:16px}
-#ai-360-look .ali-360-preview{min-height:180px;border:1px dashed var(--gold2);border-radius:10px;background:#faf6f1;display:grid;place-items:center;overflow:hidden}
-#ai-360-look video{width:100%;max-height:65vh;background:#111;border-radius:10px}
-#ai-360-look .ali-360-placeholder{padding:32px 16px;text-align:center;color:var(--rose)}
-#real-ai-image{background:#fff}
+
 </style></head><body><header>
   <div class="nav">
     <div class="brand">
@@ -544,13 +506,11 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
 <h1>Your look, styled by intelligence</h1>
 
 <p>
-  The AI platform that brings fashion and beauty together
-  in one seamless experience: try on, coordinate,
-  and share your look.
+  A private style workspace to plan outfits, organize your wardrobe, and shape your personal look.
 </p>
 
-<a class="cta" href="#try-on">
-  Start Trying On
+<a class="cta" href="#style-planner">
+  Explore Your Style
 </a>
 
   </div>
@@ -561,8 +521,7 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
     <p>كل أدواتك بمكان واحد. اختار الأداة واشتغل فيها مباشرة، بدون ما تضل تنزل بصفحة طويلة.</p>
   </div>
   <div class="ali-module-grid">
-    <button type="button" class="ali-module-card active" data-module-open="try-on"><span class="ali-module-icon">✦</span><strong>AI Try-On</strong><small>جرّب اللوك على صورتك</small></button>
-    <button type="button" class="ali-module-card" data-module-open="ai-360-look"><span class="ali-module-icon">◌</span><strong>360° Look</strong><small>حرّك اللوك وشاهده</small></button>
+    <button type="button" class="ali-module-card active" data-module-open="style-planner"><span class="ali-module-icon">✦</span><strong>Style Planner</strong><small>خطّط إطلالتك ونسّق الألوان</small></button>
     <button type="button" class="ali-module-card" data-module-open="closet-tools"><span class="ali-module-icon">▣</span><strong>My Closet</strong><small>خزنة ملابسك</small></button>
     <button type="button" class="ali-module-card" data-module-open="ai-fashion-vault"><span class="ali-module-icon">◇</span><strong>Fashion Vault</strong><small>رتّب القطع واحفظها</small></button>
     <button type="button" class="ali-module-card" data-module-open="design-studio"><span class="ali-module-icon">✎</span><strong>Design Studio</strong><small>صمّم القطعة من الصفر</small></button>
@@ -572,17 +531,17 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
   </div>
   <button type="button" class="ali-module-back" id="ali-module-back">↑ رجوع إلى مركز الأزياء</button>
 </section>
-<section class="feature" id="try-on">
+<section class="feature" id="style-planner">
   <div class="wrap">
     <div class="txt">
-      <h2>Virtual Try-On Room</h2>
-      <p>Upload a full-body photo, choose your look, then press <strong>TRY ON WITH AI</strong>. The AI edits your photo while keeping your identity, body proportions and scene as consistent as possible.</p>
+      <h2>Personal Style Planner</h2>
+      <p>Build and save outfit ideas by occasion, garment, color, and personal style. No photo upload or image-generation feature is used.</p>
 
       <div class="tags">
         <span>Dresses &amp; suits</span><span>Shoes &amp; bags</span><span>Jewelry &amp; watches</span><span>Makeup &amp; hair</span>
       </div>
 
-      <div class="tryon-controls">
+      <div class="style-controls">
         <div class="control-row">
           <label>Occasion<select id="occasion-select">
             <option>Daily</option><option>Work</option><option>Dinner</option><option>Evening</option><option>Party</option><option>Wedding</option><option>Travel</option><option>Beach</option>
@@ -613,7 +572,7 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
         <div class="closet-panel" id="open-style-closet" style="margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)">
           <div style="display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap">
             <div><strong style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem">Open Style Closet</strong>
-            <p style="margin:5px 0 0;color:var(--rose)">Choose a garment, color and style. Your selection is sent to Try-On.</p></div>
+            <p style="margin:5px 0 0;color:var(--rose)">Choose a garment, color and style to build your outfit plan.</p></div>
             <span id="closet-selection" class="share-note">No closet item selected</span>
           </div>
           <div class="closet-categories" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
@@ -627,41 +586,21 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
         </div>
 
         <div class="action-row">
-          <button type="button" class="primary tryon-main-button" id="generate-ai-look">TRY ON WITH AI</button>
+          <button type="button" class="primary" id="preview-style-plan">Preview Style Plan</button>
           <button type="button" id="save-look">Save Look</button>
           <button type="button" id="share-look">Share</button>
         </div>
 
-        <div id="tryon-progress" class="tryon-progress" hidden>
-          <span class="tryon-spinner" aria-hidden="true"></span>
-          <strong>AI is creating your look…</strong>
-          <small>Please keep this page open.</small>
-        </div>
-        <div class="share-note tryon-status" id="real-ai-status" role="status" aria-live="polite">Upload a photo, choose your style, then press TRY ON WITH AI.</div>
-
-        <div id="real-ai-result" class="demo-result tryon-result" hidden>
-          <div class="tryon-result-title"><strong>YOUR AI LOOK</strong><span>Try-On result</span></div>
-          <div class="tryon-image-frame"><img id="real-ai-image" alt="AI generated try-on result"></div>
-          <div class="tryon-result-actions">
-            <button type="button" class="primary" id="download-ai-look" disabled>DOWNLOAD LOOK</button>
-            <button type="button" id="view-ai-look">VIEW FULL SCREEN</button>
-          </div>
-          <div class="share-note">Your generated image is ready to save to your phone.</div>
-        </div>
+        <div class="share-note" id="style-plan-status" role="status" aria-live="polite">Choose your preferences, then preview or save your style plan.</div>
+        <div id="look-result" class="demo-result" hidden></div>
       </div>
     </div>
 
     <div class="art">
-      <div class="tryon-demo">
-        <label class="upload-box" for="photo-input">
-          <strong id="upload-title">Upload your photo</strong>
-          <span id="upload-hint">Choose a clear full-body photo to start.</span>
-          <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
-        </label>
-        <div id="photo-preview" class="photo-preview" hidden>
-          <img id="preview-image" alt="Your selected photo">
-          <button type="button" id="remove-photo">Remove photo</button>
-        </div>
+      <div class="style-plan-card" style="width:min(100%,320px);padding:24px;border:1px solid var(--gold2);border-radius:12px;background:#fff;text-align:center">
+        <div style="font-size:2.4rem;color:var(--gold)">✦</div>
+        <strong style="display:block;color:var(--gold);font-family:'Playfair Display',serif">Your Style, Your Rules</strong>
+        <p class="share-note">A saved outfit plan built from your selected pieces, colors, and occasion.</p>
       </div>
       <svg viewBox="0 0 200 260" width="180" aria-hidden="true">
         <path d="M100 10 C70 10 60 40 60 60 C60 80 70 90 70 110 L45 250 L155 250 L130 110 C130 90 140 80 140 60 C140 40 130 10 100 10 Z" fill="none" stroke="#B08A3E" stroke-width="2"/>
@@ -893,17 +832,7 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
 
 </div>
 
-  </div></section><section class="band" id="ai-360-look">
-<div class="wrap">
-<h2>AI 360° Look</h2>
-<p class="lead">حوّل نتيجة الـTry-On النهائية إلى تجربة حركة 360° مستقلة، بدون ما نخلطها مع واجهة الـTry-On الأساسية.</p>
-<div class="ali-360-box">
-<div id="look-motion-status" class="tryon-status">ولّد أولاً نتيجة AI Try-On، وبعدها شغّل 360°.</div>
-<div id="look-motion-result" class="ali-360-preview" hidden><video id="look-motion-video" controls playsinline></video></div>
-<div class="action-row"><button type="button" id="generate-look-motion" class="primary">Create AI 360° Look</button></div>
-</div>
-</div>
-</section><section class="band" id="closet-tools"><div class="wrap"><h2 id="closet-tools-title">Digital Closet Tools</h2><p class="lead">Keep a private local wardrobe and build a look from pieces you already own.</p><div class="budget-box"><div class="control-row"><label>Item name<input id="closet-name" type="text" placeholder="My black jacket"></label><label>Category<select id="closet-category"><option>Dress</option><option>Top</option><option>Skirt</option><option>Jacket</option><option>Suit</option><option>Shoes</option><option>Bag</option><option>Accessory</option></select></label></div><div class="control-row"><label>Color<select id="closet-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option></select></label><label>Style<select id="closet-style"><option>Elegant</option><option>Casual</option><option>Luxury</option><option>Classic</option><option>Modern</option><option>Romantic</option><option>Minimal</option><option>Sporty</option><option>Formal</option></select></label></div><div class="action-row"><button class="primary" id="add-closet-item" type="button">Add to Closet</button><button id="style-from-closet" type="button">Style From Closet</button></div></div><div id="closet-list" class="saved-list"></div></div></section><section class="band"><div class="wrap"><h2 id="shopping-title">Smart Shopping Board</h2><p class="lead">A provider-neutral planning layer for future products. No fake listings, checkout, payment, or partner activation is claimed.</p><div class="feature-grid"><div class="feature-card"><h3>Clothing</h3><p>Filter future options by outfit, color, size and budget.</p></div><div class="feature-card"><h3>Accessories</h3><p>Plan shoes, bags, jewelry and watches around the selected look.</p></div><div class="feature-card"><h3>Beauty</h3><p>Connect makeup, hair and nail choices to the same look plan.</p></div></div></div></section><section class="band" id="saved">  <div class="wrap"><h2 id="saved-title">Your Saved Looks</h2>
+  </div></section><section class="band" id="closet-tools"><div class="wrap"><h2 id="closet-tools-title">Digital Closet Tools</h2><p class="lead">Keep a private local wardrobe and build a look from pieces you already own.</p><div class="budget-box"><div class="control-row"><label>Item name<input id="closet-name" type="text" placeholder="My black jacket"></label><label>Category<select id="closet-category"><option>Dress</option><option>Top</option><option>Skirt</option><option>Jacket</option><option>Suit</option><option>Shoes</option><option>Bag</option><option>Accessory</option></select></label></div><div class="control-row"><label>Color<select id="closet-color"><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option></select></label><label>Style<select id="closet-style"><option>Elegant</option><option>Casual</option><option>Luxury</option><option>Classic</option><option>Modern</option><option>Romantic</option><option>Minimal</option><option>Sporty</option><option>Formal</option></select></label></div><div class="action-row"><button class="primary" id="add-closet-item" type="button">Add to Closet</button><button id="style-from-closet" type="button">Style From Closet</button></div></div><div id="closet-list" class="saved-list"></div></div></section><section class="band"><div class="wrap"><h2 id="shopping-title">Smart Shopping Board</h2><p class="lead">A provider-neutral planning layer for future products. No fake listings, checkout, payment, or partner activation is claimed.</p><div class="feature-grid"><div class="feature-card"><h3>Clothing</h3><p>Filter future options by outfit, color, size and budget.</p></div><div class="feature-card"><h3>Accessories</h3><p>Plan shoes, bags, jewelry and watches around the selected look.</p></div><div class="feature-card"><h3>Beauty</h3><p>Connect makeup, hair and nail choices to the same look plan.</p></div></div></div></section><section class="band" id="saved">  <div class="wrap"><h2 id="saved-title">Your Saved Looks</h2>
 
 <p class="lead">
   Save, compare, and reuse any look with one tap.
@@ -970,7 +899,7 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
 <div class="design-group"><h3>7. Details</h3><div class="design-options" data-design-group="detail">
 <button class="active" data-design="detail" data-value="Clean">Clean</button><button data-design="detail" data-value="Buttons">Buttons</button><button data-design="detail" data-value="Belt">Belt</button><button data-design="detail" data-value="Pleats">Pleats</button><button data-design="detail" data-value="Embroidery">Embroidery</button><button data-design="detail" data-value="Jewelry detail">Jewelry detail</button>
 </div></div>
-<div class="design-actions"><button class="primary" id="save-custom-design">Save Design</button><button id="send-design-to-tryon">Send to Try-On</button><button id="copy-design-brief">Copy Design Brief</button></div>
+<div class="design-actions"><button class="primary" id="save-custom-design">Save Design</button><button id="send-design-to-style-planner">Use in Style Planner</button><button id="copy-design-brief">Copy Design Brief</button></div>
 </div>
 <div class="design-preview">
 <div class="garment-canvas"><div class="garment-silhouette" id="garment-silhouette">Your custom garment<br><small>Design preview</small></div></div>
@@ -996,14 +925,14 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
 <div class="ali-vault-grid">
 <div class="ali-vault-card">
 <h3>My Fashion Vault</h3>
-<p>ابحث وصنّف القطع حسب النوع واللون والمقاس، واستعمل أي قطعة مع Try-On.</p>
+<p>ابحث وصنّف القطع حسب النوع واللون والمقاس، واستعمل أي قطعة مع style planner.</p>
 <div class="ali-vault-tools">
 <input id="vault-search" type="search" placeholder="Search your fashion vault…">
 <select id="vault-category"><option value="All">All categories</option><option>Tops</option><option>Bottoms</option><option>Dresses</option><option>Jackets</option><option>Suits</option><option>Custom Design</option></select>
 <select id="vault-color"><option value="All">All colors</option><option>Black</option><option>White</option><option>Beige</option><option>Gold</option><option>Rose</option><option>Navy</option><option>Green</option><option>Custom</option></select>
 <select id="vault-size"><option value="All">All sizes</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>Custom</option></select>
 </div>
-<div class="action-row"><button type="button" class="primary" id="vault-add-current-design">Save Current Design to Vault</button><button type="button" id="vault-use-first">Use First Match in Try-On</button></div>
+<div class="action-row"><button type="button" class="primary" id="vault-add-current-design">Save Current Design to Vault</button><button type="button" id="vault-use-first">Use First Match in style planner</button></div>
 <div id="vault-list" class="ali-vault-items" style="margin-top:14px"></div>
 </div>
 </div>
@@ -1120,66 +1049,39 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
   in your own taste.
 </p>
 
-<a class="cta" href="#try-on">
+<a class="cta" href="#style-planner">
   Start Now
 </a>
 
-  </div></section><footer>  <div class="nav-actions"><a href="#try-on">Try On</a><a href="#saved">My Looks</a></div><div class="brand">
+  </div></section><footer>  <div class="nav-actions"><a href="#style-planner">Style Planner</a><a href="#saved">My Looks</a></div><div class="brand">
     Ali Sr.M
     <span>style &amp; looks</span>
   </div>  <p>AI Fashion &amp; Beauty Platform</p>  <p class="path">
-    Website → AI Try On → AI Stylist →
+    Website → Style Planner → Personal Style →
     Save → Share → Shopping → Social Media
   </p></footer>
 <script>
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
-const translations={en:{title:'Ali Sr.M — Style & Looks',hero:'Your look, styled by intelligence',heroP:'The AI platform that brings fashion and beauty together in one seamless experience: try on, coordinate, and share your look.',start:'Start Trying On',tryon:'Virtual Try-On Room',beauty:'Beauty Studio',closet:'Your Digital Closet & Personal Stylist',weddings:'Weddings & Events',identity:'Your Identity, Preserved',occasion:'Every Occasion, Every Style',eventPlanner:'Event Look Planner',closetTools:'Digital Closet Tools',shopping:'Smart Shopping Board',budget:'Your Budget, Your Look',saved:'Your Saved Looks',tattoo:'Identity & Tattoo Controls',categories:'Style Categories',privacy:'Privacy First',language:'In Your Language, Wherever You Are',ready:'Ready for your next look?',startNow:'Start Now'},ar:{title:'علي SR.M — ستايل آند لوكس',hero:'إطلالتك، بتنسيق من الذكاء',heroP:'منصة الذكاء الاصطناعي التي تجمع الأزياء والجمال بتجربة واحدة متكاملة: جرّب، نسّق، وشارك إطلالتك.',start:'ابدأ تجربة الإطلالة',tryon:'غرفة التجربة الافتراضية',beauty:'استوديو الجمال',closet:'خزانتك الرقمية والمنسّق الشخصي',weddings:'الأعراس والمناسبات',identity:'هويتك محفوظة',occasion:'لكل مناسبة، ولكل ستايل',eventPlanner:'مخطط إطلالة المناسبات',closetTools:'أدوات خزانتك الرقمية',shopping:'لوحة التسوق الذكي',budget:'ميزانيتك، وإطلالتك',saved:'إطلالاتك المحفوظة',tattoo:'الهوية وتحكمات الوشم',categories:'تصنيفات الستايل',privacy:'الخصوصية أولاً',language:'بلغتك، أينما كنت',ready:'جاهز لإطلالتك الجديدة؟',startNow:'ابدأ الآن'}};
-const map={hero:'.hero h1',heroP:'.hero p',start:'.hero .cta',tryon:'#try-on h2',beauty:'#beauty-title',closet:'#closet-title',weddings:'#weddings-title',identity:'#identity-title',occasion:'#occasion-title',eventPlanner:'#event-planner-title',closetTools:'#closet-tools-title',shopping:'#shopping-title',budget:'#budget-title',saved:'#saved-title',tattoo:'#tattoo-title',categories:'#categories-title',privacy:'.privacy h2',language:'#language-title',ready:'.hero:last-of-type h1',startNow:'.hero:last-of-type .cta'};
+const translations={en:{title:'Ali Sr.M — Style & Looks',hero:'Your look, styled by intelligence',heroP:'A private style workspace to plan outfits, organize your wardrobe, and shape your personal look.',start:'Explore Your Style',beauty:'Beauty Studio',closet:'Your Digital Closet & Personal Stylist',weddings:'Weddings & Events',identity:'Your Identity, Preserved',occasion:'Every Occasion, Every Style',eventPlanner:'Event Look Planner',closetTools:'Digital Closet Tools',shopping:'Smart Shopping Board',budget:'Your Budget, Your Look',saved:'Your Saved Looks',tattoo:'Identity & Tattoo Controls',categories:'Style Categories',privacy:'Privacy First',language:'In Your Language, Wherever You Are',ready:'Ready for your next look?',startNow:'Start Now'},ar:{title:'علي SR.M — ستايل آند لوكس',hero:'إطلالتك، بتنسيق من الذكاء',heroP:'مساحة خاصة لتخطيط الإطلالات وتنظيم خزانة الملابس وبناء أسلوبك الشخصي.',start:'اكتشف أسلوبك',beauty:'استوديو الجمال',closet:'خزانتك الرقمية والمنسّق الشخصي',weddings:'الأعراس والمناسبات',identity:'هويتك محفوظة',occasion:'لكل مناسبة، ولكل ستايل',eventPlanner:'مخطط إطلالة المناسبات',closetTools:'أدوات خزانتك الرقمية',shopping:'لوحة التسوق الذكي',budget:'ميزانيتك، وإطلالتك',saved:'إطلالاتك المحفوظة',tattoo:'الهوية وتحكمات الوشم',categories:'تصنيفات الستايل',privacy:'الخصوصية أولاً',language:'بلغتك، أينما كنت',ready:'جاهز لإطلالتك الجديدة؟',startNow:'ابدأ الآن'}};
+const map={hero:'.hero h1',heroP:'.hero p',start:'.hero .cta',planner:'#style-planner h2',beauty:'#beauty-title',closet:'#closet-title',weddings:'#weddings-title',identity:'#identity-title',occasion:'#occasion-title',eventPlanner:'#event-planner-title',closetTools:'#closet-tools-title',shopping:'#shopping-title',budget:'#budget-title',saved:'#saved-title',tattoo:'#tattoo-title',categories:'#categories-title',privacy:'.privacy h2',language:'#language-title',ready:'.hero:last-of-type h1',startNow:'.hero:last-of-type .cta'};
 function setLang(lang){const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.title=t.title;Object.entries(map).forEach(([k,s])=>{const e=$(s);if(e)e.textContent=t[k]});$('#lang-en').classList.toggle('active',lang==='en');$('#lang-ar').classList.toggle('active',lang==='ar');localStorage.setItem('aliStyleLang',lang)}
 $('#lang-en').addEventListener('click',()=>setLang('en'));$('#lang-ar').addEventListener('click',()=>setLang('ar'));setLang(localStorage.getItem('aliStyleLang')||'en');
-const photoInput=$('#photo-input'),photoPreview=$('#photo-preview'),previewImage=$('#preview-image'),removePhoto=$('#remove-photo');
-photoInput.addEventListener('change',()=>{
-  const file=photoInput.files&&photoInput.files[0];
-  if(!file){
-    photoPreview.hidden=true;
-    previewImage.removeAttribute('src');
-    return;
-  }
-  if(!file.type.startsWith('image/')){
-    photoInput.value='';
-    photoPreview.hidden=true;
-    $('#real-ai-status').textContent='Please choose a JPG, PNG or WebP image.';
-    return;
-  }
-  const reader=new FileReader();
-  reader.onerror=()=>{
-    photoPreview.hidden=true;
-    $('#real-ai-status').textContent='The phone could not read this photo. Please choose it again.';
-  };
-  reader.onload=()=>{
-    previewImage.src=String(reader.result||'');
-    photoPreview.hidden=false;
-    const hint=$('#upload-hint');
-    if(hint) hint.textContent=file.name+' · '+(Math.max(1,Math.round(file.size/1024)))+' KB';
-    $('#real-ai-status').textContent='Photo selected. Choose the outfit, style and color, then press TRY ON WITH AI to generate the changed look.';
-  };
-  reader.readAsDataURL(file);
-});
-removePhoto.addEventListener('click',()=>{photoInput.value='';previewImage.removeAttribute('src');photoPreview.hidden=true});
+
 let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
 function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty,closetItem:window.aliClosetSelection||null}}
 function renderResult(l){const r=$('#look-result');if(!r)return;r.hidden=false;r.innerHTML='<strong>'+l.style+' '+l.outfit+'</strong><span>'+l.occasion+' · '+l.color+' · '+l.beauty+' beauty</span>'}
-function requirePhoto(){if(photoInput.files&&photoInput.files[0])return true;$('.upload-box').scrollIntoView({behavior:'smooth',block:'center'});return false}
+
 
 function savedLooks(){try{return JSON.parse(localStorage.getItem('aliStyleLooks')||'[]')}catch(e){return[]}}
 function renderSaved(){const box=$('#saved-list');const a=savedLooks();box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+x.style+' '+x.outfit+'</strong><small>'+x.occasion+' · '+x.color+' · '+x.beauty+' beauty</small></div><button type="button" data-remove="'+i+'">Delete</button></div>').join(''):'';$$('#saved-list [data-remove]').forEach(b=>b.addEventListener('click',()=>{const a=savedLooks();a.splice(+b.dataset.remove,1);localStorage.setItem('aliStyleLooks',JSON.stringify(a));renderSaved()}))}
-$('#save-look').addEventListener('click',()=>{if(!requirePhoto())return;const a=savedLooks();a.unshift(currentLook());localStorage.setItem('aliStyleLooks',JSON.stringify(a.slice(0,20)));renderSaved();renderResult(currentLook())});
+$('#preview-style-plan')?.addEventListener('click',()=>{renderResult(currentLook());const s=$('#style-plan-status');if(s)s.textContent='Style plan preview updated.'});
+$('#save-look').addEventListener('click',()=>{const a=savedLooks();a.unshift(currentLook());localStorage.setItem('aliStyleLooks',JSON.stringify(a.slice(0,20)));renderSaved();renderResult(currentLook())});
 $('#share-look').addEventListener('click',async()=>{const l=currentLook(),text=l.style+' '+l.outfit+' · '+l.occasion+' · '+l.color+' · '+l.beauty+' beauty — Ali Sr.M Style & Looks';if(navigator.share){try{await navigator.share({title:'My Look — Ali Sr.M',text})}catch(e){}}else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);alert('Look copied to clipboard.')}catch(e){}}});renderSaved();
 const budgetRange=$('#budget-range'),budgetValue=$('#budget-value');if(budgetRange&&budgetValue){budgetRange.addEventListener('input',()=>budgetValue.textContent='$'+Number(budgetRange.value).toLocaleString());budgetValue.textContent='$'+Number(budgetRange.value).toLocaleString()}
 function load(k,f){try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}}function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
 function renderCloset(){const box=$('#closet-list');if(!box)return;const a=load('aliStyleCloset',[]);box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+x.name+'</strong><small>'+x.category+' · '+x.color+' · '+x.style+'</small></div><button type="button" data-closet-remove="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No wardrobe items yet. Add your first piece above.</div>';$$('[data-closet-remove]').forEach(b=>b.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);a.splice(+b.dataset.closetRemove,1);save('aliStyleCloset',a);renderCloset()}))}
 $('#add-closet-item')?.addEventListener('click',()=>{const name=$('#closet-name').value.trim();if(!name)return;const a=load('aliStyleCloset',[]);a.unshift({name,category:$('#closet-category').value,color:$('#closet-color').value,style:$('#closet-style').value});save('aliStyleCloset',a.slice(0,100));$('#closet-name').value='';renderCloset()});
-$('#style-from-closet')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-list')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Top'?'Top & trousers':x.category==='Skirt'?'Skirt & blouse':x.category==='Jacket'?'Jacket & jeans':x.category==='Suit'?'Suit':'Dress';$('#try-on').scrollIntoView({behavior:'smooth'})});renderCloset();
+$('#style-from-closet')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-list')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Top'?'Top & trousers':x.category==='Skirt'?'Skirt & blouse':x.category==='Jacket'?'Jacket & jeans':x.category==='Suit'?'Suit':'Dress';renderResult(currentLook());$('#style-planner').scrollIntoView({behavior:'smooth'})});renderCloset();
 const savedHair=localStorage.getItem('aliHairChoice'),savedNail=localStorage.getItem('aliNailChoice'),savedIdentity=localStorage.getItem('aliIdentityMode');
 if(savedHair) $$('[data-hair-choice]').forEach(x=>x.classList.toggle('active',x.dataset.hairChoice===savedHair));
 if(savedNail) $$('[data-nail-choice]').forEach(x=>x.classList.toggle('active',x.dataset.nailChoice===savedNail));
@@ -1188,204 +1090,33 @@ $$("[data-beauty-choice]").forEach(b=>b.addEventListener("click",()=>{selectedBe
 $$("[data-hair-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliHairChoice",b.dataset.hairChoice);$$("[data-hair-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
 $$("[data-nail-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliNailChoice",b.dataset.nailChoice);$$("[data-nail-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
 $$("[data-identity]").forEach(b=>b.addEventListener('click',()=>{$$('[data-identity]').forEach(x=>x.classList.toggle('active',x===b));localStorage.setItem('aliIdentityMode',b.dataset.identity)}));
-$$('[data-event]').forEach(b=>b.addEventListener('click',()=>{$$('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#try-on').scrollIntoView({behavior:'smooth'})}));
+$$('[data-event]').forEach(b=>b.addEventListener('click',()=>{$$('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#style-planner').scrollIntoView({behavior:'smooth'})}));
 $('#clear-local-data')?.addEventListener('click',()=>{['aliStyleLooks','aliStyleCloset','aliStyleLang','aliIdentityMode'].forEach(k=>localStorage.removeItem(k));location.reload()});
 const ngT={en:{title:'AI Personal Style Identity',lead:'The next generation layer: learn your taste, remember your choices, restyle what you own, and build your signature identity.'},ar:{title:'هوية الستايل الشخصية بالذكاء الاصطناعي',lead:'طبقة الجيل الجديد: تعلّم ذوقك، تذكّر اختياراتك، أعد تنسيق ما تملكه، وابنِ هويتك الخاصة بالستايل.'}};
 const ngState=()=>load('aliStyleNextGen',{dna:{Elegant:20,Luxury:20,Minimal:20,Casual:20,Classic:20},signature:null,upgrades:0});
 function ngSave(s){save('aliStyleNextGen',s)}
 function renderDNA(){const s=ngState();const bars=$('#style-dna-bars');if(!bars)return;bars.innerHTML=Object.entries(s.dna).map(([k,v])=>'<div class="dna-row"><span>'+k+'</span><div class="dna-track"><div class="dna-fill" style="width:'+v+'%"></div></div><b>'+v+'%</b></div>').join('');const mem=$('#style-memory');if(mem){const looks=s.dna;mem.textContent='Your current style profile: '+Object.entries(looks).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]).join(' + ')+'.'}} 
 function ngLearn(){const s=ngState();const l=currentLook();const key=l.style;s.dna[key]=(s.dna[key]||0)+8;const total=Object.values(s.dna).reduce((a,b)=>a+b,0);Object.keys(s.dna).forEach(k=>s.dna[k]=Math.round(s.dna[k]/total*100));ngSave(s);renderDNA()}
-function ngSignature(){if(!requirePhoto())return;const l=currentLook();const s=ngState();s.signature=l;ngSave(s);$('#signature-look').textContent=l.style+' · '+l.color+' · '+l.outfit;ngLearn()}
+function ngSignature(){const l=currentLook();const s=ngState();s.signature=l;ngSave(s);$('#signature-look').textContent=l.style+' · '+l.color+' · '+l.outfit;ngLearn()}
 function ngExplain(){const l=currentLook();$('#why-look').textContent='This look combines '+l.style+' styling with '+l.color+' color, '+l.outfit+' structure, and a '+l.beauty.toLowerCase()+' beauty direction for a '+l.occasion.toLowerCase()+' setting.'}
 $('#make-signature')?.addEventListener('click',ngSignature);
 $('#explain-look')?.addEventListener('click',ngExplain);
-$('#upgrade-look')?.addEventListener('click',()=>{if(!requirePhoto())return;const styles=['Elegant','Luxury','Classic','Formal'];const s=ngState();const l=currentLook();const i=styles.indexOf(l.style);$('#style-select').value=styles[Math.min(i<0?0:i+1,styles.length-1)];s.upgrades=(s.upgrades||0)+1;ngSave(s);ngLearn();renderResult(currentLook());ngExplain()});
-$('#occasion-switch')?.addEventListener('click',()=>{const order=['Daily','Work','Dinner','Evening','Party','Wedding','Travel','Beach'];const i=order.indexOf($('#occasion-select').value);$('#occasion-select').value=order[(i+1)%order.length];if(photoInput.files?.[0]){renderResult(currentLook());ngExplain()}});
-$('#restyle-item')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#try-on').scrollIntoView({behavior:'smooth'});ngLearn()});
-$('#style-today')?.addEventListener('click',()=>{const hours=new Date().getHours();$('#occasion-select').value=hours<12?'Daily':hours<17?'Work':'Evening';const a=load('aliStyleCloset',[]);if(a.length){$('#style-select').value=a[0].style;$('#color-select').value=a[0].color}$('#try-on').scrollIntoView({behavior:'smooth'});ngLearn()});
+$('#upgrade-look')?.addEventListener('click',()=>{const styles=['Elegant','Luxury','Classic','Formal'];const s=ngState();const l=currentLook();const i=styles.indexOf(l.style);$('#style-select').value=styles[Math.min(i<0?0:i+1,styles.length-1)];s.upgrades=(s.upgrades||0)+1;ngSave(s);ngLearn();renderResult(currentLook());ngExplain()});
+$('#occasion-switch')?.addEventListener('click',()=>{const order=['Daily','Work','Dinner','Evening','Party','Wedding','Travel','Beach'];const i=order.indexOf($('#occasion-select').value);$('#occasion-select').value=order[(i+1)%order.length];renderResult(currentLook());ngExplain()});
+$('#restyle-item')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#style-planner').scrollIntoView({behavior:'smooth'});ngLearn()});
+$('#style-today')?.addEventListener('click',()=>{const hours=new Date().getHours();$('#occasion-select').value=hours<12?'Daily':hours<17?'Work':'Evening';const a=load('aliStyleCloset',[]);if(a.length){$('#style-select').value=a[0].style;$('#color-select').value=a[0].color}$('#style-planner').scrollIntoView({behavior:'smooth'});ngLearn()});
 renderDNA();
 const ngs=ngState();if(ngs.signature)$('#signature-look').textContent=ngs.signature.style+' · '+ngs.signature.color+' · '+ngs.signature.outfit;function ngJourney(){const s=ngState();const looks=load('aliSavedLooks',[]);const closet=load('aliStyleCloset',[]);const sig=s.signature?'Signature: '+s.signature.style+' / '+s.signature.color+'. ':'No signature yet. ';$('#journey-summary').textContent=sig+'Saved looks: '+looks.length+'. Closet items: '+closet.length+'.';}
-function ngChallenge(){if(!requirePhoto())return;const styles=['Elegant','Luxury','Classic','Modern','Minimal','Romantic'];const cur=$('#style-select').value;let i=styles.indexOf(cur);$('#style-select').value=styles[(i+1)%styles.length];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];let ci=colors.indexOf($('#color-select').value);$('#color-select').value=colors[(ci+2)%colors.length];renderResult(currentLook());ngExplain();ngLearn();ngJourney()}
-function ngDontBuy(){const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Add a closet item first, then we can build around what you own.';return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Dress'?'Dress':x.category==='Suit'?'Suit':'Top & trousers';$('#try-on')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Starting from your '+x.category+' in '+x.color+'. Try styling it before buying anything new.';ngLearn()}
+function ngChallenge(){const styles=['Elegant','Luxury','Classic','Modern','Minimal','Romantic'];const cur=$('#style-select').value;let i=styles.indexOf(cur);$('#style-select').value=styles[(i+1)%styles.length];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];let ci=colors.indexOf($('#color-select').value);$('#color-select').value=colors[(ci+2)%colors.length];renderResult(currentLook());ngExplain();ngLearn();ngJourney()}
+function ngDontBuy(){const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Add a closet item first, then we can build around what you own.';return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Dress'?'Dress':x.category==='Suit'?'Suit':'Top & trousers';$('#style-planner')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Starting from your '+x.category+' in '+x.color+'. Try styling it before buying anything new.';ngLearn()}
 function ngMissing(){const a=load('aliStyleCloset',[]);const used=new Set(a.map(x=>x.category));const options=['Dress','Suit','Top','Bottom','Jacket','Accessories'];const miss=options.find(x=>!used.has(x));$('#missing-piece').textContent=miss?'A possible missing category is: '+miss+'. This is a planning suggestion, not a shopping requirement.':'Your closet covers the main categories in this demo.'}
 $('#refresh-journey')?.addEventListener('click',ngJourney);
 $('#challenge-look')?.addEventListener('click',ngChallenge);
 $('#dont-buy')?.addEventListener('click',ngDontBuy);
 $('#find-missing')?.addEventListener('click',ngMissing);
 $('#teach-style')?.addEventListener('click',()=>{ngLearn();ngJourney();});
-ngJourney();function ngProfile(){const looks=load('aliSavedLooks',[]),s=ngState(),closet=load('aliStyleCloset',[]);if(!looks.length){$('#profile-identity').textContent='No saved looks yet.';$('#profile-preferences').textContent='Save looks to build your private preferences.';$('#profile-evolution').textContent='Your journey starts with your first saved look.';return}const count=k=>{const m={};looks.forEach(x=>{const v=x[k]||'Unknown';m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Unknown'};const style=count('style'),occasion=count('occasion'),color=count('color');$('#profile-identity').textContent='Your current identity leans '+style+' style, with '+occasion+' looks leading your saved journey.';$('#profile-preferences').textContent='Style: '+style+' · Color: '+color+' · Occasion: '+occasion+' · Closet items: '+closet.length+'.';$('#profile-evolution').textContent='Saved looks: '+looks.length+'. '+(s.signature?'Signature look is defined.':'Your signature look is still evolving.')}$('#refresh-profile')?.addEventListener('click',ngProfile);ngProfile();let ngLabLook=null;function ngMix(){const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];const outfits=['Dress','Suit','Top & trousers','Skirt & blouse','Jacket & jeans'];const s=ngState();const base=s.dna?.style||$('#style-select').value;let si=Math.max(0,styles.indexOf(base));let ci=Math.floor(Math.random()*colors.length);ngLabLook={style:styles[(si+2)%styles.length],color:colors[ci],outfit:outfits[Math.floor(Math.random()*outfits.length)],occasion:$('#occasion-select').value,beauty:$('#beauty-select').value};$('#style-lab-result').textContent='New direction: '+ngLabLook.style+' · '+ngLabLook.color+' · '+ngLabLook.outfit+' for '+ngLabLook.occasion+'.';$('#lab-save-status').textContent='Temporary experiment ready. Save it only if you like the direction.'}function ngCompare(){if(!ngLabLook){ngMix();return}$('#style-lab-result').textContent='Current: '+$('#style-select').value+' / '+$('#color-select').value+' → New: '+ngLabLook.style+' / '+ngLabLook.color+'.'}function ngSafe(){ngMix();$('#style-lab-result').textContent+=' Nothing in your saved looks or closet was changed.'}function ngSaveLab(){if(!ngLabLook){ngMix();return}if(!requirePhoto())return;$('#style-select').value=ngLabLook.style;$('#color-select').value=ngLabLook.color;$('#outfit-select').value=ngLabLook.outfit;renderResult(currentLook());saveCurrentLook();ngLearn();$('#lab-save-status').textContent='Experiment saved to your private Saved Looks.'}$('#mix-style')?.addEventListener('click',ngMix);$('#compare-style')?.addEventListener('click',ngCompare);$('#safe-experiment')?.addEventListener('click',ngSafe);$('#save-lab-look')?.addEventListener('click',ngSaveLab);function coachSet(o){$('#occasion-select').value=o;const style=$('#style-select').value,color=$('#color-select').value;const text='For '+o+', keep your '+style+' direction with '+color+' as the anchor. Add one intentional beauty or accessory detail and avoid overloading the look.';$('#coach-today').textContent=text;$('#coach-occasion').textContent='Occasion set to '+o+'. Your core style remains unchanged.';$('#coach-why').textContent='Because the goal is consistency: the occasion changes, while your personal style stays recognizable.';ngLearn();ngJourney();ngProfile()}$('#coach-today-btn')?.addEventListener('click',()=>coachSet($('#occasion-select').value));$('#coach-work')?.addEventListener('click',()=>coachSet('Work'));$('#coach-evening')?.addEventListener('click',()=>coachSet('Evening'));$('#coach-travel')?.addEventListener('click',()=>coachSet('Travel'));function feedbackLearn(type){const s=ngState();s.feedback=s.feedback||[];s.feedback.push({type,style:$('#style-select').value,color:$('#color-select').value,at:Date.now()});s.feedback=s.feedback.slice(-30);save('aliStyleNextGen',s);$('#learning-status').textContent='Learned: '+type+'. Your private Style DNA has been updated.';ngLearn();ngJourney();ngProfile()}function repeatSignature(){const s=ngState();if(!s.signature){$('#repeat-signature').textContent='Save a Signature Look first.';return}$('#style-select').value=s.signature.style;$('#color-select').value=s.signature.color;$('#outfit-select').value=s.signature.outfit||$('#outfit-select').value;$('#occasion-select').value=s.signature.occasion||$('#occasion-select').value;$('#repeat-signature').textContent='Signature restored: '+s.signature.style+' · '+s.signature.color+'.';ngExplain()}$('#love-current')?.addEventListener('click',()=>feedbackLearn('favorite'));$('#change-current')?.addEventListener('click',()=>{const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];let i=styles.indexOf($('#style-select').value);$('#style-select').value=styles[(i+1)%styles.length];feedbackLearn('change-direction')});$('#repeat-signature-btn')?.addEventListener('click',repeatSignature);function ngPassport(){const s=ngState(),closet=load('aliStyleCloset',[]),looks=load('aliSavedLooks',[]);$('#passport-signature').textContent=s.signature?'Signature: '+s.signature.style+' · '+s.signature.outfit+' · '+s.signature.color+'.':'No signature saved yet.';const dna=s.dna||{};const parts=Object.entries(dna).filter(([k,v])=>k!=='updatedAt'&&typeof v==='number').sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]+': '+Math.round(x[1])+'%');$('#passport-dna').textContent=parts.length?'Top Style DNA: '+parts.join(' · '):'No Style DNA signals yet.';$('#passport-closet').textContent='Saved looks: '+looks.length+' · Closet items: '+closet.length+' · Private profile active.'}$('#refresh-passport')?.addEventListener('click',ngPassport);ngPassport();
-// TRY-ON RESULT ACTIONS: fullscreen preview + phone download.
-function enableAiLookActions(){
-  const downloadButton=$('#download-ai-look');
-  const viewButton=$('#view-ai-look');
-
-  if(downloadButton && !downloadButton.dataset.bound){
-    downloadButton.dataset.bound='1';
-    downloadButton.addEventListener('click',async()=>{
-      if(!realAiImage?.src || !realAiImage.src.startsWith('data:image/')) return;
-      downloadButton.disabled=true;
-      try{
-        const response=await fetch(realAiImage.src);
-        const blob=await response.blob();
-        const url=URL.createObjectURL(blob);
-        const link=document.createElement('a');
-        link.href=url;
-        link.download='ALI-SRM-Try-On-Look.png';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        setTimeout(()=>URL.revokeObjectURL(url),1000);
-      }catch(error){
-        window.open(realAiImage.src,'_blank','noopener');
-      }finally{
-        downloadButton.disabled=false;
-      }
-    });
-  }
-
-  if(viewButton && !viewButton.dataset.bound){
-    viewButton.dataset.bound='1';
-    viewButton.addEventListener('click',()=>{
-      if(!realAiImage?.src) return;
-      const overlay=document.createElement('div');
-      overlay.className='tryon-fullscreen';
-      overlay.innerHTML='<button type="button" class="tryon-fullscreen-close" aria-label="Close">×</button><img alt="AI generated try-on result">';
-      overlay.querySelector('img').src=realAiImage.src;
-      const close=()=>overlay.remove();
-      overlay.querySelector('.tryon-fullscreen-close').addEventListener('click',close);
-      overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
-      document.body.appendChild(overlay);
-    });
-  }
-
-  if(downloadButton) downloadButton.disabled=false;
-}
-
-// REAL AI TRY-ON: server-side provider, no browser API key.
-const realAiButton=$('#generate-ai-look'), realAiStatus=$('#real-ai-status'), realAiResult=$('#real-ai-result'), realAiImage=$('#real-ai-image');
-function resizeTryOnImage(file,maxSide=1600,quality=.86){
-  return new Promise((resolve,reject)=>{
-    const reader=new FileReader();
-    reader.onerror=()=>reject(new Error('Could not read the selected photo.'));
-    reader.onload=()=>{
-      const img=new Image();
-      img.onerror=()=>reject(new Error('The selected file is not a readable image.'));
-      img.onload=()=>{
-        const scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
-        const canvas=document.createElement('canvas');
-        canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
-        canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
-        const ctx=canvas.getContext('2d');
-        ctx.drawImage(img,0,0,canvas.width,canvas.height);
-        resolve(canvas.toDataURL('image/jpeg',quality));
-      };
-      img.src=reader.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-async function generateRealAiLook(event){
-  if(event) event.preventDefault();
-  const status=$('#real-ai-status'), progress=$('#tryon-progress');
-  if(!requirePhoto()){
-    status.textContent='Please upload a photo first.';
-    return false;
-  }
-
-  const file=photoInput.files?.[0];
-  if(!file || !file.type.startsWith('image/')){
-    status.textContent='Please choose a JPG, PNG or WebP photo.';
-    return false;
-  }
-
-  realAiButton.disabled=true;
-  realAiButton.textContent='CREATING…';
-  progress.hidden=false;
-  realAiResult.hidden=true;
-  status.textContent='Uploading the private photo to the secure AI function…';
-
-  try{
-    const dataUrl=await resizeTryOnImage(file);
-    previewImage.src=dataUrl;
-    const response=await fetch('/api/generate-look',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({image:dataUrl,mimeType:'image/jpeg',look:currentLook()})
-    });
-
-    const contentType=response.headers.get('content-type')||'';
-    const data=contentType.includes('application/json') ? await response.json() : {};
-    if(!response.ok || !data.ok){
-      throw new Error(data.error||('AI service returned HTTP '+response.status+'.'));
-    }
-    if(!data.image) throw new Error('The AI service returned no generated image.');
-
-    realAiImage.src='data:'+(data.mimeType||'image/jpeg')+';base64,'+data.image;
-    realAiResult.hidden=false;
-    enableAiLookActions();
-    status.textContent='Your AI Try-On is ready. You can view it full screen or download it.';
-    realAiResult.scrollIntoView({behavior:'smooth',block:'center'});
-  }catch(error){
-    realAiResult.hidden=true;
-    status.textContent='Try-On error: '+(error?.message||'Generation failed. Please try again.');
-  }finally{
-    progress.hidden=true;
-    realAiButton.disabled=false;
-    realAiButton.textContent='TRY ON WITH AI';
-  }
-  return false;
-}
-realAiButton?.addEventListener('click',generateRealAiLook);
-
-// AI 360° LOOK MOTION: fresh Veo 3.1 image-to-video flow.
-const motionButton=$('#generate-look-motion'), motionStatus=$('#look-motion-status'), motionResult=$('#look-motion-result'), motionVideoEl=$('#look-motion-video');
-async function generateLookMotion(){
-  if(!realAiImage?.src || !realAiImage.src.startsWith('data:image/')){
-    motionStatus.textContent='Generate the Real AI Look first.';
-    return;
-  }
-  motionButton.disabled=true;
-  motionButton.textContent='Creating AI 360° Look…';
-  motionResult.hidden=true;
-  motionVideoEl.removeAttribute('src');
-  motionStatus.textContent='Sending the finished Look to the private AI video server…';
-  try{
-    const response=await fetch('/api/look-motion',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({image:realAiImage.src,mimeType:(realAiImage.src.match(/^data:([^;]+);/)||[])[1]||'image/jpeg'})
-    });
-    const data=await response.json().catch(()=>({}));
-    if(!response.ok || !data.ok) throw new Error(data.error||('Motion server returned HTTP '+response.status+'.'));
-
-    let status=data.status||'processing';
-    for(let i=0;i<40 && status==='processing';i++){
-      await new Promise(r=>setTimeout(r,10000));
-      const check=await fetch('/api/look-motion-status?jobId='+encodeURIComponent(data.jobId),{cache:'no-store'});
-      const result=await check.json().catch(()=>({}));
-      if(!check.ok || result.status==='failed') throw new Error(result.error||'AI motion generation failed.');
-      status=result.status||'processing';
-      if(status==='ready'){
-        motionVideoEl.src=result.videoUrl;
-        motionResult.hidden=false;
-        motionVideoEl.load();
-        motionStatus.textContent='AI 360° Look completed successfully.';
-        return;
-      }
-      motionStatus.textContent='AI is building the 360° rotation…';
-    }
-    throw new Error('AI video generation is taking longer than expected. Please try again.');
-  }catch(error){
-    motionStatus.textContent='360° Look error: '+(error?.message||'Generation failed.');
-  }finally{
-    motionButton.disabled=false;
-    motionButton.textContent='Create AI 360° Look';
-  }
-}
-motionButton?.addEventListener('click',generateLookMotion);
-
-// OPEN STYLE CLOSET: broad ready-to-try catalog.
+ngJourney();function ngProfile(){const looks=load('aliSavedLooks',[]),s=ngState(),closet=load('aliStyleCloset',[]);if(!looks.length){$('#profile-identity').textContent='No saved looks yet.';$('#profile-preferences').textContent='Save looks to build your private preferences.';$('#profile-evolution').textContent='Your journey starts with your first saved look.';return}const count=k=>{const m={};looks.forEach(x=>{const v=x[k]||'Unknown';m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Unknown'};const style=count('style'),occasion=count('occasion'),color=count('color');$('#profile-identity').textContent='Your current identity leans '+style+' style, with '+occasion+' looks leading your saved journey.';$('#profile-preferences').textContent='Style: '+style+' · Color: '+color+' · Occasion: '+occasion+' · Closet items: '+closet.length+'.';$('#profile-evolution').textContent='Saved looks: '+looks.length+'. '+(s.signature?'Signature look is defined.':'Your signature look is still evolving.')}$('#refresh-profile')?.addEventListener('click',ngProfile);ngProfile();let ngLabLook=null;function ngMix(){const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];const outfits=['Dress','Suit','Top & trousers','Skirt & blouse','Jacket & jeans'];const s=ngState();const base=s.dna?.style||$('#style-select').value;let si=Math.max(0,styles.indexOf(base));let ci=Math.floor(Math.random()*colors.length);ngLabLook={style:styles[(si+2)%styles.length],color:colors[ci],outfit:outfits[Math.floor(Math.random()*outfits.length)],occasion:$('#occasion-select').value,beauty:$('#beauty-select').value};$('#style-lab-result').textContent='New direction: '+ngLabLook.style+' · '+ngLabLook.color+' · '+ngLabLook.outfit+' for '+ngLabLook.occasion+'.';$('#lab-save-status').textContent='Temporary experiment ready. Save it only if you like the direction.'}function ngCompare(){if(!ngLabLook){ngMix();return}$('#style-lab-result').textContent='Current: '+$('#style-select').value+' / '+$('#color-select').value+' → New: '+ngLabLook.style+' / '+ngLabLook.color+'.'}function ngSafe(){ngMix();$('#style-lab-result').textContent+=' Nothing in your saved looks or closet was changed.'}function ngSaveLab(){if(!ngLabLook){ngMix();return}$('#style-select').value=ngLabLook.style;$('#color-select').value=ngLabLook.color;$('#outfit-select').value=ngLabLook.outfit;renderResult(currentLook());saveCurrentLook();ngLearn();$('#lab-save-status').textContent='Experiment saved to your private Saved Looks.'}$('#mix-style')?.addEventListener('click',ngMix);$('#compare-style')?.addEventListener('click',ngCompare);$('#safe-experiment')?.addEventListener('click',ngSafe);$('#save-lab-look')?.addEventListener('click',ngSaveLab);function coachSet(o){$('#occasion-select').value=o;const style=$('#style-select').value,color=$('#color-select').value;const text='For '+o+', keep your '+style+' direction with '+color+' as the anchor. Add one intentional beauty or accessory detail and avoid overloading the look.';$('#coach-today').textContent=text;$('#coach-occasion').textContent='Occasion set to '+o+'. Your core style remains unchanged.';$('#coach-why').textContent='Because the goal is consistency: the occasion changes, while your personal style stays recognizable.';ngLearn();ngJourney();ngProfile()}$('#coach-today-btn')?.addEventListener('click',()=>coachSet($('#occasion-select').value));$('#coach-work')?.addEventListener('click',()=>coachSet('Work'));$('#coach-evening')?.addEventListener('click',()=>coachSet('Evening'));$('#coach-travel')?.addEventListener('click',()=>coachSet('Travel'));function feedbackLearn(type){const s=ngState();s.feedback=s.feedback||[];s.feedback.push({type,style:$('#style-select').value,color:$('#color-select').value,at:Date.now()});s.feedback=s.feedback.slice(-30);save('aliStyleNextGen',s);$('#learning-status').textContent='Learned: '+type+'. Your private Style DNA has been updated.';ngLearn();ngJourney();ngProfile()}function repeatSignature(){const s=ngState();if(!s.signature){$('#repeat-signature').textContent='Save a Signature Look first.';return}$('#style-select').value=s.signature.style;$('#color-select').value=s.signature.color;$('#outfit-select').value=s.signature.outfit||$('#outfit-select').value;$('#occasion-select').value=s.signature.occasion||$('#occasion-select').value;$('#repeat-signature').textContent='Signature restored: '+s.signature.style+' · '+s.signature.color+'.';ngExplain()}$('#love-current')?.addEventListener('click',()=>feedbackLearn('favorite'));$('#change-current')?.addEventListener('click',()=>{const styles=['Elegant','Luxury','Classic','Modern','Romantic','Minimal','Sporty'];let i=styles.indexOf($('#style-select').value);$('#style-select').value=styles[(i+1)%styles.length];feedbackLearn('change-direction')});$('#repeat-signature-btn')?.addEventListener('click',repeatSignature);function ngPassport(){const s=ngState(),closet=load('aliStyleCloset',[]),looks=load('aliSavedLooks',[]);$('#passport-signature').textContent=s.signature?'Signature: '+s.signature.style+' · '+s.signature.outfit+' · '+s.signature.color+'.':'No signature saved yet.';const dna=s.dna||{};const parts=Object.entries(dna).filter(([k,v])=>k!=='updatedAt'&&typeof v==='number').sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]+': '+Math.round(x[1])+'%');$('#passport-dna').textContent=parts.length?'Top Style DNA: '+parts.join(' · '):'No Style DNA signals yet.';$('#passport-closet').textContent='Saved looks: '+looks.length+' · Closet items: '+closet.length+' · Private profile active.'}$('#refresh-passport')?.addEventListener('click',ngPassport);ngPassport();
+// OPEN STYLE CLOSET: curated wardrobe catalog.// OPEN STYLE CLOSET: broad ready-to-try catalog.
 const closetItems=[
  {name:'Classic White Shirt',cat:'Tops',outfit:'Top & trousers',color:'White',style:'Classic'},
  {name:'Black Silk Shirt',cat:'Tops',outfit:'Top & trousers',color:'Black',style:'Elegant'},
@@ -1432,7 +1163,7 @@ const closetItems=[
  {name:'Green Statement Bag',cat:'Accessories',outfit:'Dress',color:'Green',style:'Luxury'}
 ];
 window.aliClosetSelection=null;
-function renderTryOnCatalog(category='All'){
+function renderStyleCatalog(category='All'){
  const grid=$('#closet-grid'); if(!grid)return;
  const items=category==='All'?closetItems:closetItems.filter(x=>x.cat===category);
  grid.innerHTML=items.map((x,i)=>'<button type="button" class="closet-item" data-closet-index="'+closetItems.indexOf(x)+'" style="text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);color:inherit"><strong>'+x.name+'</strong><small style="display:block;margin-top:5px;color:var(--muted)">'+x.cat+' · '+x.color+' · '+x.style+'</small></button>').join('');
@@ -1444,9 +1175,9 @@ function renderTryOnCatalog(category='All'){
  }));
 }
 $$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
- $$('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderTryOnCatalog(btn.dataset.closetCat);
+ $$('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderStyleCatalog(btn.dataset.closetCat);
 }));
-renderTryOnCatalog();
+renderStyleCatalog();
 
 // AI DESIGN STUDIO: structured garment co-design.
 const designState={garment:'Dress',cut:'Classic',sleeve:'Standard',neck:'Round',length:'Mini',fabric:'Silk',detail:'Clean'};
@@ -1469,11 +1200,11 @@ $('#save-custom-design')?.addEventListener('click',()=>{
  save('aliCustomDesigns',designs.slice(0,50));
  $('#design-summary').textContent='Saved: '+designBrief();
 });
-$('#send-design-to-tryon')?.addEventListener('click',()=>{
+$('#send-design-to-style-planner')?.addEventListener('click',()=>{
  $('#outfit-select').value=designState.garment==='Trousers'?'Top & trousers':designState.garment==='Skirt'?'Skirt & blouse':designState.garment==='Jacket'?'Jacket & jeans':designState.garment;
  $('#style-select').value=designState.cut==='Luxury'?'Luxury':designState.cut==='Fitted'?'Elegant':'Modern';
  $('#color-select').value='Black';
- $('#try-on')?.scrollIntoView({behavior:'smooth',block:'start'});
+ $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});
 });
 $('#copy-design-brief')?.addEventListener('click',async()=>{
  const text='Ali Sr.M custom design brief: '+designBrief();
@@ -1494,9 +1225,9 @@ function renderFashionVault(){
    const hay=[x.name,x.category,x.color,x.size,x.style,x.garment,x.fabric,x.shape,x.notes].join(' ').toLowerCase();
    return (!q||hay.includes(q))&&(cat==='All'||x.category===cat)&&(color==='All'||x.color===color)&&(size==='All'||x.size===size);
  });
- box.innerHTML=items.length?items.map((x,i)=>'<div class="ali-vault-item"><strong>'+escapeVault(x.name||x.garment||'Saved garment')+'</strong><small>'+escapeVault([x.category||'Custom Design',x.color||'',x.size||'',x.style||x.shape||''].filter(Boolean).join(' · '))+'</small><button type="button" data-vault-use="'+i+'">Use in Try-On</button><button type="button" data-vault-delete="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No matching pieces yet.</div>';
+ box.innerHTML=items.length?items.map((x,i)=>'<div class="ali-vault-item"><strong>'+escapeVault(x.name||x.garment||'Saved garment')+'</strong><small>'+escapeVault([x.category||'Custom Design',x.color||'',x.size||'',x.style||x.shape||''].filter(Boolean).join(' · '))+'</small><button type="button" data-vault-use="'+i+'">Use in Style Planner</button><button type="button" data-vault-delete="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No matching pieces yet.</div>';
  const filtered=items;
- $('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#try-on')?.scrollIntoView({behavior:'smooth',block:'start'});}));
+ $('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
  $('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
 }
 $('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
@@ -1541,7 +1272,7 @@ renderFashionVault();
 
 // ALI STYLE CENTER — compact module navigation
 (function(){
-  const moduleIds=['try-on','ai-360-look','closet-tools','ai-fashion-vault','design-studio','design-tailor-studio','saved','next-generation'];
+  const moduleIds=['style-planner','closet-tools','ai-fashion-vault','design-studio','design-tailor-studio','saved','next-generation'];
   const extraIds=[];
   const allIds=[...moduleIds,...extraIds];
   const center=document.getElementById('ali-style-center');
@@ -1550,7 +1281,7 @@ renderFashionVault();
   const sections=allIds.map(id=>document.getElementById(id)).filter(Boolean);
   function showModule(id,scroll=true){
     let target=id;
-    if(!document.getElementById(target))target='try-on';
+    if(!document.getElementById(target))target='style-planner';
     sections.forEach(s=>{s.hidden=s.id!==target;});
     document.body.classList.add('ali-module-mode');
     cards.forEach(b=>b.classList.toggle('active',b.dataset.moduleOpen===target));
@@ -1572,24 +1303,10 @@ renderFashionVault();
       a.addEventListener('click',e=>{e.preventDefault();showModule(id,true);});
     }
   });
-  // Start directly in Try-On so the first screen stays useful.
-  showModule('try-on',false);
+  // Start directly in the Style Planner so the first screen stays useful.
+  showModule('style-planner',false);
   window.openStyleModule=showModule;
   window.openStyleCenter=showCenter;
 })();
 
-// Keep the generated Try-On image visible only after it has successfully loaded.
-(function(){
-  const img=document.getElementById('real-ai-image');
-  const result=document.getElementById('real-ai-result');
-  const status=document.getElementById('real-ai-status');
-  if(!img||!result)return;
-  img.addEventListener('load',()=>{
-    result.hidden=false;
-  });
-  img.addEventListener('error',()=>{
-    result.hidden=true;
-    if(status)status.textContent='Try-On error: The generated image could not be displayed. Please try again.';
-  });
-})();
-</script></body></html>
+</script></script></body></html>
