@@ -1067,7 +1067,7 @@ const map={hero:'.hero h1',heroP:'.hero p',start:'.hero .cta',planner:'#style-pl
 function setLang(lang){const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.title=t.title;Object.entries(map).forEach(([k,s])=>{const e=$(s);if(e)e.textContent=t[k]});$('#lang-en').classList.toggle('active',lang==='en');$('#lang-ar').classList.toggle('active',lang==='ar');localStorage.setItem('aliStyleLang',lang)}
 $('#lang-en').addEventListener('click',()=>setLang('en'));$('#lang-ar').addEventListener('click',()=>setLang('ar'));setLang(localStorage.getItem('aliStyleLang')||'en');
 
-let selectedBeauty='Natural';let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
+let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
 function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty,closetItem:window.aliClosetSelection||null}}
 function renderResult(l){const r=$('#look-result');if(!r)return;r.hidden=false;r.innerHTML='<strong>'+l.style+' '+l.outfit+'</strong><span>'+l.occasion+' · '+l.color+' · '+l.beauty+' beauty</span>'}
 
