@@ -25,8 +25,8 @@ test("Netlify has no AI image or video function redirects", () => {
 });
 
 test("the remaining page script parses and section markup is balanced", () => {
-  const match = html.match(/<script>([\\s\\S]*?)<\\/script>/i);
+  const match = html.match(/<script>([\s\S]*?)<\/script>/i);
   assert.ok(match, "the page script must exist");
   assert.doesNotThrow(() => new vm.Script(match[1]));
-  assert.equal((html.match(/<section\\b/g) || []).length, (html.match(/<\\/section>/g) || []).length);
+  assert.equal((html.match(/<section\b/g) || []).length, (html.match(/<\/section>/g) || []).length);
 });
