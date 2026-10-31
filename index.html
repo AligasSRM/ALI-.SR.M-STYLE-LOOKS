@@ -1061,36 +1061,36 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
     Save → Share → Shopping → Social Media
   </p></footer>
 <script>
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const $=s=>document.querySelector(s),all=s=>document.querySelectorAll(s);
 const translations={en:{title:'Ali Sr.M — Style & Looks',hero:'Your look, styled by intelligence',heroP:'A private style workspace to plan outfits, organize your wardrobe, and shape your personal look.',start:'Explore Your Style',beauty:'Beauty Studio',closet:'Your Digital Closet & Personal Stylist',weddings:'Weddings & Events',identity:'Your Identity, Preserved',occasion:'Every Occasion, Every Style',eventPlanner:'Event Look Planner',closetTools:'Digital Closet Tools',shopping:'Smart Shopping Board',budget:'Your Budget, Your Look',saved:'Your Saved Looks',tattoo:'Identity & Tattoo Controls',categories:'Style Categories',privacy:'Privacy First',language:'In Your Language, Wherever You Are',ready:'Ready for your next look?',startNow:'Start Now'},ar:{title:'علي SR.M — ستايل آند لوكس',hero:'إطلالتك، بتنسيق من الذكاء',heroP:'مساحة خاصة لتخطيط الإطلالات وتنظيم خزانة الملابس وبناء أسلوبك الشخصي.',start:'اكتشف أسلوبك',beauty:'استوديو الجمال',closet:'خزانتك الرقمية والمنسّق الشخصي',weddings:'الأعراس والمناسبات',identity:'هويتك محفوظة',occasion:'لكل مناسبة، ولكل ستايل',eventPlanner:'مخطط إطلالة المناسبات',closetTools:'أدوات خزانتك الرقمية',shopping:'لوحة التسوق الذكي',budget:'ميزانيتك، وإطلالتك',saved:'إطلالاتك المحفوظة',tattoo:'الهوية وتحكمات الوشم',categories:'تصنيفات الستايل',privacy:'الخصوصية أولاً',language:'بلغتك، أينما كنت',ready:'جاهز لإطلالتك الجديدة؟',startNow:'ابدأ الآن'}};
 const map={hero:'.hero h1',heroP:'.hero p',start:'.hero .cta',planner:'#style-planner h2',beauty:'#beauty-title',closet:'#closet-title',weddings:'#weddings-title',identity:'#identity-title',occasion:'#occasion-title',eventPlanner:'#event-planner-title',closetTools:'#closet-tools-title',shopping:'#shopping-title',budget:'#budget-title',saved:'#saved-title',tattoo:'#tattoo-title',categories:'#categories-title',privacy:'.privacy h2',language:'#language-title',ready:'.hero:last-of-type h1',startNow:'.hero:last-of-type .cta'};
 function setLang(lang){const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.title=t.title;Object.entries(map).forEach(([k,s])=>{const e=$(s);if(e)e.textContent=t[k]});$('#lang-en').classList.toggle('active',lang==='en');$('#lang-ar').classList.toggle('active',lang==='ar');localStorage.setItem('aliStyleLang',lang)}
 $('#lang-en').addEventListener('click',()=>setLang('en'));$('#lang-ar').addEventListener('click',()=>setLang('ar'));setLang(localStorage.getItem('aliStyleLang')||'en');
 
-let selectedBeauty='Natural';$$('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;$$('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
+let selectedBeauty='Natural';all('#beauty-options button').forEach(b=>b.addEventListener('click',()=>{selectedBeauty=b.dataset.beauty;all('#beauty-options button').forEach(x=>x.classList.toggle('active',x===b))}));
 function currentLook(){return{occasion:$('#occasion-select').value,style:$('#style-select').value,outfit:$('#outfit-select').value,color:$('#color-select').value,beauty:selectedBeauty,closetItem:window.aliClosetSelection||null}}
 function renderResult(l){const r=$('#look-result');if(!r)return;r.hidden=false;r.innerHTML='<strong>'+escapeVault(l.style)+' '+escapeVault(l.outfit)+'</strong><span>'+escapeVault(l.occasion)+' · '+escapeVault(l.color)+' · '+escapeVault(l.beauty)+' beauty</span>'}
 
 
 function savedLooks(){try{const value=JSON.parse(localStorage.getItem('aliStyleLooks')||'[]');return Array.isArray(value)?value:[]}catch(e){return[]}}
-function renderSaved(){const box=$('#saved-list');if(!box)return;const a=savedLooks();box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+escapeVault(x?.style)+' '+escapeVault(x?.outfit)+'</strong><small>'+escapeVault(x?.occasion)+' · '+escapeVault(x?.color)+' · '+escapeVault(x?.beauty)+' beauty</small></div><button type="button" data-remove="'+i+'">Delete</button></div>').join(''):'';$$('#saved-list [data-remove]').forEach(b=>b.addEventListener('click',()=>{const a=savedLooks();a.splice(+b.dataset.remove,1);localStorage.setItem('aliStyleLooks',JSON.stringify(a));renderSaved()}))}
+function renderSaved(){const box=$('#saved-list');if(!box)return;const a=savedLooks();box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+escapeVault(x?.style)+' '+escapeVault(x?.outfit)+'</strong><small>'+escapeVault(x?.occasion)+' · '+escapeVault(x?.color)+' · '+escapeVault(x?.beauty)+' beauty</small></div><button type="button" data-remove="'+i+'">Delete</button></div>').join(''):'';all('#saved-list [data-remove]').forEach(b=>b.addEventListener('click',()=>{const a=savedLooks();a.splice(+b.dataset.remove,1);localStorage.setItem('aliStyleLooks',JSON.stringify(a));renderSaved()}))}
 $('#preview-style-plan')?.addEventListener('click',()=>{renderResult(currentLook());const s=$('#style-plan-status');if(s)s.textContent='Style plan preview updated.'});
 $('#save-look').addEventListener('click',()=>{const a=savedLooks();a.unshift(currentLook());localStorage.setItem('aliStyleLooks',JSON.stringify(a.slice(0,20)));renderSaved();renderResult(currentLook())});
 $('#share-look').addEventListener('click',async()=>{const l=currentLook(),text=l.style+' '+l.outfit+' · '+l.occasion+' · '+l.color+' · '+l.beauty+' beauty — Ali Sr.M Style & Looks';if(navigator.share){try{await navigator.share({title:'My Look — Ali Sr.M',text})}catch(e){}}else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);alert('Look copied to clipboard.')}catch(e){}}});renderSaved();
 const budgetRange=$('#budget-range'),budgetValue=$('#budget-value');if(budgetRange&&budgetValue){budgetRange.addEventListener('input',()=>budgetValue.textContent='$'+Number(budgetRange.value).toLocaleString());budgetValue.textContent='$'+Number(budgetRange.value).toLocaleString()}
 function load(k,f){try{const value=JSON.parse(localStorage.getItem(k));return value??f}catch(e){return f}}function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function renderCloset(){const box=$('#closet-list');if(!box)return;const stored=load('aliStyleCloset',[]),a=Array.isArray(stored)?stored:[];box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+escapeVault(x?.name)+'</strong><small>'+escapeVault(x?.category)+' · '+escapeVault(x?.color)+' · '+escapeVault(x?.style)+'</small></div><button type="button" data-closet-remove="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No wardrobe items yet. Add your first piece above.</div>';$$('[data-closet-remove]').forEach(b=>b.addEventListener('click',()=>{const stored=load('aliStyleCloset',[]),a=Array.isArray(stored)?stored:[];a.splice(+b.dataset.closetRemove,1);save('aliStyleCloset',a);renderCloset()}))}
+function renderCloset(){const box=$('#closet-list');if(!box)return;const stored=load('aliStyleCloset',[]),a=Array.isArray(stored)?stored:[];box.innerHTML=a.length?a.map((x,i)=>'<div class="saved-item"><div><strong>'+escapeVault(x?.name)+'</strong><small>'+escapeVault(x?.category)+' · '+escapeVault(x?.color)+' · '+escapeVault(x?.style)+'</small></div><button type="button" data-closet-remove="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No wardrobe items yet. Add your first piece above.</div>';all('[data-closet-remove]').forEach(b=>b.addEventListener('click',()=>{const stored=load('aliStyleCloset',[]),a=Array.isArray(stored)?stored:[];a.splice(+b.dataset.closetRemove,1);save('aliStyleCloset',a);renderCloset()}))}
 $('#add-closet-item')?.addEventListener('click',()=>{const name=$('#closet-name').value.trim();if(!name)return;const a=load('aliStyleCloset',[]);a.unshift({name,category:$('#closet-category').value,color:$('#closet-color').value,style:$('#closet-style').value});save('aliStyleCloset',a.slice(0,100));$('#closet-name').value='';renderCloset()});
 $('#style-from-closet')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-list')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Top'?'Top & trousers':x.category==='Skirt'?'Skirt & blouse':x.category==='Jacket'?'Jacket & jeans':x.category==='Suit'?'Suit':'Dress';renderResult(currentLook());$('#style-planner').scrollIntoView({behavior:'smooth'})});renderCloset();
 const savedHair=localStorage.getItem('aliHairChoice'),savedNail=localStorage.getItem('aliNailChoice'),savedIdentity=localStorage.getItem('aliIdentityMode');
-if(savedHair) $$('[data-hair-choice]').forEach(x=>x.classList.toggle('active',x.dataset.hairChoice===savedHair));
-if(savedNail) $$('[data-nail-choice]').forEach(x=>x.classList.toggle('active',x.dataset.nailChoice===savedNail));
-if(savedIdentity) $$('[data-identity]').forEach(x=>x.classList.toggle('active',x.dataset.identity===savedIdentity));
-$$("[data-beauty-choice]").forEach(b=>b.addEventListener("click",()=>{selectedBeauty=b.dataset.beautyChoice;$$("#beauty-options button").forEach(x=>x.classList.toggle("active",x.dataset.beauty===selectedBeauty))}));
-$$("[data-hair-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliHairChoice",b.dataset.hairChoice);$$("[data-hair-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
-$$("[data-nail-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliNailChoice",b.dataset.nailChoice);$$("[data-nail-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
-$$("[data-identity]").forEach(b=>b.addEventListener('click',()=>{$$('[data-identity]').forEach(x=>x.classList.toggle('active',x===b));localStorage.setItem('aliIdentityMode',b.dataset.identity)}));
-$$('[data-event]').forEach(b=>b.addEventListener('click',()=>{$$('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#style-planner').scrollIntoView({behavior:'smooth'})}));
+if(savedHair) all('[data-hair-choice]').forEach(x=>x.classList.toggle('active',x.dataset.hairChoice===savedHair));
+if(savedNail) all('[data-nail-choice]').forEach(x=>x.classList.toggle('active',x.dataset.nailChoice===savedNail));
+if(savedIdentity) all('[data-identity]').forEach(x=>x.classList.toggle('active',x.dataset.identity===savedIdentity));
+all("[data-beauty-choice]").forEach(b=>b.addEventListener("click",()=>{selectedBeauty=b.dataset.beautyChoice;all("#beauty-options button").forEach(x=>x.classList.toggle("active",x.dataset.beauty===selectedBeauty))}));
+all("[data-hair-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliHairChoice",b.dataset.hairChoice);all("[data-hair-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
+all("[data-nail-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliNailChoice",b.dataset.nailChoice);all("[data-nail-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
+all("[data-identity]").forEach(b=>b.addEventListener('click',()=>{all('[data-identity]').forEach(x=>x.classList.toggle('active',x===b));localStorage.setItem('aliIdentityMode',b.dataset.identity)}));
+all('[data-event]').forEach(b=>b.addEventListener('click',()=>{all('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#style-planner').scrollIntoView({behavior:'smooth'})}));
 $('#clear-local-data')?.addEventListener('click',()=>{['aliStyleLang','aliStyleLooks','aliHairChoice','aliNailChoice','aliIdentityMode','aliStyleCloset','aliStyleNextGen','aliSavedLooks','aliCustomDesigns','aliFashionVault','aliTailorDesigns'].forEach(k=>localStorage.removeItem(k));location.reload()});
 const ngT={en:{title:'AI Personal Style Identity',lead:'The next generation layer: learn your taste, remember your choices, restyle what you own, and build your signature identity.'},ar:{title:'هوية الستايل الشخصية بالذكاء الاصطناعي',lead:'طبقة الجيل الجديد: تعلّم ذوقك، تذكّر اختياراتك، أعد تنسيق ما تملكه، وابنِ هويتك الخاصة بالستايل.'}};
 const ngState=()=>load('aliStyleNextGen',{dna:{Elegant:20,Luxury:20,Minimal:20,Casual:20,Classic:20},signature:null,upgrades:0});
@@ -1167,15 +1167,15 @@ function renderStyleCatalog(category='All'){
  const grid=$('#closet-grid'); if(!grid)return;
  const items=category==='All'?closetItems:closetItems.filter(x=>x.cat===category);
  grid.innerHTML=items.map((x,i)=>'<button type="button" class="closet-item" data-closet-index="'+closetItems.indexOf(x)+'" style="text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);color:inherit"><strong>'+x.name+'</strong><small style="display:block;margin-top:5px;color:var(--muted)">'+x.cat+' · '+x.color+' · '+x.style+'</small></button>').join('');
- $$('#closet-grid [data-closet-index]').forEach(btn=>btn.addEventListener('click',()=>{
+ all('#closet-grid [data-closet-index]').forEach(btn=>btn.addEventListener('click',()=>{
    const item=closetItems[+btn.dataset.closetIndex]; window.aliClosetSelection=item;
    $('#closet-selection').textContent='Selected: '+item.name;
    $('#outfit-select').value=item.outfit; $('#color-select').value=item.color; $('#style-select').value=item.style;
-   $$('#closet-grid .closet-item').forEach(x=>x.style.outline=x===btn?'2px solid var(--gold)':'none');
+   all('#closet-grid .closet-item').forEach(x=>x.style.outline=x===btn?'2px solid var(--gold)':'none');
  }));
 }
-$$('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
- $$('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderStyleCatalog(btn.dataset.closetCat);
+all('[data-closet-cat]').forEach(btn=>btn.addEventListener('click',()=>{
+ all('[data-closet-cat]').forEach(x=>x.classList.toggle('active',x===btn)); renderStyleCatalog(btn.dataset.closetCat);
 }));
 renderStyleCatalog();
 
@@ -1189,9 +1189,9 @@ function renderDesignStudio(){
  if(summary) summary.textContent=designBrief();
  if(silhouette) silhouette.innerHTML=designState.garment+'<br><small>'+designState.cut+' · '+designState.fabric+' · '+designState.detail+'</small>';
 }
-$$('[data-design]').forEach(btn=>btn.addEventListener('click',()=>{
+all('[data-design]').forEach(btn=>btn.addEventListener('click',()=>{
  const key=btn.dataset.design; designState[key]=btn.dataset.value;
- $$('[data-design="'+key+'"]').forEach(x=>x.classList.toggle('active',x===btn));
+ all('[data-design="'+key+'"]').forEach(x=>x.classList.toggle('active',x===btn));
  renderDesignStudio();
 }));
 $('#save-custom-design')?.addEventListener('click',()=>{
@@ -1227,20 +1227,20 @@ function renderFashionVault(){
  });
  box.innerHTML=items.length?items.map((x,i)=>'<div class="ali-vault-item"><strong>'+escapeVault(x.name||x.garment||'Saved garment')+'</strong><small>'+escapeVault([x.category||'Custom Design',x.color||'',x.size||'',x.style||x.shape||''].filter(Boolean).join(' · '))+'</small><button type="button" data-vault-use="'+i+'">Use in Style Planner</button><button type="button" data-vault-delete="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No matching pieces yet.</div>';
  const filtered=items;
- $$('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
- $$('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
+ all('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
+ all('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
 }
-$$('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
-$$('#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('change',renderFashionVault));
+all('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
+all('#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('change',renderFashionVault));
 $('#vault-add-current-design')?.addEventListener('click',()=>{
  const a=vaultLoad(), item={name:tailorValue('tailor-garment')+' — '+tailorValue('tailor-shape'),category:'Custom Design',garment:tailorValue('tailor-garment'),color:tailorValue('tailor-color'),fabric:tailorValue('tailor-fabric'),size:'Custom',style:tailorValue('tailor-fit'),shape:tailorState.shape,topFit:tailorState.topFit,legFit:tailorState.legFit,neckline:tailorState.neckline,sleeve:tailorState.sleeve,length:tailorState.length,createdAt:Date.now()};
  a.unshift(item);vaultSave(a);renderFashionVault();
 });
 $('#vault-use-first')?.addEventListener('click',()=>{$('#vault-list [data-vault-use]')?.click()});
 
-$$('[data-tailor-key]').forEach(btn=>btn.addEventListener('click',()=>{
+all('[data-tailor-key]').forEach(btn=>btn.addEventListener('click',()=>{
  const k=btn.dataset.tailorKey;tailorState[k]=btn.dataset.tailorValue;
- $$('[data-tailor-key]').forEach(x=>x.classList.toggle('active',x===btn));
+ all('[data-tailor-key]').forEach(x=>x.classList.toggle('active',x===btn));
 }));
 
 function measure(id){const n=parseFloat($('#'+id)?.value);return Number.isFinite(n)?n:null}
