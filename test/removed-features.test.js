@@ -42,7 +42,7 @@ test("all HTML IDs are unique and the style-center section has one stable ID", (
 
 test("every style-center navigation card points to an existing registered module", () => {
   const targets = [...html.matchAll(/data-module-open=["']([^"']+)["']/gi)].map((match) => match[1]);
-  const registered = [...html.matchAll(/const moduleIds=\[([^\]]*)\]/)].flatMap((match) =>
+  const registered = [...html.matchAll(/const moduleIds=\[([^\]]*)\]/g)].flatMap((match) =>
     [...match[1].matchAll(/["']([^"']+)["']/g)].map((item) => item[1])
   );
   const sectionIds = new Set([...html.matchAll(/<section\b[^>]*\bid=["']([^"']+)["']/gi)].map((match) => match[1]));
