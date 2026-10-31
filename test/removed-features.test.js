@@ -32,11 +32,11 @@ test("the remaining page script parses and section markup is balanced", () => {
 });
 
 test("Style Center navigation ID belongs only to its section", () => {
-  assert.equal((html.match(/<style\\b[^>]*\\bid=["']ali-style-center-styles["']/gi) || []).length, 1);
-  assert.equal((html.match(/<section\\b(?=[^>]*\\bid=["']ali-style-center["'])[^>]*>/gi) || []).length, 1);
-  assert.equal((html.match(/\\bid=["']ali-style-center["']/gi) || []).length, 1);
+  assert.equal((html.match(/<style\b[^>]*\bid=["']ali-style-center-styles["']/gi) || []).length, 1);
+  assert.equal((html.match(/<section\b(?=[^>]*\bid=["']ali-style-center["'])[^>]*>/gi) || []).length, 1);
+  assert.equal((html.match(/\bid=["']ali-style-center["']/gi) || []).length, 1);
 });
 
 test("HTML script opening and closing tags are balanced", () => {
-  assert.equal((html.match(/<script\\b/gi) || []).length, (html.match(/<\\/script>/gi) || []).length);
+  assert.equal((html.match(/<script\b/gi) || []).length, (html.match(/<\/script>/gi) || []).length);
 });
