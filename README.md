@@ -12,10 +12,6 @@ A private fashion and personal-style workspace for planning outfits, organizing 
 - Personal Style Intelligence: track preferences and develop a signature style.
 - Beauty, event, shopping, and saved-look planning tools.
 
-## Explicitly out of scope
-
-Photo-based AI clothing try-on and AI-generated 360-degree outfit rotation/video have been removed from the product, frontend, server routes, Netlify functions, and tests.
-
 ## Run locally
 
 ```bash
@@ -30,4 +26,4 @@ Open http://localhost:3000.
 npm test
 ```
 
-The tests verify that the removed image-upload and video-generation interfaces do not return to the static site.
+The regression tests keep the public page and server limited to the documented product scope.

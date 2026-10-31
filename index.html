@@ -608,7 +608,7 @@ body.ali-module-mode .ali-module-grid{grid-template-columns:repeat(4,minmax(0,1f
       </svg>
     </div>
   </div>
-</section></section><section class="feature">  <div class="wrap"><div class="txt">
+</section><section class="feature">  <div class="wrap"><div class="txt">
 
   <h2 id="beauty-title">Beauty Studio</h2>
 
@@ -1090,7 +1090,7 @@ $$("[data-beauty-choice]").forEach(b=>b.addEventListener("click",()=>{selectedBe
 $$("[data-hair-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliHairChoice",b.dataset.hairChoice);$$("[data-hair-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
 $$("[data-nail-choice]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("aliNailChoice",b.dataset.nailChoice);$$("[data-nail-choice]").forEach(x=>x.classList.toggle("active",x===b))}));
 $$("[data-identity]").forEach(b=>b.addEventListener('click',()=>{$$('[data-identity]').forEach(x=>x.classList.toggle('active',x===b));localStorage.setItem('aliIdentityMode',b.dataset.identity)}));
-$$('[data-event]').forEach(b=>b.addEventListener('click',()=>{$$('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#style planner').scrollIntoView({behavior:'smooth'})}));
+$$('[data-event]').forEach(b=>b.addEventListener('click',()=>{$$('[data-event]').forEach(x=>x.classList.toggle('active',x===b));const v=b.dataset.event;$('#occasion-select').value=v==='Bridal'||v==='Wedding'?'Wedding':v==='Beach'?'Beach':'Party';$('#style-planner').scrollIntoView({behavior:'smooth'})}));
 $('#clear-local-data')?.addEventListener('click',()=>{['aliStyleLooks','aliStyleCloset','aliStyleLang','aliIdentityMode'].forEach(k=>localStorage.removeItem(k));location.reload()});
 const ngT={en:{title:'AI Personal Style Identity',lead:'The next generation layer: learn your taste, remember your choices, restyle what you own, and build your signature identity.'},ar:{title:'هوية الستايل الشخصية بالذكاء الاصطناعي',lead:'طبقة الجيل الجديد: تعلّم ذوقك، تذكّر اختياراتك، أعد تنسيق ما تملكه، وابنِ هويتك الخاصة بالستايل.'}};
 const ngState=()=>load('aliStyleNextGen',{dna:{Elegant:20,Luxury:20,Minimal:20,Casual:20,Classic:20},signature:null,upgrades:0});
@@ -1103,12 +1103,12 @@ $('#make-signature')?.addEventListener('click',ngSignature);
 $('#explain-look')?.addEventListener('click',ngExplain);
 $('#upgrade-look')?.addEventListener('click',()=>{const styles=['Elegant','Luxury','Classic','Formal'];const s=ngState();const l=currentLook();const i=styles.indexOf(l.style);$('#style-select').value=styles[Math.min(i<0?0:i+1,styles.length-1)];s.upgrades=(s.upgrades||0)+1;ngSave(s);ngLearn();renderResult(currentLook());ngExplain()});
 $('#occasion-switch')?.addEventListener('click',()=>{const order=['Daily','Work','Dinner','Evening','Party','Wedding','Travel','Beach'];const i=order.indexOf($('#occasion-select').value);$('#occasion-select').value=order[(i+1)%order.length];renderResult(currentLook());ngExplain()});
-$('#restyle-item')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#style planner').scrollIntoView({behavior:'smooth'});ngLearn()});
-$('#style-today')?.addEventListener('click',()=>{const hours=new Date().getHours();$('#occasion-select').value=hours<12?'Daily':hours<17?'Work':'Evening';const a=load('aliStyleCloset',[]);if(a.length){$('#style-select').value=a[0].style;$('#color-select').value=a[0].color}$('#style planner').scrollIntoView({behavior:'smooth'});ngLearn()});
+$('#restyle-item')?.addEventListener('click',()=>{const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#style-planner').scrollIntoView({behavior:'smooth'});ngLearn()});
+$('#style-today')?.addEventListener('click',()=>{const hours=new Date().getHours();$('#occasion-select').value=hours<12?'Daily':hours<17?'Work':'Evening';const a=load('aliStyleCloset',[]);if(a.length){$('#style-select').value=a[0].style;$('#color-select').value=a[0].color}$('#style-planner').scrollIntoView({behavior:'smooth'});ngLearn()});
 renderDNA();
 const ngs=ngState();if(ngs.signature)$('#signature-look').textContent=ngs.signature.style+' · '+ngs.signature.color+' · '+ngs.signature.outfit;function ngJourney(){const s=ngState();const looks=load('aliSavedLooks',[]);const closet=load('aliStyleCloset',[]);const sig=s.signature?'Signature: '+s.signature.style+' / '+s.signature.color+'. ':'No signature yet. ';$('#journey-summary').textContent=sig+'Saved looks: '+looks.length+'. Closet items: '+closet.length+'.';}
 function ngChallenge(){const styles=['Elegant','Luxury','Classic','Modern','Minimal','Romantic'];const cur=$('#style-select').value;let i=styles.indexOf(cur);$('#style-select').value=styles[(i+1)%styles.length];const colors=['Black','White','Beige','Gold','Rose','Navy','Green'];let ci=colors.indexOf($('#color-select').value);$('#color-select').value=colors[(ci+2)%colors.length];renderResult(currentLook());ngExplain();ngLearn();ngJourney()}
-function ngDontBuy(){const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Add a closet item first, then we can build around what you own.';return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Dress'?'Dress':x.category==='Suit'?'Suit':'Top & trousers';$('#style planner')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Starting from your '+x.category+' in '+x.color+'. Try styling it before buying anything new.';ngLearn()}
+function ngDontBuy(){const a=load('aliStyleCloset',[]);if(!a.length){$('#closet-tools')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Add a closet item first, then we can build around what you own.';return}const x=a[0];$('#style-select').value=x.style;$('#color-select').value=x.color;$('#outfit-select').value=x.category==='Dress'?'Dress':x.category==='Suit'?'Suit':'Top & trousers';$('#style-planner')?.scrollIntoView({behavior:'smooth'});$('#missing-piece').textContent='Starting from your '+x.category+' in '+x.color+'. Try styling it before buying anything new.';ngLearn()}
 function ngMissing(){const a=load('aliStyleCloset',[]);const used=new Set(a.map(x=>x.category));const options=['Dress','Suit','Top','Bottom','Jacket','Accessories'];const miss=options.find(x=>!used.has(x));$('#missing-piece').textContent=miss?'A possible missing category is: '+miss+'. This is a planning suggestion, not a shopping requirement.':'Your closet covers the main categories in this demo.'}
 $('#refresh-journey')?.addEventListener('click',ngJourney);
 $('#challenge-look')?.addEventListener('click',ngChallenge);
@@ -1204,7 +1204,7 @@ $('#send-design-to-style-planner')?.addEventListener('click',()=>{
  $('#outfit-select').value=designState.garment==='Trousers'?'Top & trousers':designState.garment==='Skirt'?'Skirt & blouse':designState.garment==='Jacket'?'Jacket & jeans':designState.garment;
  $('#style-select').value=designState.cut==='Luxury'?'Luxury':designState.cut==='Fitted'?'Elegant':'Modern';
  $('#color-select').value='Black';
- $('#style planner')?.scrollIntoView({behavior:'smooth',block:'start'});
+ $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});
 });
 $('#copy-design-brief')?.addEventListener('click',async()=>{
  const text='Ali Sr.M custom design brief: '+designBrief();
@@ -1227,7 +1227,7 @@ function renderFashionVault(){
  });
  box.innerHTML=items.length?items.map((x,i)=>'<div class="ali-vault-item"><strong>'+escapeVault(x.name||x.garment||'Saved garment')+'</strong><small>'+escapeVault([x.category||'Custom Design',x.color||'',x.size||'',x.style||x.shape||''].filter(Boolean).join(' · '))+'</small><button type="button" data-vault-use="'+i+'">Use in Style Planner</button><button type="button" data-vault-delete="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No matching pieces yet.</div>';
  const filtered=items;
- $('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
+ $('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
  $('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
 }
 $('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
