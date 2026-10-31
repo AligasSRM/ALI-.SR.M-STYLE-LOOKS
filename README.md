@@ -1,23 +1,33 @@
 # Ali Sr.M — Style & Looks
 
-## Real AI layer
+A private fashion and personal-style workspace for planning outfits, organizing a digital wardrobe, designing garments, preparing tailor specifications, and saving personal style preferences.
 
-The site now includes a real server-side AI try-on endpoint at:
+## Current scope
 
-`/.netlify/functions/generate-look`
+- Personal Style Planner: choose an occasion, outfit type, color, and style; preview, save, and share a written outfit plan.
+- Digital Closet: keep a private local wardrobe and build plans from owned pieces.
+- Fashion Vault: organize saved garments and design details.
+- Design Studio: configure garment silhouettes, fabrics, and details.
+- Tailor Studio: prepare measurement-based garment specification sheets.
+- Personal Style Intelligence: track preferences and develop a signature style.
+- Beauty, event, shopping, and saved-look planning tools.
 
-The browser sends the selected photo to the serverless function. The Gemini API key is kept server-side in the `GEMINI_API_KEY` environment variable and is never placed in `index.html`.
+## Explicitly out of scope
 
-The function uses Google's Gemini 3.1 Flash Image (Nano Banana 2) image model for image-to-image styling.
+Photo-based AI clothing try-on and AI-generated 360-degree outfit rotation/video have been removed from the product, frontend, server routes, Netlify functions, and tests.
 
-### Required deployment setting
+## Run locally
 
-On the hosting project, add:
+```bash
+npm start
+```
 
-`GEMINI_API_KEY`
+Open http://localhost:3000.
 
-as a server environment variable. Never commit the key to GitHub.
+## Tests
 
-If the key is not configured, the endpoint fails closed with `AI_NOT_CONFIGURED`; the browser does not receive or expose a provider key.
+```bash
+npm test
+```
 
-Reference: https://ai.google.dev/gemini-api/docs/image-generation
+The tests verify that the removed image-upload and video-generation interfaces do not return to the static site.
