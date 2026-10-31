@@ -1227,20 +1227,20 @@ function renderFashionVault(){
  });
  box.innerHTML=items.length?items.map((x,i)=>'<div class="ali-vault-item"><strong>'+escapeVault(x.name||x.garment||'Saved garment')+'</strong><small>'+escapeVault([x.category||'Custom Design',x.color||'',x.size||'',x.style||x.shape||''].filter(Boolean).join(' · '))+'</small><button type="button" data-vault-use="'+i+'">Use in Style Planner</button><button type="button" data-vault-delete="'+i+'">Delete</button></div>').join(''):'<div class="share-note">No matching pieces yet.</div>';
  const filtered=items;
- $('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
- $('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
+ $$('#vault-list [data-vault-use]').forEach(b=>b.addEventListener('click',()=>{const x=filtered[+b.dataset.vaultUse];if(!x)return; if($('#style-select'))$('#style-select').value=x.style||'Modern'; if($('#color-select'))$('#color-select').value=x.color||'Black'; if($('#outfit-select'))$('#outfit-select').value=x.outfit||((x.category==='Trousers'||x.garment==='Trousers')?'Top & trousers':x.garment||'Dress'); $('#style-planner')?.scrollIntoView({behavior:'smooth',block:'start'});}));
+ $$('#vault-list [data-vault-delete]').forEach(b=>b.addEventListener('click',()=>{const a=vaultLoad();const visible=filtered[+b.dataset.vaultDelete];const idx=a.indexOf(visible);if(idx>=0){a.splice(idx,1);vaultSave(a);renderFashionVault();}}));
 }
-$('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
-$('#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('change',renderFashionVault));
+$$('#vault-search,#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('input',renderFashionVault));
+$$('#vault-category,#vault-color,#vault-size').forEach(e=>e?.addEventListener('change',renderFashionVault));
 $('#vault-add-current-design')?.addEventListener('click',()=>{
  const a=vaultLoad(), item={name:tailorValue('tailor-garment')+' — '+tailorValue('tailor-shape'),category:'Custom Design',garment:tailorValue('tailor-garment'),color:tailorValue('tailor-color'),fabric:tailorValue('tailor-fabric'),size:'Custom',style:tailorValue('tailor-fit'),shape:tailorState.shape,topFit:tailorState.topFit,legFit:tailorState.legFit,neckline:tailorState.neckline,sleeve:tailorState.sleeve,length:tailorState.length,createdAt:Date.now()};
  a.unshift(item);vaultSave(a);renderFashionVault();
 });
 $('#vault-use-first')?.addEventListener('click',()=>{$('#vault-list [data-vault-use]')?.click()});
 
-$('[data-tailor-key]').forEach(btn=>btn.addEventListener('click',()=>{
+$$('[data-tailor-key]').forEach(btn=>btn.addEventListener('click',()=>{
  const k=btn.dataset.tailorKey;tailorState[k]=btn.dataset.tailorValue;
- $('[data-tailor-key]').forEach(x=>x.classList.toggle('active',x===btn));
+ $$('[data-tailor-key]').forEach(x=>x.classList.toggle('active',x===btn));
 }));
 
 function measure(id){const n=parseFloat($('#'+id)?.value);return Number.isFinite(n)?n:null}
