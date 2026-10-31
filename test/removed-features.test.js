@@ -45,8 +45,10 @@ test("HTML script opening and closing tags are balanced", () => {
 test("multi-element controls use querySelectorAll before iteration", () => {
   const script = html.match(/<script>([\s\S]*?)<\/script>/i)?.[1] || "";
   assert.doesNotMatch(script, /(^|[^$])\$\([^)]*\)\.forEach/m);
-  assert.match(script, /\$\$\('#vault-search,#vault-category,#vault-color,#vault-size'\)\.forEach/);
-  assert.match(script, /\$\$\('\[data-tailor-key\]'\)\.forEach/);
+  assert.match(script, /const \$=s=>document\.querySelector\(s\),all=s=>document\.querySelectorAll\(s\);/);
+  assert.doesNotMatch(script, /\$\$\(/);
+  assert.match(script, /all\('#vault-search,#vault-category,#vault-color,#vault-size'\)\.forEach/);
+  assert.match(script, /all\('\[data-tailor-key\]'\)\.forEach/);
 });
 
 test("user-controlled saved content is escaped before HTML rendering", () => {
