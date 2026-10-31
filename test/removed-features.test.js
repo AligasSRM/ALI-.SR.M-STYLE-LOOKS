@@ -41,24 +41,25 @@ test("HTML script opening and closing tags are balanced", () => {
   assert.equal((html.match(/<script\b/gi) || []).length, (html.match(/<\/script>/gi) || []).length);
 });
 
+
 test("multi-element controls use querySelectorAll before iteration", () => {
-  const script = html.match(/<script>([\\s\\S]*?)<\\/script>/i)?.[1] || "";
-  assert.doesNotMatch(script, /(^|[^$])\\$\\([^)]*\\)\\.forEach/m);
-  assert.match(script, /\\$\\$\\('#vault-search,#vault-category,#vault-color,#vault-size'\\)\\.forEach/);
-  assert.match(script, /\\$\\$\\('\\[data-tailor-key\\]'\\)\\.forEach/);
+  const script = html.match(/<script>([\s\S]*?)<\/script>/i)?.[1] || "";
+  assert.doesNotMatch(script, /(^|[^$])\$\([^)]*\)\.forEach/m);
+  assert.match(script, /\$\$\('#vault-search,#vault-category,#vault-color,#vault-size'\)\.forEach/);
+  assert.match(script, /\$\$\('\[data-tailor-key\]'\)\.forEach/);
 });
 
 test("user-controlled saved content is escaped before HTML rendering", () => {
-  const script = html.match(/<script>([\\s\\S]*?)<\\/script>/i)?.[1] || "";
-  assert.match(script, /function renderCloset\\(\\)[\\s\\S]*?escapeVault\\(x\\?\\.name\\)/);
-  assert.match(script, /function renderSaved\\(\\)[\\s\\S]*?escapeVault\\(x\\?\\.style\\)/);
-  assert.match(script, /function renderResult\\(l\\)[\\s\\S]*?escapeVault\\(l\\.style\\)/);
-  assert.match(script, /function renderDNA\\(\\)[\\s\\S]*?escapeVault\\(k\\)/);
+  const script = html.match(/<script>([\s\S]*?)<\/script>/i)?.[1] || "";
+  assert.match(script, /function renderCloset\(\)[\s\S]*?escapeVault\(x\?\.name\)/);
+  assert.match(script, /function renderSaved\(\)[\s\S]*?escapeVault\(x\?\.style\)/);
+  assert.match(script, /function renderResult\(l\)[\s\S]*?escapeVault\(l\.style\)/);
+  assert.match(script, /function renderDNA\(\)[\s\S]*?escapeVault\(k\)/);
 });
 
 test("clear-local-data removes every app-owned local storage key", () => {
-  const script = html.match(/<script>([\\s\\S]*?)<\\/script>/i)?.[1] || "";
-  const clearHandler = script.match(/#clear-local-data[\\s\\S]*?location\\.reload\\(\\)/)?.[0] || "";
+  const script = html.match(/<script>([\s\S]*?)<\/script>/i)?.[1] || "";
+  const clearHandler = script.match(/#clear-local-data[\s\S]*?location\.reload\(\)/)?.[0] || "";
   for (const key of [
     "aliStyleLang", "aliStyleLooks", "aliHairChoice", "aliNailChoice",
     "aliIdentityMode", "aliStyleCloset", "aliStyleNextGen", "aliSavedLooks",
