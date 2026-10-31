@@ -29,4 +29,26 @@ test("the remaining page script parses and section markup is balanced", () => {
   assert.ok(match, "the page script must exist");
   assert.doesNotThrow(() => new vm.Script(match[1]));
   assert.equal((html.match(/<section\b/g) || []).length, (html.match(/<\/section>/g) || []).length);
+  assert.equal((html.match(/<script\b/gi) || []).length, (html.match(/<\/script>/gi) || []).length);
+});
+
+test("all HTML IDs are unique and the style-center section has one stable ID", () => {
+  const ids = [...html.matchAll(/\bid=["']([^"']+)["']/gi)].map((match) => match[1]);
+  const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+  assert.deepEqual([...new Set(duplicates)], []);
+  assert.equal(ids.filter((id) => id === "ali-style-center").length, 1);
+  assert.match(html, /<style id=["']ali-style-center-styles["']/i);
+});
+
+test("every style-center navigation card points to an existing registered module", () => {
+  const targets = [...html.matchAll(/data-module-open=["']([^"']+)["']/gi)].map((match) => match[1]);
+  const registered = [...html.matchAll(/const moduleIds=\[([^\]]*)\]/)].flatMap((match) =>
+    [...match[1].matchAll(/["']([^"']+)["']/g)].map((item) => item[1])
+  );
+  const sectionIds = new Set([...html.matchAll(/<section\b[^>]*\bid=["']([^"']+)["']/gi)].map((match) => match[1]));
+  assert.ok(targets.length > 0, "navigation cards must exist");
+  for (const target of targets) {
+    assert.ok(registered.includes(target), `navigation target ${target} must be registered`);
+    assert.ok(sectionIds.has(target), `navigation target ${target} must have a section`);
+  }
 });
